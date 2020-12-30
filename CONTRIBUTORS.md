@@ -8,4 +8,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 ## Mentors
 
+- [Andrew Hedges](https://github.com/segdeha) 🦔
+
 ## Code of Conduct Contacts
