@@ -12,11 +12,11 @@ This project is based on [whats-near.me](https://whats-near.me), a mobile web ap
 
 ### Locations for things
 
-- Site: [{PRODUCTION_URL}]({PRODUCTION_URL})
-- Repo: [{REPO_URL}]({REPO_URL})
-- Clone URL: `{REPO_CLONE_URL}`
-- Issue list: [{PROJECT_BOARD_URL}]({PROJECT_BOARD_URL})
-- Google Cloud Console: [{CONSOLE_URL}]({CONSOLE_URL})
+- Site: [https://tcl-20-whats-near-me.netlify.app](https://tcl-20-whats-near-me.netlify.app)
+- Repo: [https://github.com/the-collab-lab/tcl-20-whats-near-me](https://github.com/the-collab-lab/tcl-20-whats-near-me)
+- Clone URL: `git@github.com:the-collab-lab/tcl-20-whats-near-me.git`
+- Issue list: [https://the-collab-lab.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=TCL20](https://the-collab-lab.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=TCL20)
+- Google Cloud Console: [https://console.developers.google.com/apis/dashboard?project=tcl-20-whats-near-me](https://console.developers.google.com/apis/dashboard?project=tcl-20-whats-near-me)
 
 ### Project cadence & duration
 
@@ -108,7 +108,7 @@ Having watched many cohorts before yours, our advice is to front-load the work a
 
 ### How to know what to do
 
-The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board]({PROJECT_BOARD_URL}) on GitHub.
+The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board](https://the-collab-lab.atlassian.net/secure/RapidBoard.jspa?rapidView=1&projectKey=TCL20) on GitHub.
 
 A task or story is “done” when the following are all true:
 
@@ -151,7 +151,7 @@ When you and your pair partner have working code that you believe is ready to be
 3. Incorporate feedback from the other pair team into your work until both you and they are satisfied the code is ready to be merged
 4. Request that Andrew or one of the mentors review the PR for final approval
 5. Once approved, merge the PR into `master` (your code will be built and deployed to production automatically thanks to [Netlify](https://www.netlify.com/))
-6. Check your work on the [production site]({PRODUCTION_URL})
+6. Check your work on the [production site](https://tcl-20-whats-near-me.netlify.app)
 7. Celebrate! 🥳
 
 ### What else?
