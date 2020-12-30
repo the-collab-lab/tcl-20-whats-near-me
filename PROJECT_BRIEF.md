@@ -26,45 +26,45 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 
 Pairings will go as follows:
 
-#### Week 1, {DATES_WEEK_1}
+#### Week 1, January 3-9, 2021
 
-1. {DEV_1} & {DEV_2}
-2. {DEV_3} & {DEV_4}
+1. Rachel & DeVon
+2. Shane & Caitlyn
 
-#### Week 2, {DATES_WEEK_2}
+#### Week 2, January 10-16, 2021
 
-1. {DEV_2} & {DEV_3}
-2. {DEV_1} & {DEV_4}
+1. Rachel & Caitlyn
+2. Shane & DeVon
 
-#### Week 3, {DATES_WEEK_3}
+#### Week 3, January 17-23, 2021
 
-1. {DEV_3} & {DEV_1}
-2. {DEV_4} & {DEV_2}
+1. Shane & Rachel
+2. Caitlyn & DeVon
 
-#### Week 4, {DATES_WEEK_4}
+#### Week 4, January 24-30, 2021
 
-1. {DEV_1} & {DEV_2}
-2. {DEV_3} & {DEV_4}
+1. Rachel & DeVon
+2. Shane & Caitlyn
 
-#### Week 5, {DATES_WEEK_5}
+#### Week 5, January 31-February 6, 2021
 
-1. {DEV_2} & {DEV_3}
-2. {DEV_1} & {DEV_4}
+1. Rachel & Caitlyn
+2. Shane & DeVon
 
-#### Week 6, {DATES_WEEK_6}
+#### Week 6, February 7-13, 2021
 
-1. {DEV_3} & {DEV_1}
-2. {DEV_4} & {DEV_2}
+1. Shane & Rachel
+2. Caitlyn & DeVon
 
-#### Week 7, {DATES_WEEK_7}
+#### Week 7, February 14-20, 2021
 
-1. {DEV_1} & {DEV_2}
-2. {DEV_3} & {DEV_4}
+1. Rachel & DeVon
+2. Shane & Caitlyn
 
-#### Week 8, {DATES_WEEK_8}
+#### Week 8, February 21-27, 2021
 
-1. {DEV_2} & {DEV_3}
-2. {DEV_1} & {DEV_4}
+1. Rachel & Caitlyn
+2. Shane & DeVon
 
 ### Pair Programming
 
