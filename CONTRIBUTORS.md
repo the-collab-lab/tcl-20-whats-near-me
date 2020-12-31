@@ -12,3 +12,5 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [EJ Mason](https://github.com/mxmason) 🐧
 
 ## Code of Conduct Contacts
+
+- [Stacie Taylor](https://github.com/stacietaylorcima) ✨
