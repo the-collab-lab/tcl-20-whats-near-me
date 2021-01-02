@@ -5,7 +5,9 @@ Add yourself as a contributor to this project as a Markdown link that links your
     - [Dione Developer](https://github.com/DioneDeveloper) 💅
 
 ## Cohort Participants
+
 - [Shayne Sebro](https://github.com/snsebro) 🙌🏾
+- [Caitlyn Greffly](https://github.com/greffly) ☕️
 
 ## Mentors
 
