@@ -8,6 +8,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Shayne Sebro](https://github.com/snsebro) 🙌🏾
 - [Caitlyn Greffly](https://github.com/greffly) ☕️
+- [Rachel Fischoff](https://github.com/rachel-fischoff) ✨
 
 ## Mentors
 
