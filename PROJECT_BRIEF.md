@@ -29,42 +29,42 @@ Pairings will go as follows:
 #### Week 1, January 3-9, 2021
 
 1. Rachel & DeVon
-2. Shane & Caitlyn
+2. Shayne & Caitlyn
 
 #### Week 2, January 10-16, 2021
 
 1. Rachel & Caitlyn
-2. Shane & DeVon
+2. Shayne & DeVon
 
 #### Week 3, January 17-23, 2021
 
-1. Shane & Rachel
+1. Shayne & Rachel
 2. Caitlyn & DeVon
 
 #### Week 4, January 24-30, 2021
 
 1. Rachel & DeVon
-2. Shane & Caitlyn
+2. Shayne & Caitlyn
 
 #### Week 5, January 31-February 6, 2021
 
 1. Rachel & Caitlyn
-2. Shane & DeVon
+2. Shayne & DeVon
 
 #### Week 6, February 7-13, 2021
 
-1. Shane & Rachel
+1. Shayne & Rachel
 2. Caitlyn & DeVon
 
 #### Week 7, February 14-20, 2021
 
 1. Rachel & DeVon
-2. Shane & Caitlyn
+2. Shayne & Caitlyn
 
 #### Week 8, February 21-27, 2021
 
 1. Rachel & Caitlyn
-2. Shane & DeVon
+2. Shayne & DeVon
 
 ### Pair Programming
 
