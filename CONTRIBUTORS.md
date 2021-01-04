@@ -14,6 +14,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Andrew Hedges](https://github.com/segdeha) 🦔
 - [EJ Mason](https://github.com/mxmason) 🐧
+- [AliLynne Thompson] (https://github.com/alilynne) 🐹
 
 ## Code of Conduct Contacts
 
