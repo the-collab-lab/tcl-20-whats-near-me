@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-map-react": "^2.1.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -52,7 +53,10 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "prettier --write"],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     "*.{css,md}": "prettier --write"
   }
 }
