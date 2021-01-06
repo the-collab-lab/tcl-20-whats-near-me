@@ -1,0 +1,15 @@
+nav {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: inline;
+  padding: 10px;
+}
