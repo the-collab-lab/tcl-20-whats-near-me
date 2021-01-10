@@ -1,18 +1,31 @@
-import Map from './components/Map';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Help from './pages/Help';
+import Map from './pages/Map';
+import List from './pages/List';
+import Settings from './pages/Settings';
+import Nav from './components/Nav';
 import './App.css';
 
 function App() {
-  const location = {
-    lat: 21.694,
-    lng: 71.7979,
-  };
-
-  const zoomLevel = 8;
-
   return (
-    <div className="App">
-      <Map location={location} zoomLevel={zoomLevel} />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Map />
+        </Route>
+        <Route path="/list">
+          <List />
+        </Route>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+        <Route path="/help">
+          <Help />
+        </Route>
+      </Switch>
+      <Nav />
+    </Router>
   );
 }
 
