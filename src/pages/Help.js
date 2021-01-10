@@ -1,5 +1,5 @@
 import React from 'react';
-import './pages.css';
+import './Pages.css';
 
 export default function Help() {
   return (
