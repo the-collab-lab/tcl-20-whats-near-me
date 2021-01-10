@@ -11,23 +11,21 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Map />
-          </Route>
-          <Route path="/list">
-            <List />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/help">
-            <Help />
-          </Route>
-        </Switch>
-        <Nav />
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <Map />
+        </Route>
+        <Route path="/list">
+          <List />
+        </Route>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+        <Route path="/help">
+          <Help />
+        </Route>
+      </Switch>
+      <Nav />
     </Router>
   );
 }

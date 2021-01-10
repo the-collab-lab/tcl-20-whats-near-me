@@ -3,8 +3,8 @@ import './pages.css';
 
 export default function Settings() {
   return (
-    <div>
+    <main>
       <h1>Settings</h1>
-    </div>
+    </main>
   );
 }

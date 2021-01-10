@@ -3,8 +3,8 @@ import './pages.css';
 
 export default function Help() {
   return (
-    <div>
+    <main>
       <h1>Help</h1>
-    </div>
+    </main>
   );
 }
