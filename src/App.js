@@ -5,6 +5,7 @@ import Map from './pages/Map';
 import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
+import './App.css';
 
 function App() {
   return (
