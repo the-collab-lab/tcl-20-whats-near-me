@@ -2,15 +2,16 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
+import LocationPin from '../components/LocationPin.js';
 
 const location = {
-  lat: 21.694,
-  lng: 71.7979,
+  lat: 45,
+  lng: -123.456,
 };
 
 const zoomLevel = 8;
 
-export default function Map() {
+export default function Map({ locations }) {
   return (
     <div className="map">
       <GoogleMapReact
@@ -19,7 +20,12 @@ export default function Map() {
         }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
-      ></GoogleMapReact>
+      >
+        {locations &&
+          locations.map((locationUrl) => {
+            return <LocationPin img={locationUrl} />;
+          })}
+      </GoogleMapReact>
     </div>
   );
 }
