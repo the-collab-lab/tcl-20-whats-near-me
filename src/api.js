@@ -20,7 +20,7 @@ fetch(url)
   .then(function (response) {
     var pages = response.query.pages;
     for (var page in pages) {
-      console.log(pages[page].title + ': ' + pages[page].thumbnail.source);
+      console.log(response.json());
     }
   })
   .catch(function (error) {

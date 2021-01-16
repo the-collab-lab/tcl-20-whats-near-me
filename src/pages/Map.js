@@ -22,8 +22,13 @@ export default function Map({ locations }) {
         defaultZoom={zoomLevel}
       >
         {locations &&
-          locations.map((locationUrl) => {
-            return <LocationPin img={locationUrl} />;
+          locations.map((locationData) => {
+            return (
+              <LocationPin
+                img={locationData}
+                // lat={locationData.coordinates[0].lat} lng={locationData.coordinates[0].lat}
+              />
+            );
           })}
       </GoogleMapReact>
     </div>

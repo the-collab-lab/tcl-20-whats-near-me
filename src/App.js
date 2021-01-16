@@ -14,26 +14,23 @@ function App() {
 
   let locationImages = [];
 
-  fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (response) {
-      let pages = response.query.pages;
-      for (const page in pages) {
-        console.log(pages[page].title + ': ' + pages[page].thumbnail.source);
-
-        locationImages.push(pages[page].thumbnail.source);
-      }
-      setLocations(locationImages);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
   useEffect(() => {
-    setLocations(locationImages);
-  }, locationImages);
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (response) {
+        let pages = response.query.pages;
+        console.log(pages);
+        setLocations(pages);
+        locationImages = pages;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(locationImages);
 
   return (
     <Router>
