@@ -1,13 +1,22 @@
 import React from 'react';
 
-export default function LocationPin({ img }) {
+export default function LocationPin({ img, text }) {
   return (
-    <div className="pin">
-      <p>This is a Location</p>
+    <div
+      className="pin"
+      style={{ borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)' }}
+    >
       <img
         src={img}
         alt="location"
-        style={{ width: '50px', height: '50px' }}
+        style={{
+          width: '24px',
+          height: '24px',
+          position: 'absolute',
+          objectFit: 'cover',
+          borderRadius: '50% 50% 50% 0',
+          transform: 'rotate(45deg)',
+        }}
       ></img>
     </div>
   );

@@ -12,6 +12,12 @@ const location = {
 const zoomLevel = 8;
 
 export default function Map({ locations }) {
+  // const renderMarkers = (map, maps) => {
+  //   let marker = new maps.Marker({
+  //     position: (45, -123.456)
+  //   })
+  // }
+
   return (
     <div className="map">
       <GoogleMapReact
@@ -20,13 +26,22 @@ export default function Map({ locations }) {
         }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
+        // onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps, locations)}
+        yesIWantToUseGoogleMapApiInternals
       >
         {locations &&
           locations.map((locationData) => {
+            console.log(locationData.thumbnail);
             return (
               <LocationPin
-                img={locationData}
-                // lat={locationData.coordinates[0].lat} lng={locationData.coordinates[0].lat}
+                img={
+                  locationData.thumbnail == undefined
+                    ? null
+                    : locationData.thumbnail.source
+                }
+                text={locationData.title}
+                lat={locationData.coordinates[0].lat}
+                lng={locationData.coordinates[0].lon}
               />
             );
           })}

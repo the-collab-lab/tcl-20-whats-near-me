@@ -12,8 +12,6 @@ function App() {
 
   var url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
 
-  let locationImages = [];
-
   useEffect(() => {
     fetch(url)
       .then(function (response) {
@@ -23,14 +21,11 @@ function App() {
         let pages = response.query.pages;
         console.log(pages);
         setLocations(pages);
-        locationImages = pages;
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
-
-  console.log(locationImages);
 
   return (
     <Router>
