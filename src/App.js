@@ -19,13 +19,12 @@ function App() {
       })
       .then(function (response) {
         let pages = response.query.pages;
-        console.log(pages);
         setLocations(pages);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  });
 
   return (
     <Router>

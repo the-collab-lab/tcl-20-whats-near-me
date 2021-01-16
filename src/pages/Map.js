@@ -1,6 +1,8 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
+import { Icon } from '@iconify/react';
+import location12Filled from '@iconify-icons/fluent/location-12-filled';
 import './Map.css';
 import LocationPin from '../components/LocationPin.js';
 
@@ -12,33 +14,29 @@ const location = {
 const zoomLevel = 8;
 
 export default function Map({ locations }) {
-  // const renderMarkers = (map, maps) => {
-  //   let marker = new maps.Marker({
-  //     position: (45, -123.456)
-  //   })
-  // }
-
   return (
     <div className="map">
       <GoogleMapReact
-        bootstrapURLKeys={{
-          key: API_KEY,
-        }}
+        bootstrapURLKeys={{ key: API_KEY }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
-        // onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps, locations)}
         yesIWantToUseGoogleMapApiInternals
       >
         {locations &&
           locations.map((locationData) => {
-            console.log(locationData.thumbnail);
-            return (
+            return locationData.thumbnail === undefined ? (
+              <Icon
+                key={locationData.pageid}
+                icon={location12Filled}
+                lat={locationData.coordinates[0].lat}
+                lng={locationData.coordinates[0].lon}
+                width={24}
+                height={24}
+              />
+            ) : (
               <LocationPin
-                img={
-                  locationData.thumbnail == undefined
-                    ? null
-                    : locationData.thumbnail.source
-                }
+                key={locationData.pageid}
+                img={locationData.thumbnail.source}
                 text={locationData.title}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
