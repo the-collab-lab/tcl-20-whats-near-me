@@ -11,7 +11,7 @@ const location = {
   lng: -123.456,
 };
 
-const zoomLevel = 8;
+const zoomLevel = 12;
 
 export default function Map({ locations }) {
   return (

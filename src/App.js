@@ -18,7 +18,7 @@ function App() {
         return response.json();
       })
       .then((response) => {
-        let pages = response.query.pages;
+        let pages = response.query ? response.query.pages : [];
         setLocations(pages);
       })
       .catch(console.log);
