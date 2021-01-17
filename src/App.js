@@ -10,20 +10,18 @@ import './App.css';
 function App() {
   const [locations, setLocations] = useState([]);
 
-  var url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
+  const url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
 
   useEffect(() => {
     fetch(url)
-      .then(function (response) {
+      .then((response) => {
         return response.json();
       })
-      .then(function (response) {
+      .then((response) => {
         let pages = response.query.pages;
         setLocations(pages);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(console.log);
   });
 
   return (
