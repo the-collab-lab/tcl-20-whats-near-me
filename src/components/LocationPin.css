@@ -1,0 +1,20 @@
+.pin {
+  position: relative;
+  border-radius: 50% 50% 50% 0;
+  height: 24px;
+  width: 24px;
+  transform: rotate(-45deg);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.pin-fill {
+  position: absolute;
+  left: -10px;
+  bottom: -5px;
+  width: 150%;
+  height: 150%;
+  background-size: cover;
+  background-position: center;
+  transform: rotate(45deg);
+}
