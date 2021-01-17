@@ -22,7 +22,7 @@ function App() {
         setLocations(pages);
       })
       .catch(console.log);
-  });
+  }, []);
 
   return (
     <Router>
