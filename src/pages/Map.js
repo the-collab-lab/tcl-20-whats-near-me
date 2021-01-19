@@ -1,5 +1,5 @@
-import React from 'react';
-import GoogleMapReact, { InfoWindow } from 'google-map-react';
+import React, { useState } from 'react';
+import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import { Icon } from '@iconify/react';
 import location12Filled from '@iconify-icons/fluent/location-12-filled';
@@ -14,6 +14,13 @@ const location = {
 const zoomLevel = 12;
 
 export default function Map({ locations }) {
+  const [showWindow, setShowWindow] = useState(false);
+
+  const handleWindow = () => {
+    setShowWindow(!showWindow);
+    console.log(`state set to ${showWindow}`);
+  };
+
   return (
     <div className="map">
       <GoogleMapReact
@@ -32,6 +39,7 @@ export default function Map({ locations }) {
                 lng={locationData.coordinates[0].lon}
                 width={24}
                 height={24}
+                onClick={handleWindow}
               />
             ) : (
               <LocationPin
@@ -40,6 +48,7 @@ export default function Map({ locations }) {
                 text={locationData.title}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
+                onClick={handleWindow}
               />
             );
           })}
