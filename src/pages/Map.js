@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact, { InfoWindow } from 'google-map-react';
 import { API_KEY } from '../config.js';
 import { Icon } from '@iconify/react';
 import location12Filled from '@iconify-icons/fluent/location-12-filled';
