@@ -5,14 +5,14 @@ export const ListContext = createContext();
 const ListContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
 
-  const url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
-
   const coordinates = {
     lat: 45,
     lng: -123.456,
   };
 
   const zoomLevel = 12;
+
+  const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
   useEffect(() => {
     fetch(url)

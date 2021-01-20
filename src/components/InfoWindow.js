@@ -30,7 +30,10 @@ export default function InfoWindow({ text, $dimensionKey }) {
         <li>Thumbnail </li>
         <li>Kms from Center </li>
         <li>
-          <a href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}>
+          <a
+            href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}
+            target="_blank"
+          >
             Link{' '}
           </a>{' '}
         </li>
