@@ -27,7 +27,8 @@ export default function InfoWindow({ text, $dimensionKey }) {
       <ul>
         <li>Title: {location[0].title}</li>
         <li>Description: {location[0].description}</li>
-        <li>Thumbnail </li>
+        {/* TODO: make condition rendering based on img  <li 
+          style={{ backgroundImage: `url(${location[0].thumbnail.source})`, height: location[0].thumbnail.height, width: location[0].thumbnail.width }} >Thumbnail </li> */}
         <li>Kms from Center </li>
         <li>
           <a
