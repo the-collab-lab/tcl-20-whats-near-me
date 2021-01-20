@@ -1,4 +1,4 @@
-export default function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+export const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
@@ -15,4 +15,4 @@ export default function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c; // Distance in km
   return d;
-}
+};
