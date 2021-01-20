@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ListContextProvider from './context/ListContext';
+import LocationsContextProvider from './context/LocationsContext';
 import Help from './pages/Help';
 import Map from './pages/Map';
 import List from './pages/List';
@@ -11,7 +11,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <ListContextProvider>
+      <LocationsContextProvider>
         <Switch>
           <Route exact path="/">
             <Map />
@@ -27,7 +27,7 @@ function App() {
           </Route>
         </Switch>
         <Nav />
-      </ListContextProvider>
+      </LocationsContextProvider>
     </Router>
   );
 }

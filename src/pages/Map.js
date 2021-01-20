@@ -3,15 +3,15 @@ import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
 import LocationPin from '../components/LocationPin.js';
-import { ListContext } from '../context/ListContext';
+import { LocationsContext } from '../context/LocationsContext';
 
 export default function Map() {
-  const listContext = useContext(ListContext);
+  const locationsContext = useContext(LocationsContext);
 
   //set locations, zoomLevel & coordinates based on context
-  const locations = listContext.locations;
-  const zoomLevel = listContext.zoomLevel;
-  const coordinates = listContext.coordinates;
+  const locations = locationsContext.locations;
+  const zoomLevel = locationsContext.zoomLevel;
+  const coordinates = locationsContext.coordinates;
 
   const _onChildClick = (key, childProps) => {
     //Do we need this -

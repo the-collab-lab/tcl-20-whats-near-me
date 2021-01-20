@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { ListContext } from '../context/ListContext';
+import { LocationsContext } from '../context/LocationsContext';
 
 export default function InfoWindow({ text, $dimensionKey }) {
-  const listContext = useContext(ListContext);
+  const locationsContext = useContext(LocationsContext);
 
-  const location = listContext.locations.filter(
+  const location = locationsContext.locations.filter(
     (item) => item.pageid == $dimensionKey,
   );
 
@@ -34,6 +34,7 @@ export default function InfoWindow({ text, $dimensionKey }) {
           <a
             href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}
             target="_blank"
+            // type="noreferrer" ?
           >
             Link{' '}
           </a>{' '}

@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-export const ListContext = createContext();
+export const LocationsContext = createContext();
 
-const ListContextProvider = (props) => {
+const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
 
   const coordinates = {
@@ -27,10 +27,10 @@ const ListContextProvider = (props) => {
   }, []);
 
   return (
-    <ListContext.Provider value={{ locations, coordinates, zoomLevel }}>
+    <LocationsContext.Provider value={{ locations, coordinates, zoomLevel }}>
       {props.children}
-    </ListContext.Provider>
+    </LocationsContext.Provider>
   );
 };
 
-export default ListContextProvider;
+export default LocationsContextProvider;
