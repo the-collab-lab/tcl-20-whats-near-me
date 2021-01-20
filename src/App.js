@@ -9,28 +9,28 @@ import Nav from './components/Nav';
 import './App.css';
 
 function App() {
-  const [locations, setLocations] = useState([]);
+  // const [locations, setLocations] = useState([]);
 
-  const url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
+  // const url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
 
-  useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
-  }, []);
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((response) => {
+  //       let pages = response.query ? response.query.pages : [];
+  //       setLocations(pages);
+  //     })
+  //     .catch(console.log);
+  // }, []);
 
   return (
     <Router>
       <ListContextProvider>
         <Switch>
           <Route exact path="/">
-            <Map locations={locations} />
+            <Map />
           </Route>
           <Route path="/list">
             <List />

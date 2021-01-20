@@ -1,33 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
 import LocationPin from '../components/LocationPin.js';
+import { ListContext } from '../context/ListContext';
 
-const location = {
-  lat: 45,
-  lng: -123.456,
-};
+export default function Map() {
+  const listContext = useContext(ListContext);
 
-const zoomLevel = 12;
-
-export default function Map({ locations }) {
-  const [showWindow, setShowWindow] = useState(false);
-
-  const handleWindow = (key) => {
-    setShowWindow(!showWindow);
-    console.log(`state set to ${showWindow}`);
-  };
+  //set locations, zoomLevel & coordinates based on context
+  const locations = listContext.locations;
+  const zoomLevel = listContext.zoomLevel;
+  const coordinates = listContext.coordinates;
 
   const _onChildClick = (key, childProps) => {
+    //Do we need this -
     const childKey = locations.filter((location) => location.pageid == key);
+    console.log(childKey + 'childKey');
+    console.log(key + 'key');
+    console.log(childProps + 'childProps');
 
-    console.log(childKey);
-    console.log(key);
-    console.log(childProps);
-
-    //Need to be able to set props on child
-
+    //set child class to visible
     document.querySelector(`.info-window-${key}`).style.display = 'block';
   };
 
@@ -35,7 +28,7 @@ export default function Map({ locations }) {
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        defaultCenter={location}
+        defaultCenter={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
         onChildClick={_onChildClick}
@@ -48,7 +41,6 @@ export default function Map({ locations }) {
                 key={locationData.pageid}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
-                defaultProp={showWindow}
               />
             ) : (
               <LocationPin
@@ -58,7 +50,6 @@ export default function Map({ locations }) {
                 text={locationData.title}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
-                defaultProp={showWindow}
               />
             );
           })}
