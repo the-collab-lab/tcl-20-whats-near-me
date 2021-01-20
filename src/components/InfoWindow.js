@@ -29,7 +29,11 @@ export default function InfoWindow({ text, $dimensionKey }) {
         <li>Description: {location[0].description}</li>
         <li>Thumbnail </li>
         <li>Kms from Center </li>
-        <li>Link </li>
+        <li>
+          <a href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}>
+            Link{' '}
+          </a>{' '}
+        </li>
       </ul>
       <button onClick={handleClose}>x</button>
     </div>
