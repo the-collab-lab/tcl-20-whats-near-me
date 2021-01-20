@@ -1,11 +1,18 @@
 import React from 'react';
 
-export default function InfoWindow({ show, handleWindow }) {
-  return show ? (
-    <button style={{ width: 100, height: 100 }} onClick={handleWindow}>
-      x
-    </button>
-  ) : (
-    <div style={{ display: 'none' }}></div>
+export default function InfoWindow({ text, $dimensionKey }) {
+  return (
+    <div
+      className={`info-window-${$dimensionKey}`}
+      style={{
+        width: '100px',
+        height: '100px',
+        backgroundColor: 'pink',
+        border: '1px solid black',
+        display: 'none',
+      }}
+    >
+      <button>x</button>
+    </div>
   );
 }
