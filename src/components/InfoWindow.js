@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default function InfoWindow({ text, $dimensionKey }) {
+  const handleClose = () => {
+    document.querySelector(`.info-window-${$dimensionKey}`).style.display =
+      'none';
+  };
+
   return (
     <div
       className={`info-window-${$dimensionKey}`}
@@ -12,7 +17,7 @@ export default function InfoWindow({ text, $dimensionKey }) {
         display: 'none',
       }}
     >
-      <button>x</button>
+      <button onClick={handleClose}>x</button>
     </div>
   );
 }
