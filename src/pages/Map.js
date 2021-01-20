@@ -21,6 +21,7 @@ export default function Map({ locations }) {
 
   const _onChildClick = (key, childProps) => {
     const childKey = locations.filter((location) => location.pageid == key);
+
     console.log(childKey);
     console.log(key);
     console.log(childProps);

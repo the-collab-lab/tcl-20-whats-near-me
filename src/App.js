@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ListContextProvider from './context/ListContext';
 import Help from './pages/Help';
 import Map from './pages/Map';
 import List from './pages/List';
@@ -26,21 +27,23 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Map locations={locations} />
-        </Route>
-        <Route path="/list">
-          <List />
-        </Route>
-        <Route path="/settings">
-          <Settings />
-        </Route>
-        <Route path="/help">
-          <Help />
-        </Route>
-      </Switch>
-      <Nav />
+      <ListContextProvider>
+        <Switch>
+          <Route exact path="/">
+            <Map locations={locations} />
+          </Route>
+          <Route path="/list">
+            <List />
+          </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/help">
+            <Help />
+          </Route>
+        </Switch>
+        <Nav />
+      </ListContextProvider>
     </Router>
   );
 }
