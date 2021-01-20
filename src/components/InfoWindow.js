@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { getDistanceFromLatLonInKm } from '../helpers/Haversine';
 import { LocationsContext } from '../context/LocationsContext';
+import './InfoWindow.css';
 
 export default function InfoWindow({ $dimensionKey }) {
   const locationsContext = useContext(LocationsContext);
@@ -8,6 +9,7 @@ export default function InfoWindow({ $dimensionKey }) {
   const location = locationsContext.locations.filter(
     (item) => item.pageid == $dimensionKey,
   );
+  console.log(location);
 
   const latStart = locationsContext.coordinates.lat;
   const lngStart = locationsContext.coordinates.lng;
@@ -21,22 +23,26 @@ export default function InfoWindow({ $dimensionKey }) {
 
   return (
     <div
-      className={`info-window-${$dimensionKey}`}
-      style={{
-        width: '200px',
-        height: '200px',
-        backgroundColor: 'pink',
-        border: '1px solid black',
-        display: 'none',
-      }}
+      className={`info-window-${$dimensionKey} info-window`}
+      onFocusOut={handleClose}
     >
-      <ul>
-        <li>Title: {location[0].title}</li>
-        <li>Description: {location[0].description}</li>
-        {/* TODO: make condition rendering based on img  <li 
-          style={{ backgroundImage: `url(${location[0].thumbnail.source})`, height: location[0].thumbnail.height, width: location[0].thumbnail.width }} >Thumbnail </li> */}
+      <ul className="info-window-details">
+        <li className="detail">Title: {location[0].title}</li>
 
-        <li>
+        {location[0].thumbnail ? (
+          <img
+            className="info-window-image"
+            src={location[0].thumbnail.source}
+            alt={location[0].title}
+          ></img>
+        ) : null}
+        <li className="detail">
+          Description:{' '}
+          {location[0].description
+            ? location[0].description
+            : 'No Description Available'}
+        </li>
+        <li className="detail">
           Kms from Center:{' '}
           {getDistanceFromLatLonInKm(
             latStart,
@@ -46,17 +52,19 @@ export default function InfoWindow({ $dimensionKey }) {
           ).toFixed(1)}{' '}
           Kms
         </li>
-        <li>
+        <li className="detail">
           <a
             href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}
             target="_blank"
             // type="noreferrer" ?
           >
-            Link{' '}
+            Wikipedia Page{' '}
           </a>{' '}
         </li>
       </ul>
-      <button onClick={handleClose}>x</button>
+      <button onClick={handleClose} className="close-info-window">
+        x
+      </button>
     </div>
   );
 }
