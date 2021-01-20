@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ListContext } from '../context/ListContext';
 
 export default function InfoWindow({ text, $dimensionKey }) {
+  const listContext = useContext(ListContext);
+
+  const location = listContext.locations.filter(
+    (item) => item.pageid == $dimensionKey,
+  );
+
   const handleClose = () => {
     document.querySelector(`.info-window-${$dimensionKey}`).style.display =
       'none';
@@ -10,13 +17,20 @@ export default function InfoWindow({ text, $dimensionKey }) {
     <div
       className={`info-window-${$dimensionKey}`}
       style={{
-        width: '100px',
-        height: '100px',
+        width: '200px',
+        height: '200px',
         backgroundColor: 'pink',
         border: '1px solid black',
         display: 'none',
       }}
     >
+      <ul>
+        <li>Title: {location[0].title}</li>
+        <li>Description: {location[0].description}</li>
+        <li>Thumbnail </li>
+        <li>Kms from Center </li>
+        <li>Link </li>
+      </ul>
       <button onClick={handleClose}>x</button>
     </div>
   );

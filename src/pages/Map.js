@@ -16,9 +16,9 @@ export default function Map() {
   const _onChildClick = (key, childProps) => {
     //Do we need this -
     const childKey = locations.filter((location) => location.pageid == key);
-    console.log(childKey + 'childKey');
-    console.log(key + 'key');
-    console.log(childProps + 'childProps');
+    console.log(childKey);
+    console.log(key);
+    console.log(childProps);
 
     //set child class to visible
     document.querySelector(`.info-window-${key}`).style.display = 'block';
