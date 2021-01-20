@@ -1,11 +1,10 @@
 .info-window {
   width: 200px;
-  /* height: 250px; */
   background-color: white;
   border: 1px solid black;
   display: none;
   position: absolute;
-  left: -110px;
+  left: -90px;
   top: 35px;
   z-index: 1;
 }
