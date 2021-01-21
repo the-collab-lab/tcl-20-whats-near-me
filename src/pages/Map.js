@@ -35,6 +35,7 @@ export default function Map() {
                 key={locationData.pageid}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
+                locationData={locationData}
               />
             ) : (
               <LocationPin
@@ -44,6 +45,7 @@ export default function Map() {
                 text={locationData.title}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
+                locationData={locationData}
               />
             );
           })}

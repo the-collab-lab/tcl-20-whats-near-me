@@ -1,14 +1,7 @@
-import React, { useContext } from 'react';
-import { LocationsContext } from '../context/LocationsContext';
+import React from 'react';
 import './InfoWindow.css';
 
-export default function InfoWindow({ $dimensionKey }) {
-  const locationsContext = useContext(LocationsContext);
-
-  const location = locationsContext.locations.filter(
-    (item) => item.pageid == $dimensionKey,
-  );
-
+export default function InfoWindow({ $dimensionKey, locationData }) {
   const handleClose = () => {
     document.querySelector(`.info-window-${$dimensionKey}`).style.display =
       'none';
@@ -20,27 +13,28 @@ export default function InfoWindow({ $dimensionKey }) {
       onFocus={handleClose}
     >
       <ul className="info-window-details">
-        <li className="detail">Title: {location[0].title}</li>
+        <li className="detail">Title: {locationData.title}</li>
 
-        {location[0].thumbnail ? (
+        {locationData.thumbnail ? (
           <img
             className="info-window-image"
-            src={location[0].thumbnail.source}
-            alt={location[0].title}
+            src={locationData.thumbnail.source}
+            alt={locationData.title}
           ></img>
         ) : null}
         <li className="detail">
           Description:{' '}
-          {location[0].description
-            ? location[0].description
+          {locationData.description
+            ? locationData.description
             : 'No Description Available'}
         </li>
         <li className="detail">
-          Distance from Center: {location[0].coordinates[0].dist} kms
+          Distance from Center:{' '}
+          {(locationData.coordinates[0].dist / 1000).toFixed(1)} kms
         </li>
         <li className="detail">
           <a
-            href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}
+            href={`https://en.wikipedia.org/?curid=${locationData.pageid}`}
             target="_blank"
             external="true"
             rel="noopener noreferrer"
