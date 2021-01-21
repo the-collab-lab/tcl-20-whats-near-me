@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { getDistanceFromLatLonInKm } from '../helpers/Haversine';
 import { LocationsContext } from '../context/LocationsContext';
 import './InfoWindow.css';
 
@@ -9,11 +8,6 @@ export default function InfoWindow({ $dimensionKey }) {
   const location = locationsContext.locations.filter(
     (item) => item.pageid == $dimensionKey,
   );
-
-  const latStart = locationsContext.coordinates.lat;
-  const lngStart = locationsContext.coordinates.lng;
-  const latCurrent = location[0].coordinates[0].lat;
-  const lngCurrent = location[0].coordinates[0].lon;
 
   const handleClose = () => {
     document.querySelector(`.info-window-${$dimensionKey}`).style.display =
@@ -42,14 +36,7 @@ export default function InfoWindow({ $dimensionKey }) {
             : 'No Description Available'}
         </li>
         <li className="detail">
-          Kms from Center:{' '}
-          {getDistanceFromLatLonInKm(
-            latStart,
-            lngStart,
-            latCurrent,
-            lngCurrent,
-          ).toFixed(1)}{' '}
-          Kms
+          Distance from Center: {location[0].coordinates[0].dist} kms
         </li>
         <li className="detail">
           <a
