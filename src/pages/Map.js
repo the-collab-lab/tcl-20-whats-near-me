@@ -13,13 +13,7 @@ export default function Map() {
   const zoomLevel = locationsContext.zoomLevel;
   const coordinates = locationsContext.coordinates;
 
-  const _onChildClick = (key, childProps) => {
-    //Do we need this -
-    const childKey = locations.filter((location) => location.pageid == key);
-    console.log(childKey);
-    console.log(key);
-    console.log(childProps);
-
+  const _onChildClick = (key) => {
     //set child class to visible
     document.querySelector(`.info-window-${key}`).style.display = 'block';
   };

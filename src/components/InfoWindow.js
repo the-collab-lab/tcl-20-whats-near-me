@@ -9,7 +9,6 @@ export default function InfoWindow({ $dimensionKey }) {
   const location = locationsContext.locations.filter(
     (item) => item.pageid == $dimensionKey,
   );
-  console.log(location);
 
   const latStart = locationsContext.coordinates.lat;
   const lngStart = locationsContext.coordinates.lng;
@@ -24,7 +23,7 @@ export default function InfoWindow({ $dimensionKey }) {
   return (
     <div
       className={`info-window-${$dimensionKey} info-window`}
-      onFocusOut={handleClose}
+      onFocus={handleClose}
     >
       <ul className="info-window-details">
         <li className="detail">Title: {location[0].title}</li>
@@ -56,7 +55,8 @@ export default function InfoWindow({ $dimensionKey }) {
           <a
             href={`https://en.wikipedia.org/?curid=${location[0].pageid}`}
             target="_blank"
-            // type="noreferrer" ?
+            external="true"
+            rel="noopener noreferrer"
           >
             Wikipedia Page{' '}
           </a>{' '}
