@@ -8,10 +8,7 @@ export default function InfoWindow({ $dimensionKey, locationData }) {
   };
 
   return (
-    <div
-      className={`info-window-${$dimensionKey} info-window`}
-      onFocus={handleClose}
-    >
+    <div className={`info-window-${$dimensionKey} info-window`}>
       <ul className="info-window-details">
         <li className="detail">Title: {locationData.title}</li>
 
