@@ -13,7 +13,7 @@ export default function Map() {
   const zoomLevel = locationsContext.zoomLevel;
   const coordinates = locationsContext.coordinates;
 
-  const _onChildClick = (key) => {
+  const onChildClick = (key) => {
     //set child class to visible
     document.querySelector(`.info-window-${key}`).style.display = 'block';
   };
@@ -25,7 +25,7 @@ export default function Map() {
         defaultCenter={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
-        onChildClick={_onChildClick}
+        onChildClick={onChildClick}
       >
         {locations &&
           locations.map((locationData) => {
