@@ -31,7 +31,7 @@ function App() {
           <Map locations={locations} />
         </Route>
         <Route path="/list">
-          <List />
+          <List locations={locations} />
         </Route>
         <Route path="/settings">
           <Settings />
