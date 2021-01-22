@@ -15,10 +15,10 @@ function App() {
       <LocationsContextProvider>
         <Switch>
           <Route exact path="/">
-            <Map />
-          </Route>
-          <Route path="/list">
-            <List />
+          <Map locations={locations} />
+        </Route>
+        <Route path="/list">
+          <List locations={locations} />
           </Route>
           <Route path="/settings">
             <Settings />
