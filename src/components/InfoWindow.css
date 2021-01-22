@@ -23,11 +23,13 @@
 }
 
 .close-info-window {
-  margin: 0 auto 10px auto;
+  margin: 10px auto 10px auto;
+  display: block;
 }
 
 .info-window-image {
   max-width: 200px;
   max-height: 100px;
   object-fit: contain;
+  border: 1px solid black;
 }
