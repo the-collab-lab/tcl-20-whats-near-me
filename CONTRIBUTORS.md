@@ -9,7 +9,10 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Shayne Sebro](https://github.com/snsebro) 🙌🏾
 - [Caitlyn Greffly](https://github.com/greffly) ☕️
 - [Rachel Fischoff](https://github.com/rachel-fischoff) 🔮
+<<<<<<< HEAD
 - [DeVon Thompson](https://github.com/deethompson) 🙌🏾
+=======
+>>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
 
 ## Mentors
 

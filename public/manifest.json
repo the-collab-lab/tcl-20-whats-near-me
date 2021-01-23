@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "short_name": "React App",
   "name": "Create React App Sample",
+=======
+  "short_name": "Explore Your World",
+  "name": "Explore Your World",
+>>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +25,11 @@
   ],
   "start_url": ".",
   "display": "standalone",
+<<<<<<< HEAD
   "theme_color": "#000000",
   "background_color": "#ffffff"
+=======
+  "theme_color": "#595959",
+  "background_color": "#595959"
+>>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
 }

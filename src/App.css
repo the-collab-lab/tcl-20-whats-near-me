@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -36,3 +37,9 @@
     transform: rotate(360deg);
   }
 }
+=======
+h1 {
+  padding: 20px;
+  text-align: center;
+}
+>>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
