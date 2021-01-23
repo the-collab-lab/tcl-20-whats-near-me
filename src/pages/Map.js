@@ -7,11 +7,11 @@ import './Map.css';
 import LocationPin from '../components/LocationPin.js';
 
 const location = {
-  lat: 45,
-  lng: -123.456,
+  lat: 29.951,
+  lng: -90.0715,
 };
 
-const zoomLevel = 12;
+const zoomLevel = 14;
 
 export default function Map({ locations }) {
   return (

@@ -1,0 +1,28 @@
+table,
+th {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px;
+}
+
+.tableHeaders {
+  font-size: 1.2em;
+  height: 50px;
+  border: 2px solid black;
+}
+
+.tableThumbnail img {
+  width: 50px;
+  height: 50px;
+}
+
+.tableListing:nth-child(odd) {
+  background-color: rgb(244, 243, 243);
+}
+
+.tableListing:nth-child(even) {
+  background-color: gainsboro;
+}

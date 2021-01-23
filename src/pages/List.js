@@ -1,11 +1,10 @@
 import React from 'react';
 import Table from '../components/Table';
+import './List.css';
 
 export default function List({ locations }) {
   return (
-    <main>
-      <h1>List</h1>
-      {console.log({ locations })}
+    <main className="listPage">
       <Table data={locations} />
     </main>
   );

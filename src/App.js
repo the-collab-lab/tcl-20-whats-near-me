@@ -10,7 +10,7 @@ import './App.css';
 function App() {
   const [locations, setLocations] = useState([]);
 
-  const url = 'https://segdeha.com/api/nearby.php?lat=45&lng=-123.456';
+  const url = 'https://segdeha.com/api/nearby.php?lat=29.951&lng=-90.0715';
 
   useEffect(() => {
     fetch(url)
