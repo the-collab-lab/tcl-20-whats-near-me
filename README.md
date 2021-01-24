@@ -12,9 +12,9 @@ The app will work in many of the same ways as [whats-near.me](https://whats-near
 
 <<<<<<< HEAD
 For additional details, please check out the [project brief](PROJECT-BRIEF.md).
-=======
+
 For additional details, please check out the [project brief](PROJECT_BRIEF.md).
->>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
+>
 
 ## More details for contributors
 
