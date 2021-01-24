@@ -20,8 +20,6 @@ export default function Map() {
       show: true,
       id: key,
     });
-    //set child class to visible
-    // document.querySelector(`.info-window-${key}`).style.display = 'block';
   };
 
   return (
