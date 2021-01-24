@@ -1,7 +1,11 @@
 import React from 'react';
 import './InfoWindow.css';
 
-export default function InfoWindow({ $dimensionKey, locationData }) {
+export default function InfoWindow({
+  $dimensionKey,
+  locationData,
+  closeWindow,
+}) {
   const handleClose = () => {
     document.querySelector(`.info-window-${$dimensionKey}`).style.display =
       'none';
@@ -42,6 +46,7 @@ export default function InfoWindow({ $dimensionKey, locationData }) {
         onClick={handleClose}
         className="close-info-window"
         aria-label="close info window"
+        onClick={() => closeWindow({ show: false, id: '' })}
       >
         x
       </button>

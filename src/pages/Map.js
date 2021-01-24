@@ -43,6 +43,7 @@ export default function Map() {
                 lng={locationData.coordinates[0].lon}
                 locationData={locationData}
                 showWindow={showWindow}
+                closeWindow={setShowWindow}
               />
             ) : (
               <LocationPin
@@ -54,6 +55,7 @@ export default function Map() {
                 lng={locationData.coordinates[0].lon}
                 locationData={locationData}
                 showWindow={showWindow}
+                closeWindow={setShowWindow}
               />
             );
           })}

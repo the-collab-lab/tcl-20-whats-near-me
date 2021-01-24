@@ -10,6 +10,7 @@ export default function LocationPin({
   $dimensionKey,
   locationData,
   showWindow,
+  closeWindow,
 }) {
   return img ? (
     <>
@@ -20,14 +21,22 @@ export default function LocationPin({
         ></div>
       </button>
       {showWindow.id == $dimensionKey ? (
-        <InfoWindow $dimensionKey={$dimensionKey} locationData={locationData} />
+        <InfoWindow
+          $dimensionKey={$dimensionKey}
+          locationData={locationData}
+          closeWindow={closeWindow}
+        />
       ) : null}
     </>
   ) : (
     <>
       <Icon icon={location12Filled} width={24} height={24} tabIndex="0"></Icon>
       {showWindow.id == $dimensionKey ? (
-        <InfoWindow $dimensionKey={$dimensionKey} locationData={locationData} />
+        <InfoWindow
+          $dimensionKey={$dimensionKey}
+          locationData={locationData}
+          closeWindow={closeWindow}
+        />
       ) : null}
     </>
   );
