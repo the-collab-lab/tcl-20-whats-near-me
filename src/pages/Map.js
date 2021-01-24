@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
@@ -6,6 +6,8 @@ import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Map() {
+  const [showWindow, setShowWindow] = useState({ show: false, id: '' });
+
   const locationsContext = useContext(LocationsContext);
 
   //set locations, zoomLevel & coordinates based on context
@@ -14,8 +16,12 @@ export default function Map() {
   const coordinates = locationsContext.coordinates;
 
   const onChildClick = (key) => {
+    setShowWindow({
+      show: true,
+      id: key,
+    });
     //set child class to visible
-    document.querySelector(`.info-window-${key}`).style.display = 'block';
+    // document.querySelector(`.info-window-${key}`).style.display = 'block';
   };
 
   return (
@@ -36,6 +42,7 @@ export default function Map() {
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
                 locationData={locationData}
+                showWindow={showWindow}
               />
             ) : (
               <LocationPin
@@ -46,6 +53,7 @@ export default function Map() {
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
                 locationData={locationData}
+                showWindow={showWindow}
               />
             );
           })}
