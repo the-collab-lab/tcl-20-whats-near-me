@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,7 +20,7 @@ function App() {
         </a>
       </header>
     </div>
-=======
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Help from './pages/Help';
@@ -65,7 +65,7 @@ function App() {
       </Switch>
       <Nav />
     </Router>
->>>>>>> 3ebfb8f0bb093acec50923c22a35f9fc58db400f
+
   );
 }
 
