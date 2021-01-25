@@ -11,8 +11,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Rachel Fischoff](https://github.com/rachel-fischoff) 🔮
 - [DeVon Thompson](https://github.com/deethompson) 🙌🏾
 
-
-
 ## Mentors
 
 - [Andrew Hedges](https://github.com/segdeha) 🦔

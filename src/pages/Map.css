@@ -3,3 +3,12 @@
   height: 100vh;
   width: 100%;
 }
+
+.location-pin {
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.location-pin:hover {
+  z-index: 1;
+}
