@@ -1,11 +1,19 @@
-table,
-th {
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
 td {
   padding: 5px;
+}
+
+.tableDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.externalLink {
+  display: block;
 }
 
 .tableHeaders {
@@ -25,4 +33,22 @@ td {
 
 .tableListing:nth-child(even) {
   background-color: gainsboro;
+}
+
+details {
+  padding: 0.5em 0.5em 0;
+  display: flex;
+}
+
+summary {
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+}
+
+details[open] {
+  padding: 0.5em;
+}
+
+details[open] summary {
+  margin-bottom: 0.5em;
 }

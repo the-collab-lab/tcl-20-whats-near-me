@@ -2,3 +2,7 @@
   height: 100vh;
   overflow: scroll;
 }
+
+.listTitle {
+  text-align: center;
+}
