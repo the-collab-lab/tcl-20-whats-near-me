@@ -12,6 +12,10 @@ td {
   flex-direction: column;
 }
 
+.tableDetails p {
+  margin: 5px 0;
+}
+
 .externalLink {
   display: block;
 }

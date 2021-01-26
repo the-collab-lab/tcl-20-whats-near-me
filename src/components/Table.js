@@ -13,33 +13,35 @@ const Row = ({ location }) => {
           ''
         )}
       </td>
-      <details>
-        <summary>{location.title}</summary>
-        <section className="tableDetails">
-          {location.description ? (
-            <td className="tableDescription">{location.description}</td>
-          ) : null}
-          <td className="tableDistance">
-            Distance from Center:{' '}
-            {(location.coordinates[0].dist / 1000).toFixed(1)} kms
-          </td>
-          <td className="tableLink">
-            {location.pageid ? (
-              <a
-                href={`https://en.wikipedia.org/?curid=${location.pageid}`}
-                target="_blank"
-                external="true"
-                rel="noopener noreferrer"
-                className="externalLink"
-              >
-                Learn More <Icon icon={externalLinkOutline} />
-              </a>
-            ) : (
-              ''
-            )}
-          </td>
-        </section>
-      </details>
+      <td>
+        <details>
+          <summary>{location.title}</summary>
+          <section className="tableDetails">
+            {location.description ? (
+              <p className="tableDescription">{location.description}</p>
+            ) : null}
+            <p className="tableDistance">
+              Distance from Center:{' '}
+              {(location.coordinates[0].dist / 1000).toFixed(1)} kms
+            </p>
+            <p className="tableLink">
+              {location.pageid ? (
+                <a
+                  href={`https://en.wikipedia.org/?curid=${location.pageid}`}
+                  target="_blank"
+                  external="true"
+                  rel="noopener noreferrer"
+                  className="externalLink"
+                >
+                  Learn More <Icon icon={externalLinkOutline} />
+                </a>
+              ) : (
+                ''
+              )}
+            </p>
+          </section>
+        </details>
+      </td>
     </tr>
   );
 };
