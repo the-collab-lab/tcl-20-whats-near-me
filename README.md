@@ -10,7 +10,7 @@ Upon opening the app, users can pan and zoom to discover points of interest. The
 
 The app will work in many of the same ways as [whats-near.me](https://whats-near.me) (on which our project is based).
 
-For additional details, please check out the [project brief](PROJECT-BRIEF.md).
+For additional details, please check out the [project brief](PROJECT_BRIEF.md).
 
 ## More details for contributors
 
@@ -27,7 +27,7 @@ The first thing you will want to do before your kick-off call is make your first
 
 ### What else should contributors know?
 
-For additional details on how your cohort will operate, please check out the [project brief](PROJECT-BRIEF.md).
+For additional details on how your cohort will operate, please check out the [project brief](PROJECT_BRIEF.md).
 
 <hr>
 
