@@ -1,6 +1,6 @@
 import React from 'react';
 import './Table.css';
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import externalLinkOutline from '@iconify-icons/eva/external-link-outline';
 
 const Row = ({ location }) => {
@@ -19,6 +19,10 @@ const Row = ({ location }) => {
           {location.description ? (
             <td className="tableDescription">{location.description}</td>
           ) : null}
+          <td className="tableDistance">
+            Distance from Center:{' '}
+            {(location.coordinates[0].dist / 1000).toFixed(1)} kms
+          </td>
           <td className="tableLink">
             {location.pageid ? (
               <a

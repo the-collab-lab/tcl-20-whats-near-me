@@ -1,45 +1,59 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
-import { Icon } from '@iconify/react';
-import location12Filled from '@iconify-icons/fluent/location-12-filled';
 import './Map.css';
 import LocationPin from '../components/LocationPin.js';
+import { LocationsContext } from '../context/LocationsContext';
 
-const location = {
-  lat: 29.951,
-  lng: -90.0715,
-};
+export default function Map() {
+  const [showWindow, setShowWindow] = useState({ show: false, id: '' });
 
-const zoomLevel = 14;
+  const locationsContext = useContext(LocationsContext);
 
-export default function Map({ locations }) {
+  //set locations, zoomLevel & coordinates based on context
+  const locations = locationsContext.locations;
+  const zoomLevel = locationsContext.zoomLevel;
+  const coordinates = locationsContext.coordinates;
+
+  const onChildClick = (key) => {
+    setShowWindow({
+      show: true,
+      id: key,
+    });
+  };
+
   return (
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        defaultCenter={location}
+        defaultCenter={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
+        onChildClick={onChildClick}
       >
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (
-              <Icon
+              <LocationPin
+                className="location-pin"
                 key={locationData.pageid}
-                icon={location12Filled}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
-                width={24}
-                height={24}
+                locationData={locationData}
+                showWindow={showWindow}
+                closeWindow={setShowWindow}
               />
             ) : (
               <LocationPin
+                className="location-pin"
                 key={locationData.pageid}
                 img={locationData.thumbnail.source}
                 text={locationData.title}
                 lat={locationData.coordinates[0].lat}
                 lng={locationData.coordinates[0].lon}
+                locationData={locationData}
+                showWindow={showWindow}
+                closeWindow={setShowWindow}
               />
             );
           })}

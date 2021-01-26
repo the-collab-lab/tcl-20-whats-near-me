@@ -1,0 +1,35 @@
+.info-window {
+  width: 200px;
+  background-color: white;
+  border: 1px solid black;
+  /* display: none; */
+  position: absolute;
+  left: -90px;
+  top: 35px;
+  z-index: 1;
+}
+
+.info-window-details {
+  list-style: none;
+  margin: 0 auto;
+  padding: 10px 0px 10px 0px;
+}
+
+.detail {
+  padding: 5px;
+  display: block;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.close-info-window {
+  margin: 10px auto 10px auto;
+  display: block;
+}
+
+.info-window-image {
+  max-width: 200px;
+  max-height: 100px;
+  object-fit: contain;
+  border: 1px solid black;
+}

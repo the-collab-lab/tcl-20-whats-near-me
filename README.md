@@ -10,11 +10,11 @@ Upon opening the app, users can pan and zoom to discover points of interest. The
 
 The app will work in many of the same ways as [whats-near.me](https://whats-near.me) (on which our project is based).
 
-For additional details, please check out the [project brief](PROJECT_BRIEF.md).
+For additional details, please check out the [project brief](PROJECT-BRIEF.md).
 
 ## More details for contributors
 
-🎉  If you’re a Collab Lab participant, first of all: WELCOME! We’re so excited to work with you and collaborate on something amazing.
+🎉 If you’re a Collab Lab participant, first of all: WELCOME! We’re so excited to work with you and collaborate on something amazing.
 
 ### Make your first contribution!
 
@@ -27,7 +27,7 @@ The first thing you will want to do before your kick-off call is make your first
 
 ### What else should contributors know?
 
-For additional details on how your cohort will operate, please check out the [project brief](PROJECT_BRIEF.md).
+For additional details on how your cohort will operate, please check out the [project brief](PROJECT-BRIEF.md).
 
 <hr>
 
@@ -35,33 +35,32 @@ For additional details on how your cohort will operate, please check out the [pr
 
 ## Download Node and NPM
 
-* `npm` is distributed with Node.js which means that when you download Node.js, you automatically get `npm` installed on your computer.
-* Follow the [instructions here to install Node.js and `npm`](https://nodejs.org/en/).
+- `npm` is distributed with Node.js which means that when you download Node.js, you automatically get `npm` installed on your computer.
+- Follow the [instructions here to install Node.js and `npm`](https://nodejs.org/en/).
 
 ## Clone project locally
 
-* On GitHub, navigate to the repo for your cohort’s project (you’re probably there right now, click the "Code" tab at the top).
-![screenshot of "Code" tab on GitHub](https://cdn.zappy.app/7751e7784910a8c64b47106e24fd3dd1.png)
-* Click the green "Clone or download" button and copy the web URL.
-![screenshot of how to copy the web URL for a GitHub repo](https://cdn.zappy.app/c5fa2c9e72f6cfbd15fb27f4ed2dc898.png)
-* From your terminal, `cd` into the directory where you want this project to live.
-![screenshot of how to navigate folders in terminal](https://cdn.zappy.app/8a4302d1262bc08fa61e8cd2f3b7c3b8.png)
-* Once you’re in the directory, type `git clone` followed by the web URL you just copied to your clipboard from GitHub.
-![screenshot of how to git clone](https://cdn.zappy.app/7a9553b7cc4949beecd8db6f32e631a4.png)
-* Then navigate into the project by typing `cd` followed by the project directory’s name.
-![screenshot of how to cd into the project directory](https://cdn.zappy.app/62e50c2658f91f01b22383d04c5a5e3a.png)
+- On GitHub, navigate to the repo for your cohort’s project (you’re probably there right now, click the "Code" tab at the top).
+  ![screenshot of "Code" tab on GitHub](https://cdn.zappy.app/7751e7784910a8c64b47106e24fd3dd1.png)
+- Click the green "Clone or download" button and copy the web URL.
+  ![screenshot of how to copy the web URL for a GitHub repo](https://cdn.zappy.app/c5fa2c9e72f6cfbd15fb27f4ed2dc898.png)
+- From your terminal, `cd` into the directory where you want this project to live.
+  ![screenshot of how to navigate folders in terminal](https://cdn.zappy.app/8a4302d1262bc08fa61e8cd2f3b7c3b8.png)
+- Once you’re in the directory, type `git clone` followed by the web URL you just copied to your clipboard from GitHub.
+  ![screenshot of how to git clone](https://cdn.zappy.app/7a9553b7cc4949beecd8db6f32e631a4.png)
+- Then navigate into the project by typing `cd` followed by the project directory’s name.
+  ![screenshot of how to cd into the project directory](https://cdn.zappy.app/62e50c2658f91f01b22383d04c5a5e3a.png)
 
 ## Update dependancies
 
-* Once you have the project locally and you and in the project directory, you’ll want to update all the project’s dependancies. To do so, type the following into your terminal: `npm update`
-![screenshot of npm update in the terminal](https://cdn.zappy.app/b7619c19e38166329334430335746d3b.png)
-* Maybe take a sip of coffee or check in on Twitter, this could take a minute—don’t worry.
+- Once you have the project locally and you and in the project directory, you’ll want to update all the project’s dependancies. To do so, type the following into your terminal: `npm update`
+  ![screenshot of npm update in the terminal](https://cdn.zappy.app/b7619c19e38166329334430335746d3b.png)
+- Maybe take a sip of coffee or check in on Twitter, this could take a minute—don’t worry.
 
 ## Access the project in your browser
 
-* After you’ve cloned the project locally and updated the dependancies, you should be able to see the project at `localhost:3000`.
-![screenshot of the react project](https://cdn.zappy.app/30d5733fe9abc6d74d3adde2d046c101.png)
-
+- After you’ve cloned the project locally and updated the dependancies, you should be able to see the project at `localhost:3000`.
+  ![screenshot of the react project](https://cdn.zappy.app/30d5733fe9abc6d74d3adde2d046c101.png)
 
 🎉 You did it! You’re ready to start contributing. Don’t forget to complete the first task by adding your name to [CONTRIBUTORS.md](CONTRIBUTORS.md) from your local enviroment, committing those changes, and creating a pull request.
 
