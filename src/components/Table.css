@@ -1,0 +1,58 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px;
+}
+
+.tableDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableDetails p {
+  margin: 5px 0;
+}
+
+.externalLink {
+  display: block;
+}
+
+.tableHeaders {
+  font-size: 1.2em;
+  height: 50px;
+  border: 2px solid black;
+}
+
+.tableThumbnail img {
+  width: 50px;
+  height: 50px;
+}
+
+.tableListing:nth-child(odd) {
+  background-color: rgb(244, 243, 243);
+}
+
+.tableListing:nth-child(even) {
+  background-color: gainsboro;
+}
+
+details {
+  padding: 0.5em 0.5em 0;
+  display: flex;
+}
+
+summary {
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+}
+
+details[open] {
+  padding: 0.5em;
+}
+
+details[open] summary {
+  margin-bottom: 0.5em;
+}
