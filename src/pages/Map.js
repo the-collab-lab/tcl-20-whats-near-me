@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
@@ -11,9 +11,9 @@ export default function Map() {
   const locationsContext = useContext(LocationsContext);
 
   //set locations, zoomLevel & coordinates based on context
-  const locations = locationsContext.locations;
+  let locations = locationsContext.locations;
   const zoomLevel = locationsContext.zoomLevel;
-  const coordinates = locationsContext.coordinates;
+  let coordinates = locationsContext.coordinates;
 
   const onChildClick = (key) => {
     setShowWindow({
@@ -26,7 +26,7 @@ export default function Map() {
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        defaultCenter={coordinates}
+        center={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
         onChildClick={onChildClick}
