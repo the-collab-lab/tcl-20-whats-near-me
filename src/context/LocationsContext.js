@@ -4,25 +4,21 @@ export const LocationsContext = createContext();
 
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
+  //state is updated in the Map component
   const [recenter, setRecenter] = useState();
 
+  //New Orleans
   const defaultCoordinates = {
     lat: 29.9511,
     lng: -90.0715,
   };
 
-  const recenterCoordinates = recenter && {
-    lat: recenter.lat,
-    lng: recenter.lng,
-  };
-
-  // const coordinates = recenter ? recenterCoordinates : defaultCoordinates;
-
+  //leaving room for the logic from the other groups ticket
   const coordinates = defaultCoordinates;
 
   const zoomLevel = 14;
 
-  const url = `https://segdeha.com/api/nearby.php?lat=${defaultCoordinates.lat}&lng=${defaultCoordinates.lng}`;
+  const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
   useEffect(() => {
     fetch(url)
@@ -36,6 +32,8 @@ const LocationsContextProvider = (props) => {
       .catch(console.log);
   }, []);
 
+  /*useEffect for when the recenter changes which happens in the map component, 
+  the api is call the api & the new locations are set */
   useEffect(() => {
     const recenterUrl =
       recenter &&

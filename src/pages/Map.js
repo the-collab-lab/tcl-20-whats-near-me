@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
@@ -6,6 +6,7 @@ import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Map() {
+  //refactored context
   const {
     locations,
     zoomLevel,
@@ -23,12 +24,13 @@ export default function Map() {
     });
   };
 
-  //added in case we want to access the googleMapApiInternals
+  //TODO: added just in case we want to access the googleMapApiInternals
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
   };
 
-  //When the map moves it recenters the map and updates locationData
+  /*When the map moves it resets the center to recenter 
+  we are updating the state with the setRecenter which updates context and updates locationData */
   const handleChange = (e) => {
     setRecenter({ lat: e.center.lat, lng: e.center.lng });
   };
