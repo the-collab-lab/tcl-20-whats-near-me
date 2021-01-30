@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
@@ -41,6 +41,7 @@ export default function Map() {
             lng={userLocation.longitude}
             width={24}
             height={24}
+            aria-label="your current location"
           />
         ) : null}
         {locations &&
