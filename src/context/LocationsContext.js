@@ -6,11 +6,11 @@ const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
 
   const coordinates = {
-    lat: 45,
-    lng: -123.456,
+    lat: 29.9511,
+    lng: -90.0715,
   };
 
-  const zoomLevel = 12;
+  const zoomLevel = 14;
 
   const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
