@@ -6,39 +6,38 @@ import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Map() {
-  const locationsContext = useContext(LocationsContext);
-
-  //set locations, zoomLevel & coordinates based on context
-  const locations = locationsContext.locations;
-  const zoomLevel = locationsContext.zoomLevel;
-  const coordinates = locationsContext.coordinates;
+  const {
+    locations,
+    zoomLevel,
+    coordinates,
+    recenter,
+    setRecenter,
+  } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: '' });
-  const [center, setCenter] = useState({
-    lat: coordinates.lat,
-    lng: coordinates.lng,
-  });
 
-  const onChildClick = (key, childProps) => {
+  const onChildClick = (key) => {
     setShowWindow({
       show: true,
       id: key,
     });
   };
 
+  //added in case we want to access the googleMapApiInternals
   const handleApiLoaded = (map, maps) => {
-    setCenter({ lat: map.getCenter().lat(), lng: map.getCenter().lng() });
+    // use map and maps objects
   };
+
+  //When the map moves it recenters the map and updates locationData
   const handleChange = (e) => {
-    console.log(e);
-    setCenter({ lat: e.center.lat, lng: e.center.lng });
+    setRecenter({ lat: e.center.lat, lng: e.center.lng });
   };
 
   return (
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        center={center}
+        center={recenter}
         defaultCenter={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
