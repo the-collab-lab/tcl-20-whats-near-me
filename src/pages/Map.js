@@ -4,15 +4,18 @@ import { API_KEY } from '../config.js';
 import './Map.css';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
+import { Icon } from '@iconify/react';
+import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
 
 export default function Map() {
   const [showWindow, setShowWindow] = useState({ show: false, id: '' });
 
   const locationsContext = useContext(LocationsContext);
+  const userLocation = locationsContext.userLocation;
 
   //set locations, zoomLevel & coordinates based on context
   let locations = locationsContext.locations;
-  const zoomLevel = locationsContext.zoomLevel;
+  let zoomLevel = locationsContext.zoomLevel;
   let coordinates = locationsContext.coordinates;
 
   const onChildClick = (key) => {
@@ -31,6 +34,15 @@ export default function Map() {
         yesIWantToUseGoogleMapApiInternals
         onChildClick={onChildClick}
       >
+        {userLocation ? (
+          <Icon
+            icon={myLocation24Filled}
+            lat={userLocation.latitude}
+            lng={userLocation.longitude}
+            width={24}
+            height={24}
+          />
+        ) : null}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (

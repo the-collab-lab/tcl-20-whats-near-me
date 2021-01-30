@@ -59,7 +59,9 @@ const LocationsContextProvider = (props) => {
   }, [userLocation]);
 
   return (
-    <LocationsContext.Provider value={{ locations, coordinates, zoomLevel }}>
+    <LocationsContext.Provider
+      value={{ locations, coordinates, zoomLevel, userLocation }}
+    >
       {props.children}
     </LocationsContext.Provider>
   );
