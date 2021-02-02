@@ -5,7 +5,7 @@ export const LocationsContext = createContext();
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   //state is updated in the Map component
-  const [recenter, setRecenter] = useState();
+  const [newCenter, setNewCenter] = useState();
 
   //New Orleans
   const defaultCoordinates = {
@@ -15,8 +15,6 @@ const LocationsContextProvider = (props) => {
 
   //leaving room for the logic from the other groups ticket
   const coordinates = defaultCoordinates;
-
-  const zoomLevel = 14;
 
   const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
@@ -32,14 +30,14 @@ const LocationsContextProvider = (props) => {
       .catch(console.log);
   }, []);
 
-  /*useEffect for when the recenter changes which happens in the map component, 
-  the api is call the api & the new locations are set */
+  /*when the newCenter changes in the map componentt the useEffect
+  makes a new api call & the new locations are updated */
   useEffect(() => {
-    const recenterUrl =
-      recenter &&
-      `https://segdeha.com/api/nearby.php?lat=${recenter.lat}&lng=${recenter.lng}`;
+    const newCenterUrl =
+      newCenter &&
+      `https://segdeha.com/api/nearby.php?lat=${newCenter.lat}&lng=${newCenter.lng}`;
 
-    fetch(recenterUrl)
+    fetch(newCenterUrl)
       .then((response) => {
         return response.json();
       })
@@ -48,11 +46,11 @@ const LocationsContextProvider = (props) => {
         setLocations(pages);
       })
       .catch(console.log);
-  }, [recenter]);
+  }, [newCenter]);
 
   return (
     <LocationsContext.Provider
-      value={{ locations, coordinates, zoomLevel, recenter, setRecenter }}
+      value={{ locations, coordinates, newCenter, setNewCenter }}
     >
       {props.children}
     </LocationsContext.Provider>
