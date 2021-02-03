@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { getLocations } from '../lib/fetchPlaces';
 
 export const LocationsContext = createContext();
 
@@ -31,15 +32,7 @@ const LocationsContextProvider = (props) => {
   const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
+    getLocations(coordinates.lat, coordinates.lng);
 
     if (navigator.geolocation && allowLocation) {
       navigator.geolocation.getCurrentPosition(getPosition);
@@ -51,11 +44,16 @@ const LocationsContextProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    const userUrl =
-      userLocation &&
-      `https://segdeha.com/api/nearby.php?lat=${userLocation.latitude}&lng=${userLocation.longitude}`;
-
-    fetch(userUrl)
+    let lat, lng;
+    if (newCenter) {
+      lat = newCenter.lat;
+      lng = newCenter.lng;
+    } else {
+      lat = defaultCoordinates.lat;
+      lng = defaultCoordinates.lng;
+    }
+    const newCenterUrl = `https://segdeha.com/api/nearby.php?lat=${lat}&lng=${lng}`;
+    fetch(newCenterUrl)
       .then((response) => {
         return response.json();
       })
@@ -65,6 +63,21 @@ const LocationsContextProvider = (props) => {
       })
       .catch(console.log);
   }, [newCenter]);
+
+  useEffect(() => {
+    const userUrl =
+      userLocation &&
+      `https://segdeha.com/api/nearby.php?lat=${userLocation.latitude}&lng=${userLocation.longitude}`;
+    fetch(userUrl)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        let pages = response.query ? response.query.pages : [];
+        setLocations(pages);
+      })
+      .catch(console.log);
+  }, [userLocation]);
 
   return (
     <LocationsContext.Provider
