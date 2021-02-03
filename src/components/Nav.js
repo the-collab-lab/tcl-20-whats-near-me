@@ -5,6 +5,7 @@ import './Nav.css';
 
 export default function Nav() {
   const locationsContext = useContext(LocationsContext);
+  const allowLocationServcies = locationsContext.allowLocationServcies;
 
   return (
     <nav>
@@ -22,7 +23,11 @@ export default function Nav() {
           <Link to="/help">Help</Link>
         </li>
         {/* Thinking to attaching an onClick function on the li below to stop listening on the users location, would save the last used location as the current location in context  */}
-        {locationsContext.userLocation ? <li>Turn Off Location</li> : null}
+        {locationsContext.userLocation ? (
+          <li>Turn Off Location</li>
+        ) : (
+          <button onClick={allowLocationServcies}>Turn Location On</button>
+        )}
       </ul>
     </nav>
   );

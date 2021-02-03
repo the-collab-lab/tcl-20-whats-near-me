@@ -5,6 +5,11 @@ export const LocationsContext = createContext();
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState();
+  const [allowLocation, setAllowLocation] = useState(false);
+
+  const allowLocationServices = () => {
+    setAllowLocation(!allowLocation);
+  };
 
   const defaultCoordinates = {
     lat: 45,
@@ -33,7 +38,7 @@ const LocationsContextProvider = (props) => {
       })
       .catch(console.log);
 
-    if (navigator.geolocation) {
+    if (navigator.geolocation && allowLocation) {
       navigator.geolocation.getCurrentPosition(getPosition);
     }
     function getPosition(position) {
@@ -60,7 +65,13 @@ const LocationsContextProvider = (props) => {
 
   return (
     <LocationsContext.Provider
-      value={{ locations, coordinates, zoomLevel, userLocation }}
+      value={{
+        locations,
+        coordinates,
+        zoomLevel,
+        userLocation,
+        allowLocationServices,
+      }}
     >
       {props.children}
     </LocationsContext.Provider>
