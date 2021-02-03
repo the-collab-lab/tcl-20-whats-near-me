@@ -6,14 +6,14 @@ import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Map() {
-  const [showWindow, setShowWindow] = useState({ show: false, id: '' });
+  //refactored context
+  const { locations, coordinates, newCenter, setNewCenter } = useContext(
+    LocationsContext,
+  );
 
-  const locationsContext = useContext(LocationsContext);
+  const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
-  //set locations, zoomLevel & coordinates based on context
-  const locations = locationsContext.locations;
-  const zoomLevel = locationsContext.zoomLevel;
-  const coordinates = locationsContext.coordinates;
+  const zoomLevel = 12;
 
   const onChildClick = (key) => {
     setShowWindow({
@@ -22,14 +22,28 @@ export default function Map() {
     });
   };
 
+  //TODO: added just in case we want to access the googleMapApiInternals
+  const handleApiLoaded = (map, maps) => {
+    // use map and maps objects
+  };
+
+  /*When the map moves it resets the center to recenter 
+  we are updating the state with the setRecenter which updates context and updates locationData */
+  const handleNewCenter = (e) => {
+    setNewCenter({ lat: e.center.lat(), lng: e.center.lng() });
+  };
+
   return (
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
+        center={newCenter}
         defaultCenter={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
         onChildClick={onChildClick}
+        onDragEnd={(e) => handleNewCenter(e)}
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
         {locations &&
           locations.map((locationData) => {
