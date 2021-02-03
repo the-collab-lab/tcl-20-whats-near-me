@@ -6,14 +6,10 @@ const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState();
   const [allowLocation, setAllowLocation] = useState(false);
+  const [newCenter, setNewCenter] = useState();
 
   const allowLocationServices = () => {
     setAllowLocation(!allowLocation);
-  };
-
-  const defaultCoordinates = {
-    lat: 45,
-    lng: -123.456,
   };
 
   const userCoordinates = userLocation && {
@@ -21,9 +17,16 @@ const LocationsContextProvider = (props) => {
     lng: userLocation.longitude,
   };
 
-  const coordinates = userLocation ? userCoordinates : defaultCoordinates;
-
   const zoomLevel = 12;
+  //state is updated in the Map component
+
+  //New Orleans
+  const defaultCoordinates = {
+    lat: 29.9511,
+    lng: -90.0715,
+  };
+
+  const coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
 
@@ -61,17 +64,11 @@ const LocationsContextProvider = (props) => {
         setLocations(pages);
       })
       .catch(console.log);
-  }, [userLocation]);
+  }, [newCenter]);
 
   return (
     <LocationsContext.Provider
-      value={{
-        locations,
-        coordinates,
-        zoomLevel,
-        userLocation,
-        allowLocationServices,
-      }}
+      value={{ locations, coordinates, newCenter, setNewCenter }}
     >
       {props.children}
     </LocationsContext.Provider>
