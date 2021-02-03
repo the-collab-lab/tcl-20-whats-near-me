@@ -33,10 +33,15 @@ const LocationsContextProvider = (props) => {
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
-    const newCenterUrl =
-      newCenter &&
-      `https://segdeha.com/api/nearby.php?lat=${newCenter.lat}&lng=${newCenter.lng}`;
-
+    let lat, lng;
+    if (newCenter) {
+      lat = newCenter.lat;
+      lng = newCenter.lng;
+    } else {
+      lat = defaultCoordinates.lat;
+      lng = defaultCoordinates.lng;
+    }
+    const newCenterUrl = `https://segdeha.com/api/nearby.php?lat=${lat}&lng=${lng}`;
     fetch(newCenterUrl)
       .then((response) => {
         return response.json();
