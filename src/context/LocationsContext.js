@@ -36,7 +36,7 @@ const LocationsContextProvider = (props) => {
       console.log(position.coords.latitude, position.coords.longitude);
       setUserLocation(position.coords);
     }
-  }, [allowLocation]);
+  }, []);
 
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
