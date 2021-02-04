@@ -10,18 +10,15 @@ const LocationsContextProvider = (props) => {
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
 
-  const allowLocationServices = () => {
-    setAllowLocation(!allowLocation);
+  //New Orleans
+  const defaultCoordinates = {
+    lat: 29.9511,
+    lng: -90.0715,
   };
 
   const userCoordinates = userLocation && {
     lat: userLocation.latitude,
     lng: userLocation.longitude,
-  };
-  //New Orleans
-  const defaultCoordinates = {
-    lat: 29.9511,
-    lng: -90.0715,
   };
 
   //leaving room for the logic from the other groups ticket
@@ -29,6 +26,7 @@ const LocationsContextProvider = (props) => {
 
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
+    console.log('navigator,', navigator.geolocation);
 
     if (navigator.geolocation && allowLocation) {
       navigator.geolocation.getCurrentPosition(getPosition);
@@ -38,7 +36,7 @@ const LocationsContextProvider = (props) => {
       console.log(position.coords.latitude, position.coords.longitude);
       setUserLocation(position.coords);
     }
-  }, []);
+  }, [allowLocation]);
 
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
@@ -62,7 +60,8 @@ const LocationsContextProvider = (props) => {
         newCenter,
         userLocation,
         setNewCenter,
-        allowLocationServices,
+        allowLocation,
+        setAllowLocation,
       }}
     >
       {props.children}

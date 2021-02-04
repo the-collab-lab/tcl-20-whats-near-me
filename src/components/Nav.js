@@ -4,13 +4,11 @@ import { LocationsContext } from '../context/LocationsContext';
 import './Nav.css';
 
 export default function Nav() {
-  const locationsContext = useContext(LocationsContext);
-
-  const allowLocationServcies = locationsContext.allowLocationServcies;
-  const userLocation = locationsContext.userLocation;
+  const { allowLocation, setAllowLocation } = useContext(LocationsContext);
 
   const handleLocation = () => {
     console.log('location toggle!');
+    setAllowLocation(!allowLocation);
   };
 
   return (
@@ -33,7 +31,7 @@ export default function Nav() {
           <button>Turn Off Location</button>
         ) : ( */}
         <button onClick={handleLocation}>
-          {userLocation ? 'Turn Off Location' : 'Turn On Location'}
+          {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
         </button>
         {/* )} */}
       </ul>
