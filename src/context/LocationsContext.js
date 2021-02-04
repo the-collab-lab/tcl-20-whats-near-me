@@ -27,14 +27,12 @@ const LocationsContextProvider = (props) => {
   //leaving room for the logic from the other groups ticket
   const coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
-  const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
-
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
 
     if (navigator.geolocation && allowLocation) {
       navigator.geolocation.getCurrentPosition(getPosition);
-      console.log('i cowkr');
+      console.log('i work!');
     }
     function getPosition(position) {
       console.log(position.coords.latitude, position.coords.longitude);
@@ -54,7 +52,7 @@ const LocationsContextProvider = (props) => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
     }
-  }, [userLocation]);
+  }, []);
 
   return (
     <LocationsContext.Provider

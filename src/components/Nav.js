@@ -9,6 +9,10 @@ export default function Nav() {
   const allowLocationServcies = locationsContext.allowLocationServcies;
   const userLocation = locationsContext.userLocation;
 
+  const handleLocation = () => {
+    console.log('location toggle!');
+  };
+
   return (
     <nav>
       <ul>
@@ -25,13 +29,13 @@ export default function Nav() {
           <Link to="/help">Help</Link>
         </li>
         {/* Thinking to attaching an onClick function on the li below to stop listening on the users location, would save the last used location as the current location in context  */}
-        {userLocation ? (
-          <li>Turn Off Location</li>
-        ) : (
-          <button onClick={(allowLocationServcies, console.log('i click'))}>
-            Turn Location On
-          </button>
-        )}
+        {/* {userLocation ? (
+          <button>Turn Off Location</button>
+        ) : ( */}
+        <button onClick={handleLocation}>
+          {userLocation ? 'Turn Off Location' : 'Turn On Location'}
+        </button>
+        {/* )} */}
       </ul>
     </nav>
   );
