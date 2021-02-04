@@ -6,17 +6,22 @@ import Map from './pages/Map';
 import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
+import Search from './components/Search';
+import Header from './components/Header';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <LocationsContextProvider>
+        <Header />
         <Switch>
           <Route exact path="/">
+            <Search />
             <Map />
           </Route>
           <Route path="/list">
+            <Search />
             <List />
           </Route>
           <Route path="/settings">

@@ -13,7 +13,7 @@ export default function Map() {
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
-  const zoomLevel = 12;
+  const zoomLevel = 15;
 
   const onChildClick = (key) => {
     setShowWindow({
@@ -27,7 +27,7 @@ export default function Map() {
     // use map and maps objects
   };
 
-  /*When the map moves it resets the center to recenter 
+  /*When the map moves it resets the center to recenter
   we are updating the state with the setRecenter which updates context and updates locationData */
   const handleNewCenter = (e) => {
     setNewCenter({ lat: e.center.lat(), lng: e.center.lng() });
