@@ -1,9 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { getLocations } from '../lib/fetchPlaces';
 
 export const LocationsContext = createContext();
 
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
+  const [userLocation, setUserLocation] = useState();
+  const [searchTerm, setSearchTerm] = useState(null);
+  const [allowLocation, setAllowLocation] = useState(false);
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
 
@@ -13,49 +17,69 @@ const LocationsContextProvider = (props) => {
     lng: -90.0715,
   };
 
-  //leaving room for the logic from the other groups ticket
-  const coordinates = defaultCoordinates;
+  const userCoordinates = userLocation && {
+    lat: userLocation.latitude,
+    lng: userLocation.longitude,
+  };
 
-  const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
+  //leaving room for the logic from the other groups ticket
+  const coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
+    getLocations(coordinates.lat, coordinates.lng, setLocations);
+    console.log('navigator,', navigator.geolocation);
+
+    if (navigator.geolocation && allowLocation) {
+      navigator.geolocation.getCurrentPosition(getPosition);
+      console.log('i work!');
+    }
+    function getPosition(position) {
+      console.log(position.coords.latitude, position.coords.longitude);
+      setUserLocation(position.coords);
+    }
   }, []);
 
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
-    let lat, lng;
     if (newCenter) {
-      lat = newCenter.lat;
-      lng = newCenter.lng;
-    } else {
-      lat = defaultCoordinates.lat;
-      lng = defaultCoordinates.lng;
+      getLocations(newCenter.lat, newCenter.lng, setLocations);
     }
-    const newCenterUrl = `https://segdeha.com/api/nearby.php?lat=${lat}&lng=${lng}`;
-    fetch(newCenterUrl)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
   }, [newCenter]);
+
+  useEffect(() => {
+    if (userLocation) {
+      getLocations(coordinates.lat, coordinates.lng, setLocations);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      let filtered =
+        locations &&
+        locations.filter((location) => {
+          return location.title
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
+        });
+      setLocations(filtered);
+    }
+    console.log(locations, 'locations');
+  }, [searchTerm]);
 
   return (
     <LocationsContext.Provider
-      value={{ locations, coordinates, newCenter, setNewCenter }}
+      value={{
+        locations,
+        coordinates,
+        newCenter,
+        userLocation,
+        setNewCenter,
+        allowLocation,
+        setAllowLocation,
+        searchTerm,
+        setSearchTerm,
+      }}
     >
       {props.children}
     </LocationsContext.Provider>

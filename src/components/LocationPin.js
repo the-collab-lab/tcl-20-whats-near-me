@@ -20,7 +20,7 @@ export default function LocationPin({
           style={{ backgroundImage: `url(${img})` }}
         ></div>
       </button>
-      {showWindow.id == $dimensionKey ? (
+      {showWindow.id === $dimensionKey ? (
         <InfoWindow
           $dimensionKey={$dimensionKey}
           locationData={locationData}
@@ -31,7 +31,7 @@ export default function LocationPin({
   ) : (
     <>
       <Icon icon={location12Filled} width={24} height={24} tabIndex="0"></Icon>
-      {showWindow.id == $dimensionKey ? (
+      {showWindow.id === $dimensionKey ? (
         <InfoWindow
           $dimensionKey={$dimensionKey}
           locationData={locationData}

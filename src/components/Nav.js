@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { LocationsContext } from '../context/LocationsContext';
 import './Nav.css';
 
 export default function Nav() {
+  const { allowLocation, setAllowLocation } = useContext(LocationsContext);
+
+  const handleLocation = () => {
+    console.log('location toggle!');
+    setAllowLocation(!allowLocation);
+  };
+
   return (
     <nav>
       <ul>
@@ -18,6 +26,14 @@ export default function Nav() {
         <li>
           <Link to="/help">Help</Link>
         </li>
+        {/* Thinking to attaching an onClick function on the li below to stop listening on the users location, would save the last used location as the current location in context  */}
+        {/* {userLocation ? (
+          <button>Turn Off Location</button>
+        ) : ( */}
+        <button onClick={handleLocation}>
+          {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
+        </button>
+        {/* )} */}
       </ul>
     </nav>
   );

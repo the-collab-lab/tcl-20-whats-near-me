@@ -5,11 +5,18 @@ import './Map.css';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
+import { Icon } from '@iconify/react';
+import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
+
 export default function Map() {
   //refactored context
-  const { locations, coordinates, newCenter, setNewCenter } = useContext(
-    LocationsContext,
-  );
+  const {
+    locations,
+    coordinates,
+    newCenter,
+    setNewCenter,
+    userLocation,
+  } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
@@ -37,14 +44,23 @@ export default function Map() {
     <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        center={newCenter}
-        defaultCenter={coordinates}
+        center={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
         onChildClick={onChildClick}
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
+        {userLocation ? (
+          <Icon
+            icon={myLocation24Filled}
+            lat={userLocation.latitude}
+            lng={userLocation.longitude}
+            width={24}
+            height={24}
+            aria-label="your current location"
+          />
+        ) : null}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (
