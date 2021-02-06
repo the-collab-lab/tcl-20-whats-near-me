@@ -10,13 +10,9 @@ import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
 
 export default function Map() {
   //refactored context
-  const {
-    locations,
-    coordinates,
-    newCenter,
-    setNewCenter,
-    userLocation,
-  } = useContext(LocationsContext);
+  const { locations, coordinates, setNewCenter, userLocation } = useContext(
+    LocationsContext,
+  );
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
@@ -32,6 +28,7 @@ export default function Map() {
   //TODO: added just in case we want to access the googleMapApiInternals
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
+    console.log(map, maps);
   };
 
   /*When the map moves it resets the center to recenter
@@ -53,11 +50,12 @@ export default function Map() {
       >
         {userLocation ? (
           <Icon
+            className="your-location"
             icon={myLocation24Filled}
             lat={userLocation.latitude}
             lng={userLocation.longitude}
-            width={24}
-            height={24}
+            width={48}
+            height={48}
             aria-label="your current location"
           />
         ) : null}

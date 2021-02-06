@@ -1,19 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import './Search.css';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Search() {
-  const { searchTerm, setSearchTerm } = useContext(LocationsContext);
+  const { setSearchTerm } = useContext(LocationsContext);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleClear = () => {};
+  /* TODO: make the corresponding button to clear the search
+  /reset the locations
+  const handleClear = () => {
+    setSearchTerm(null)
+   }; */
 
   return (
     <div className="searchBar">
-      <input type="text" placeholder="search" onChange={handleSearch} />
+      <label htmlFor="search-locations" id="search-locations">
+        <input type="search" placeholder="search" onChange={handleSearch} />
+      </label>
     </div>
   );
 }

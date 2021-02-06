@@ -7,7 +7,6 @@ export default function Nav() {
   const { allowLocation, setAllowLocation } = useContext(LocationsContext);
 
   const handleLocation = () => {
-    console.log('location toggle!');
     setAllowLocation(!allowLocation);
   };
 

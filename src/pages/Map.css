@@ -1,14 +1,18 @@
 .map {
+  position: relative;
   text-align: center;
   height: calc(100vh - 50px);
   width: 100%;
 }
 
 .location-pin {
+  z-index: 2;
   cursor: pointer;
   transform: translate(-50%, -50%);
 }
 
-.location-pin:hover {
+.your-location {
   z-index: 1;
+  position: absolute;
+  color: pink;
 }
