@@ -95,6 +95,8 @@ const LocationsContextProvider = (props) => {
             .includes(searchTerm.toLowerCase());
         });
       setLocations(filtered);
+    } else if (searchTerm === null) {
+      getLocations(coordinates.lat, coordinates.lng, setLocations);
     }
   }, [searchTerm]);
 

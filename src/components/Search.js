@@ -6,14 +6,19 @@ export default function Search() {
   const { setSearchTerm } = useContext(LocationsContext);
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const searchTerm = e.target.value;
+    if (searchTerm.length > 0) {
+      setSearchTerm(searchTerm);
+    } else if (searchTerm.length === 0) {
+      setSearchTerm(null);
+    }
   };
 
-  /* TODO: make the corresponding button to clear the search
-  /reset the locations
-  const handleClear = () => {
-    setSearchTerm(null)
-   }; */
+  // TODO: make the corresponding button to clear the search
+  // reset the locations
+  // const handleClear = () => {
+  //   setSearchTerm(null);
+  // };
 
   return (
     <div className="searchBar">
