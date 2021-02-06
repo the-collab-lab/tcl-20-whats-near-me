@@ -87,13 +87,9 @@ const LocationsContextProvider = (props) => {
   /*sets the locations to a filtered locations based on search term*/
   useEffect(() => {
     if (searchTerm) {
-      let filtered =
-        locations &&
-        locations.filter((location) => {
-          return location.title
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-        });
+      let filtered = locations.filter((location) => {
+        return location.title.toLowerCase().includes(searchTerm.toLowerCase());
+      });
       setLocations(filtered);
     } else if (searchTerm === null) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);

@@ -37,6 +37,18 @@ export default function Map() {
     setNewCenter({ lat: e.center.lat(), lng: e.center.lng() });
   };
 
+  // TODO: Rachel and Caitlyn's Ticket:
+
+  // TODO: Rachel: Access the Places Library
+
+  // TODO: Recenter the map based on the new place (whether its a new city like Rome or a specific place like Franklin Libraru)
+
+  // TODO: If the searched place is a city like Rome, repopulate all the pins in that area
+
+  // TODO: Caitlyn: If there are no results, show an error message in the search component
+
+  // TODO: Caitlyn: Make the search bar a little prettier
+
   return (
     <div className="map">
       <GoogleMapReact
