@@ -16,6 +16,7 @@ export default function Map() {
     newCenter,
     setNewCenter,
     userLocation,
+    allowLocation,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
@@ -51,7 +52,7 @@ export default function Map() {
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        {userLocation ? (
+        {userLocation && allowLocation ? (
           <Icon
             icon={myLocation24Filled}
             lat={userLocation.latitude}

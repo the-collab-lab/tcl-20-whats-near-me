@@ -22,21 +22,26 @@ const LocationsContextProvider = (props) => {
   };
 
   //leaving room for the logic from the other groups ticket
-  const coordinates = userLocation ? userCoordinates : defaultCoordinates;
+
+  let coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
+    console.log(coordinates.lat, coordinates.lng);
     console.log('navigator,', navigator.geolocation);
 
     if (navigator.geolocation && allowLocation) {
-      navigator.geolocation.getCurrentPosition(getPosition);
-      console.log('i work!');
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        setUserLocation(position.coords);
+      });
     }
-    function getPosition(position) {
-      console.log(position.coords.latitude, position.coords.longitude);
-      setUserLocation(position.coords);
-    }
-  }, []);
+    // function getPosition(position) {
+    //   console.log(position.coords.latitude, position.coords.longitude);
+    //   setUserLocation(position.coords);
+    //   console.log('line 39', position.coords)
+    // }
+  }, [allowLocation]);
 
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
@@ -49,8 +54,9 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
+      coordinates = userCoordinates;
     }
-  }, []);
+  }, [userLocation]);
 
   return (
     <LocationsContext.Provider
