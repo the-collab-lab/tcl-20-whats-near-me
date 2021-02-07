@@ -30,14 +30,9 @@ export default function Nav() {
         <li>
           <Link to="/help">Help</Link>
         </li>
-        {/* Thinking to attaching an onClick function on the li below to stop listening on the users location, would save the last used location as the current location in context  */}
-        {/* {userLocation ? (
-          <button>Turn Off Location</button>
-        ) : ( */}
         <button onClick={handleLocation}>
           {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
         </button>
-        {/* )} */}
       </ul>
     </nav>
   );

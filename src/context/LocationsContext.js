@@ -22,8 +22,6 @@ const LocationsContextProvider = (props) => {
     lng: userLocation.longitude,
   };
 
-  //leaving room for the logic from the other groups ticket
-
   let coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
