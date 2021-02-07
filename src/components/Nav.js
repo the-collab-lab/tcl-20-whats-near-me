@@ -4,11 +4,14 @@ import { LocationsContext } from '../context/LocationsContext';
 import './Nav.css';
 
 export default function Nav() {
-  const { allowLocation, setAllowLocation } = useContext(LocationsContext);
+  const { allowLocation, setAllowLocation, loading } = useContext(
+    LocationsContext,
+  );
 
   //Make this async and only toggle after response from api call is returned
   const handleLocation = async () => {
     console.log('location toggle!');
+
     setAllowLocation(!allowLocation);
   };
 

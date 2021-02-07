@@ -9,7 +9,7 @@ const LocationsContextProvider = (props) => {
   const [allowLocation, setAllowLocation] = useState(false);
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({ loading: false, message: '' });
 
   //New Orleans
   const defaultCoordinates = {
@@ -30,15 +30,18 @@ const LocationsContextProvider = (props) => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
 
     if (navigator.geolocation && allowLocation) {
-      setLoading(true);
+      setLoading({ loading: true, message: 'loading' });
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setUserLocation(position.coords);
-          setLoading(false);
+          setLoading({ loading: false, message: '' });
         },
         (error) => {
           console.error(error);
-          setLoading(false);
+          setLoading({
+            loading: false,
+            message: 'location services turned off',
+          });
         },
       );
     }
