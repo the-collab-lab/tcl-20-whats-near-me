@@ -18,13 +18,14 @@ export default function Search() {
 
   return (
     <div className="searchBar">
-      <lable htmlFor="search-locations" id="search-locations" />
-      <input
-        type="search"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
+      <label htmlFor="search-locations" id="search-locations">
+        <input
+          type="search"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </label>
       {error ? (
         <p className="errorMessage">Sorry, no locations available!</p>
       ) : null}

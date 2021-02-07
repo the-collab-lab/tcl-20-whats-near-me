@@ -25,7 +25,6 @@ export default function Map() {
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
-  const [places, setPlaces] = useState([]);
 
   const zoomLevel = 15;
 
@@ -43,13 +42,6 @@ export default function Map() {
     setMapApi(maps);
   };
 
-  const addPlaces = (place) => {
-    setPlaces({
-      places: [place],
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng(),
-    });
-  };
   /*When the map moves it resets the center to recenter
   we are updating the state with the setRecenter which updates context and updates locationData */
   const handleNewCenter = (e) => {
@@ -70,22 +62,21 @@ export default function Map() {
 
   return (
     <div>
-      {mapApiLoaded && (
+      {/* {mapApiLoaded && (
         <div>
           <AutoComplete
             map={mapInstance}
             mapApi={mapApi}
-            addPlaces={addPlaces}
             onChange={() => null}
           />
         </div>
-      )}
+      )} */}
       <div className="map">
         <GoogleMapReact
           bootstrapURLKeys={{
             key: API_KEY,
             language: 'en',
-            libraries: ['places', 'geometry'],
+            libraries: ['places'],
           }}
           center={coordinates}
           defaultZoom={zoomLevel}

@@ -9,7 +9,6 @@ export default function AutoComplete({ map, mapApi }) {
   const handleScriptLoad = (updateQuery, autoCompleteRef) => {
     const options = {
       fields: ['formatted_address', 'geometry', 'name'],
-      // origin: map.getCenter(),
       strictBounds: false,
       types: ['address', 'cities'],
     };
