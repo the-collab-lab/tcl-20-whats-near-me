@@ -15,7 +15,7 @@ export default function Search() {
   };
 
   // TODO: make the corresponding button to clear the search
-  // reset the locations
+  // reset the locations -- on focus?
   // const handleClear = () => {
   //   setSearchTerm(null);
   // };
@@ -23,7 +23,11 @@ export default function Search() {
   return (
     <div className="searchBar">
       <label htmlFor="search-locations" id="search-locations">
-        <input type="search" placeholder="search" onChange={handleSearch} />
+        <input
+          type="search"
+          placeholder="wiki search"
+          onChange={handleSearch}
+        />
       </label>
     </div>
   );

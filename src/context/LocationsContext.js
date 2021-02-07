@@ -6,12 +6,18 @@ export const LocationsContext = createContext();
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState();
+
   //state is updated in the Search component
   const [searchTerm, setSearchTerm] = useState(null);
+
   //state is updated in the Nav component
   const [allowLocation, setAllowLocation] = useState(false);
+
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
+  const [mapApiLoaded, setMapApiLoaded] = useState(false);
+  const [mapInstance, setMapInstance] = useState(null);
+  const [mapApi, setMapApi] = useState(null);
 
   //New Orleans
   const defaultCoordinates = {
@@ -37,10 +43,10 @@ const LocationsContextProvider = (props) => {
     //   console.log( 'position')
     // }
 
-    setUserLocation({
-      latitude: 35.9132,
-      longitude: -79.055847,
-    });
+    // setUserLocation({
+    //   latitude: 35.9132,
+    //   longitude: -79.055847,
+    // });
   }, []);
 
   useEffect(() => {
@@ -108,6 +114,12 @@ const LocationsContextProvider = (props) => {
         setAllowLocation,
         searchTerm,
         setSearchTerm,
+        mapApi,
+        setMapApi,
+        mapInstance,
+        setMapInstance,
+        mapApiLoaded,
+        setMapApiLoaded,
       }}
     >
       {props.children}
