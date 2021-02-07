@@ -1,8 +1,22 @@
 .searchBar {
   /* position: relative; */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   line-height: 1.5em;
   margin: 0;
+}
+
+.searchBar input {
+  padding: 5px;
+  margin: 5px;
+  width: 100%;
+  font-size: 1em;
+}
+
+.errorMessage {
+  margin: 0 0 5px;
+  color: red;
+  text-align: center;
 }

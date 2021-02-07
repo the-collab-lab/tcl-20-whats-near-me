@@ -3,7 +3,7 @@ import './Search.css';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function Search() {
-  const { setSearchTerm } = useContext(LocationsContext);
+  const { searchTerm, setSearchTerm } = useContext(LocationsContext);
 
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
@@ -14,21 +14,20 @@ export default function Search() {
     }
   };
 
-  // TODO: make the corresponding button to clear the search
-  // reset the locations -- on focus?
-  // const handleClear = () => {
-  //   setSearchTerm(null);
-  // };
+  const error = false;
 
   return (
     <div className="searchBar">
-      <label htmlFor="search-locations" id="search-locations">
-        <input
-          type="search"
-          placeholder="wiki search"
-          onChange={handleSearch}
-        />
-      </label>
+      <lable htmlFor="search-locations" id="search-locations" />
+      <input
+        type="search"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      {error ? (
+        <p className="errorMessage">Sorry, no locations available!</p>
+      ) : null}
     </div>
   );
 }

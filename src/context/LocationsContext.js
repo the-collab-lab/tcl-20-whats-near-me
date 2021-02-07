@@ -96,6 +96,7 @@ const LocationsContextProvider = (props) => {
       let filtered = locations.filter((location) => {
         return location.title.toLowerCase().includes(searchTerm.toLowerCase());
       });
+      setSearchTerm(searchTerm);
       setLocations(filtered);
     } else if (searchTerm === null) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
