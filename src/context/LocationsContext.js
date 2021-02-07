@@ -9,6 +9,7 @@ const LocationsContextProvider = (props) => {
   const [allowLocation, setAllowLocation] = useState(false);
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
+  const [loading, setLoading] = useState(false);
 
   //New Orleans
   const defaultCoordinates = {
@@ -27,20 +28,20 @@ const LocationsContextProvider = (props) => {
 
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
-    console.log(coordinates.lat, coordinates.lng);
-    console.log('navigator,', navigator.geolocation);
 
     if (navigator.geolocation && allowLocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        setUserLocation(position.coords);
-      });
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation(position.coords);
+          setLoading(false);
+        },
+        (error) => {
+          console.error(error);
+          setLoading(false);
+        },
+      );
     }
-    // function getPosition(position) {
-    //   console.log(position.coords.latitude, position.coords.longitude);
-    //   setUserLocation(position.coords);
-    //   console.log('line 39', position.coords)
-    // }
   }, [allowLocation]);
 
   /*when the newCenter changes in the map componentt the useEffect
@@ -51,6 +52,7 @@ const LocationsContextProvider = (props) => {
     }
   }, [newCenter]);
 
+  // When allowLocation is false clear state of user location and reset center to map center
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
@@ -68,6 +70,8 @@ const LocationsContextProvider = (props) => {
         setNewCenter,
         allowLocation,
         setAllowLocation,
+        loading,
+        setLoading,
       }}
     >
       {props.children}

@@ -7,6 +7,7 @@ import { LocationsContext } from '../context/LocationsContext';
 
 import { Icon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
+import LoadingMessage from '../components/LoadingMessage.js';
 
 export default function Map() {
   //refactored context
@@ -43,6 +44,7 @@ export default function Map() {
 
   return (
     <div className="map">
+      <LoadingMessage />
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
         center={coordinates}
@@ -60,6 +62,7 @@ export default function Map() {
             width={24}
             height={24}
             aria-label="your current location"
+            zIndex={1}
           />
         ) : null}
         {locations &&
@@ -73,6 +76,7 @@ export default function Map() {
                 locationData={locationData}
                 showWindow={showWindow}
                 closeWindow={setShowWindow}
+                zIndex={2}
               />
             ) : (
               <LocationPin
@@ -85,6 +89,7 @@ export default function Map() {
                 locationData={locationData}
                 showWindow={showWindow}
                 closeWindow={setShowWindow}
+                zIndex={2}
               />
             );
           })}
