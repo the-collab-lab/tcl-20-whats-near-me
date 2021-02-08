@@ -7,6 +7,7 @@ import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
 import './App.css';
+import LoadingMessage from './components/LoadingMessage';
 
 function App() {
   return (

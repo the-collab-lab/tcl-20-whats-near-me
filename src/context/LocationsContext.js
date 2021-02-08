@@ -1,11 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { getLocations } from '../lib/fetchPlaces';
 
 export const LocationsContext = createContext();
 
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
+  const [userLocation, setUserLocation] = useState();
+  const [allowLocation, setAllowLocation] = useState(false);
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
+  const [loading, setLoading] = useState({ loading: false, message: '' });
 
   //New Orleans
   const defaultCoordinates = {
@@ -13,49 +17,63 @@ const LocationsContextProvider = (props) => {
     lng: -90.0715,
   };
 
-  //leaving room for the logic from the other groups ticket
-  const coordinates = defaultCoordinates;
+  const userCoordinates = userLocation && {
+    lat: userLocation.latitude,
+    lng: userLocation.longitude,
+  };
 
-  const url = `https://segdeha.com/api/nearby.php?lat=${coordinates.lat}&lng=${coordinates.lng}`;
+  let coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
-  }, []);
+    getLocations(coordinates.lat, coordinates.lng, setLocations);
+
+    if (navigator.geolocation && allowLocation) {
+      setLoading({ loading: true, message: 'loading' });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation(position.coords);
+          setLoading({ loading: false, message: '' });
+        },
+        (error) => {
+          console.error(error);
+          setLoading({
+            loading: false,
+            message: 'location services turned off',
+          });
+        },
+      );
+    }
+  }, [allowLocation]);
 
   /*when the newCenter changes in the map componentt the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
-    let lat, lng;
     if (newCenter) {
-      lat = newCenter.lat;
-      lng = newCenter.lng;
-    } else {
-      lat = defaultCoordinates.lat;
-      lng = defaultCoordinates.lng;
+      getLocations(newCenter.lat, newCenter.lng, setLocations);
     }
-    const newCenterUrl = `https://segdeha.com/api/nearby.php?lat=${lat}&lng=${lng}`;
-    fetch(newCenterUrl)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        let pages = response.query ? response.query.pages : [];
-        setLocations(pages);
-      })
-      .catch(console.log);
   }, [newCenter]);
+
+  // When allowLocation is false clear state of user location and reset center to map center
+  useEffect(() => {
+    if (userLocation) {
+      getLocations(coordinates.lat, coordinates.lng, setLocations);
+      coordinates = userCoordinates;
+    }
+  }, [userLocation]);
 
   return (
     <LocationsContext.Provider
-      value={{ locations, coordinates, newCenter, setNewCenter }}
+      value={{
+        locations,
+        coordinates,
+        newCenter,
+        userLocation,
+        setNewCenter,
+        allowLocation,
+        setAllowLocation,
+        loading,
+        setLoading,
+      }}
     >
       {props.children}
     </LocationsContext.Provider>

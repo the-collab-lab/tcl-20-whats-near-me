@@ -5,15 +5,24 @@ import './Map.css';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
+import { Icon } from '@iconify/react';
+import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
+import LoadingMessage from '../components/LoadingMessage.js';
+
 export default function Map() {
   //refactored context
-  const { locations, coordinates, newCenter, setNewCenter } = useContext(
-    LocationsContext,
-  );
+  const {
+    locations,
+    coordinates,
+    newCenter,
+    setNewCenter,
+    userLocation,
+    allowLocation,
+  } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
-  const zoomLevel = 12;
+  const zoomLevel = 14;
 
   const onChildClick = (key) => {
     setShowWindow({
@@ -27,7 +36,7 @@ export default function Map() {
     // use map and maps objects
   };
 
-  /*When the map moves it resets the center to recenter 
+  /*When the map moves it resets the center to recenter
   we are updating the state with the setRecenter which updates context and updates locationData */
   const handleNewCenter = (e) => {
     setNewCenter({ lat: e.center.lat(), lng: e.center.lng() });
@@ -35,16 +44,27 @@ export default function Map() {
 
   return (
     <div className="map">
+      <LoadingMessage />
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
-        center={newCenter}
-        defaultCenter={coordinates}
+        center={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
         onChildClick={onChildClick}
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
+        {userLocation && allowLocation ? (
+          <Icon
+            icon={myLocation24Filled}
+            lat={userLocation.latitude}
+            lng={userLocation.longitude}
+            width={24}
+            height={24}
+            aria-label="your current location"
+            zIndex={1}
+          />
+        ) : null}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (
@@ -56,6 +76,7 @@ export default function Map() {
                 locationData={locationData}
                 showWindow={showWindow}
                 closeWindow={setShowWindow}
+                zIndex={2}
               />
             ) : (
               <LocationPin
@@ -68,6 +89,7 @@ export default function Map() {
                 locationData={locationData}
                 showWindow={showWindow}
                 closeWindow={setShowWindow}
+                zIndex={2}
               />
             );
           })}

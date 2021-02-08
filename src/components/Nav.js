@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { LocationsContext } from '../context/LocationsContext';
 import './Nav.css';
 
 export default function Nav() {
+  const { allowLocation, setAllowLocation, loading } = useContext(
+    LocationsContext,
+  );
+
+  //Make this async and only toggle after response from api call is returned
+  const handleLocation = async () => {
+    console.log('location toggle!');
+
+    setAllowLocation(!allowLocation);
+  };
+
   return (
     <nav>
       <ul>
@@ -18,6 +30,9 @@ export default function Nav() {
         <li>
           <Link to="/help">Help</Link>
         </li>
+        <button onClick={handleLocation}>
+          {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
+        </button>
       </ul>
     </nav>
   );
