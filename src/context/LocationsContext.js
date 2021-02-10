@@ -10,6 +10,7 @@ const LocationsContextProvider = (props) => {
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
   const [loading, setLoading] = useState({ loading: false, message: '' });
+  const [id, setId] = useState();
 
   //New Orleans
   const defaultCoordinates = {
@@ -29,18 +30,31 @@ const LocationsContextProvider = (props) => {
 
     if (navigator.geolocation && allowLocation) {
       setLoading({ loading: true, message: 'loading' });
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation(position.coords);
-          setLoading({ loading: false, message: '' });
-        },
-        (error) => {
-          console.error(error);
-          setLoading({
-            loading: false,
-            message: 'location services turned off',
-          });
-        },
+      setId(
+        navigator.geolocation.watchPosition(
+          (position) => {
+            setUserLocation(position.coords);
+            setLoading({ loading: false, message: '' });
+          },
+          (error) => {
+            console.error(error);
+            setLoading({
+              loading: false,
+              message: 'location services turned off',
+            });
+          },
+          console.log(id),
+        ),
+      );
+    }
+    if (navigator.geolocation && !allowLocation) {
+      console.log(id);
+      navigator.geolocation.clearWatch(id);
+      setUserLocation(undefined);
+      getLocations(
+        defaultCoordinates.lat,
+        defaultCoordinates.lng,
+        setLocations,
       );
     }
   }, [allowLocation]);
@@ -57,7 +71,6 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
-      coordinates = userCoordinates;
     }
   }, [userLocation]);
 
