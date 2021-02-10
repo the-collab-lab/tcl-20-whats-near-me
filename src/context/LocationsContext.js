@@ -59,7 +59,7 @@ const LocationsContextProvider = (props) => {
     }
   }, [allowLocation]);
 
-  /*when the newCenter changes in the map componentt the useEffect
+  /*when the newCenter changes in the map component the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
     if (newCenter) {

@@ -54,6 +54,7 @@ export default function Map() {
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
+        {/* TODO: Check that this re-renders when user location is updated */}
         {userLocation && allowLocation ? (
           <Icon
             icon={myLocation24Filled}
