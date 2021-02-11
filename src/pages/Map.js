@@ -8,6 +8,7 @@ import { LocationsContext } from '../context/LocationsContext';
 
 import { Icon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
+import LoadingMessage from '../components/LoadingMessage.js';
 
 export default function Map() {
   //refactored context
@@ -22,6 +23,7 @@ export default function Map() {
     mapApiLoaded,
     mapInstance,
     mapApi,
+    allowLocation,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
@@ -48,82 +50,58 @@ export default function Map() {
     setNewCenter({ lat: e.center.lat(), lng: e.center.lng() });
   };
 
-  // TODO: Rachel and Caitlyn's Ticket:
-
-  // TODO: Rachel: Access the Places Library
-
-  // TODO: Recenter the map based on the new place (whether its a new city like Rome or a specific place like Franklin Libraru)
-
-  // TODO: If the searched place is a city like Rome, repopulate all the pins in that area
-
-  // TODO: Caitlyn: If there are no results, show an error message in the search component
-
-  // TODO: Caitlyn: Make the search bar a little prettier
-
   return (
-    <div>
-      {/* {mapApiLoaded && (
-        <div>
-          <AutoComplete
-            map={mapInstance}
-            mapApi={mapApi}
-            onChange={() => null}
+    <div className="map">
+      <LoadingMessage />
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: API_KEY }}
+        center={coordinates}
+        defaultZoom={zoomLevel}
+        yesIWantToUseGoogleMapApiInternals
+        onChildClick={onChildClick}
+        onDragEnd={(e) => handleNewCenter(e)}
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+      >
+        {userLocation && allowLocation ? (
+          <Icon
+            icon={myLocation24Filled}
+            lat={userLocation.latitude}
+            lng={userLocation.longitude}
+            width={24}
+            height={24}
+            aria-label="your current location"
+            zIndex={1}
           />
-        </div>
-      )} */}
-      <div className="map">
-        <GoogleMapReact
-          bootstrapURLKeys={{
-            key: API_KEY,
-            language: 'en',
-            libraries: ['places'],
-          }}
-          center={coordinates}
-          defaultZoom={zoomLevel}
-          yesIWantToUseGoogleMapApiInternals
-          onChildClick={onChildClick}
-          onDragEnd={(e) => handleNewCenter(e)}
-          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-        >
-          {userLocation ? (
-            <Icon
-              className="your-location"
-              icon={myLocation24Filled}
-              lat={userLocation.latitude}
-              lng={userLocation.longitude}
-              width={48}
-              height={48}
-              aria-label="your current location"
-            />
-          ) : null}
-          {locations &&
-            locations.map((locationData) => {
-              return locationData.thumbnail === undefined ? (
-                <LocationPin
-                  className="location-pin"
-                  key={locationData.pageid}
-                  lat={locationData.coordinates[0].lat}
-                  lng={locationData.coordinates[0].lon}
-                  locationData={locationData}
-                  showWindow={showWindow}
-                  closeWindow={setShowWindow}
-                />
-              ) : (
-                <LocationPin
-                  className="location-pin"
-                  key={locationData.pageid}
-                  img={locationData.thumbnail.source}
-                  text={locationData.title}
-                  lat={locationData.coordinates[0].lat}
-                  lng={locationData.coordinates[0].lon}
-                  locationData={locationData}
-                  showWindow={showWindow}
-                  closeWindow={setShowWindow}
-                />
-              );
-            })}
-        </GoogleMapReact>
-      </div>
+        ) : null}
+        {locations &&
+          locations.map((locationData) => {
+            return locationData.thumbnail === undefined ? (
+              <LocationPin
+                className="location-pin"
+                key={locationData.pageid}
+                lat={locationData.coordinates[0].lat}
+                lng={locationData.coordinates[0].lon}
+                locationData={locationData}
+                showWindow={showWindow}
+                closeWindow={setShowWindow}
+                zIndex={2}
+              />
+            ) : (
+              <LocationPin
+                className="location-pin"
+                key={locationData.pageid}
+                img={locationData.thumbnail.source}
+                text={locationData.title}
+                lat={locationData.coordinates[0].lat}
+                lng={locationData.coordinates[0].lon}
+                locationData={locationData}
+                showWindow={showWindow}
+                closeWindow={setShowWindow}
+                zIndex={2}
+              />
+            );
+          })}
+      </GoogleMapReact>
     </div>
   );
 }

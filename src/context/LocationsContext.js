@@ -18,6 +18,7 @@ const LocationsContextProvider = (props) => {
   const [mapApiLoaded, setMapApiLoaded] = useState(false);
   const [mapInstance, setMapInstance] = useState(null);
   const [mapApi, setMapApi] = useState(null);
+  const [loading, setLoading] = useState({ loading: false, message: '' });
 
   //New Orleans
   const defaultCoordinates = {
@@ -38,16 +39,24 @@ const LocationsContextProvider = (props) => {
     //     console.log(position, 'position')
     //     setUserLocation(position.coords);
     getLocations(coordinates.lat, coordinates.lng, setLocations);
-    //   });
-    // } else {
-    //   console.log( 'position')
-    // }
 
-    // setUserLocation({
-    //   latitude: 35.9132,
-    //   longitude: -79.055847,
-    // });
-  }, []);
+    if (navigator.geolocation && allowLocation) {
+      setLoading({ loading: true, message: 'loading' });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation(position.coords);
+          setLoading({ loading: false, message: '' });
+        },
+        (error) => {
+          console.error(error);
+          setLoading({
+            loading: false,
+            message: 'location services turned off',
+          });
+        },
+      );
+    }
+  }, [allowLocation]);
 
   useEffect(() => {
     if (allowLocation && navigator.geolocation) {
@@ -84,24 +93,27 @@ const LocationsContextProvider = (props) => {
     }
   }, [newCenter]);
 
+  // When allowLocation is false clear state of user location and reset center to map center
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
+      coordinates = userCoordinates;
     }
   }, [userLocation]);
 
   /*sets the locations to a filtered locations based on search term*/
-  useEffect(() => {
-    if (searchTerm) {
-      let filtered = locations.filter((location) => {
-        return location.title.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-      setSearchTerm(searchTerm);
-      setLocations(filtered);
-    } else if (searchTerm === null) {
-      getLocations(coordinates.lat, coordinates.lng, setLocations);
-    }
-  }, [searchTerm]);
+
+  // useEffect(() => {
+  //   if (searchTerm) {
+  //     let filtered = locations.filter((location) => {
+  //       return location.title.toLowerCase().includes(searchTerm.toLowerCase());
+  //     });
+  //     setSearchTerm(searchTerm);
+  //     setLocations(filtered);
+  //   } else if (searchTerm === null) {
+  //     getLocations(coordinates.lat, coordinates.lng, setLocations);
+  //   }
+  // }, [searchTerm]);
 
   return (
     <LocationsContext.Provider
@@ -121,6 +133,8 @@ const LocationsContextProvider = (props) => {
         setMapInstance,
         mapApiLoaded,
         setMapApiLoaded,
+        loading,
+        setLoading,
       }}
     >
       {props.children}
