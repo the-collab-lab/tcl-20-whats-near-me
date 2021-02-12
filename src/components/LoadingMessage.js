@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { LocationsContext } from '../context/LocationsContext';
+import { Icon, InlineIcon } from '@iconify/react';
+import arrowCycle from '@iconify-icons/akar-icons/arrow-cycle';
+
 import './LoadingMessage.css';
 
 export default function LoadingMessage() {
@@ -8,9 +11,9 @@ export default function LoadingMessage() {
   return (
     <div className="loading-message">
       {loading.loading && allowLocation ? (
-        <h1>loading</h1>
+        <Icon icon={arrowCycle} className="loading-icon" />
       ) : (
-        <h1>{loading.message}</h1>
+        <p>{loading.message}</p>
       )}
     </div>
   );

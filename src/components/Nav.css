@@ -1,17 +1,20 @@
 nav {
   height: 50px;
   width: 100%;
-  position: absolute;
-  left: 0;
+  /* position: absolute; */
+  /* left: 0;
   bottom: 0;
-  right: 0;
+  right: 0; */
   text-align: center;
   background-color: white;
+  display: flex;
+  flex-direction: row;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  width: 100%;
 }
 
 li {

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationsContext } from '../context/LocationsContext';
+import LoadingMessage from '../components/LoadingMessage';
 import './Nav.css';
 
 export default function Nav() {
@@ -29,6 +30,7 @@ export default function Nav() {
         <button onClick={handleLocation}>
           {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
         </button>
+        <LoadingMessage />
       </ul>
     </nav>
   );

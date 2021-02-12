@@ -43,7 +43,6 @@ export default function Map() {
 
   return (
     <div className="map">
-      <LoadingMessage />
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
         center={coordinates}
