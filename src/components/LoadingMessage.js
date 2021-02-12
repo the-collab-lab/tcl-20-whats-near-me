@@ -9,12 +9,12 @@ export default function LoadingMessage() {
   const { loading, allowLocation } = useContext(LocationsContext);
 
   return (
-    <div className="loading-message">
+    <>
       {loading.loading && allowLocation ? (
-        <Icon icon={arrowCycle} className="loading-icon" />
+        <div className="loading-icon"></div>
       ) : (
         <p>{loading.message}</p>
       )}
-    </div>
+    </>
   );
 }

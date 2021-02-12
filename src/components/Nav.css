@@ -1,14 +1,11 @@
 nav {
   height: 50px;
   width: 100%;
-  /* position: absolute; */
-  /* left: 0;
-  bottom: 0;
-  right: 0; */
   text-align: center;
   background-color: white;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 ul {
@@ -20,4 +17,8 @@ ul {
 li {
   display: inline;
   padding: 10px;
+}
+
+button {
+  margin-right: 10px;
 }

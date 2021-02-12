@@ -1,19 +1,31 @@
 .loading-message {
   z-index: 1;
   display: inline;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .loading-icon {
-  animation: rotation 5s infinite linear;
-  padding-left: 10px;
-  transform: rotate(360deg);
-  transform-origin: center center;
+  margin: 0px;
+  padding: 0px;
+  display: inline-flex;
+  align-self: center;
+  width: 15px;
+  height: 15px;
+  border: 3px solid black;
+  border-radius: 50%;
+  border-top-color: pink;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
 }
 
-/* @keyframes rotation {
+@keyframes spin {
   to {
-    transform: rotate(359deg);
+    -webkit-transform: rotate(360deg);
   }
-} */
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
