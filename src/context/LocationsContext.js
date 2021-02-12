@@ -30,7 +30,7 @@ const LocationsContextProvider = (props) => {
 
     if (navigator.geolocation && allowLocation) {
       setLoading({ loading: true, message: 'loading' });
-      setId(
+      setId((id) =>
         navigator.geolocation.watchPosition(
           (position) => {
             setUserLocation(position.coords);
@@ -43,12 +43,10 @@ const LocationsContextProvider = (props) => {
               message: 'location services turned off',
             });
           },
-          console.log(id),
         ),
       );
     }
     if (navigator.geolocation && !allowLocation) {
-      console.log(id);
       navigator.geolocation.clearWatch(id);
       setUserLocation(undefined);
       getLocations(

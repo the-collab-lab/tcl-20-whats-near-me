@@ -14,7 +14,6 @@ export default function Map() {
   const {
     locations,
     coordinates,
-    newCenter,
     setNewCenter,
     userLocation,
     allowLocation,
