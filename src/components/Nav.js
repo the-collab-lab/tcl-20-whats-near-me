@@ -26,7 +26,6 @@ export default function Nav() {
         <li>
           <Link to="/help">Help</Link>
         </li>
-        {/* Need to handle user turning off location */}
         <button onClick={handleLocation}>
           {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
         </button>
