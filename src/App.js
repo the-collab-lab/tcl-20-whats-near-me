@@ -6,7 +6,7 @@ import Map from './pages/Map';
 import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
-import Search from './components/Search';
+import SearchBox from './components/SearchBox';
 import Header from './components/Header';
 import './App.css';
 
@@ -17,11 +17,11 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Search />
+            <SearchBox />
             <Map />
           </Route>
           <Route path="/list">
-            <Search />
+            <SearchBox />
             <List />
           </Route>
           <Route path="/settings">

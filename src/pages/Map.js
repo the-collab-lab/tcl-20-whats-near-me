@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
 import AutoComplete from '../components/AutoComplete';
+import SearchBox from '../components/SearchBox';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
@@ -54,7 +55,10 @@ export default function Map() {
     <div className="map">
       <LoadingMessage />
       <GoogleMapReact
-        bootstrapURLKeys={{ key: API_KEY }}
+        bootstrapURLKeys={{
+          key: API_KEY,
+          libraries: ['places'],
+        }}
         center={coordinates}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
@@ -62,6 +66,11 @@ export default function Map() {
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
+        <SearchBox
+        // map={map}
+        // googlemaps={googlemaps}
+        // onPlacesChanged={handleSearch}
+        />
         {userLocation && allowLocation ? (
           <Icon
             icon={myLocation24Filled}
