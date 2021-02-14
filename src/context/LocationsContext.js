@@ -10,7 +10,7 @@ const LocationsContextProvider = (props) => {
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
   const [loading, setLoading] = useState({ loading: false, message: '' });
-  const [id, setId] = useState();
+  const [watchId, setWatchId] = useState();
 
   //New Orleans
   const defaultCoordinates = {
@@ -30,7 +30,7 @@ const LocationsContextProvider = (props) => {
 
     if (navigator.geolocation && allowLocation) {
       setLoading({ loading: true, message: 'loading' });
-      setId((id) =>
+      setWatchId(
         navigator.geolocation.watchPosition(
           (position) => {
             setUserLocation(position.coords);
@@ -47,13 +47,8 @@ const LocationsContextProvider = (props) => {
       );
     }
     if (navigator.geolocation && !allowLocation) {
-      navigator.geolocation.clearWatch(id);
+      navigator.geolocation.clearWatch(watchId);
       setUserLocation(undefined);
-      getLocations(
-        defaultCoordinates.lat,
-        defaultCoordinates.lng,
-        setLocations,
-      );
     }
   }, [allowLocation]);
 
