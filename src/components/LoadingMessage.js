@@ -1,17 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { LocationsContext } from '../context/LocationsContext';
+
 import './LoadingMessage.css';
 
 export default function LoadingMessage() {
   const { loading, allowLocation } = useContext(LocationsContext);
 
   return (
-    <div className="loading-message">
+    <>
       {loading.loading && allowLocation ? (
-        <h1>loading</h1>
+        <div className="loading-icon"></div>
       ) : (
-        <h1>{loading.message}</h1>
+        <p>{loading.message}</p>
       )}
-    </div>
+    </>
   );
 }

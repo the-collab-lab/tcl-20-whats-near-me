@@ -7,14 +7,12 @@ import { LocationsContext } from '../context/LocationsContext';
 
 import { Icon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
-import LoadingMessage from '../components/LoadingMessage.js';
 
 export default function Map() {
   //refactored context
   const {
     locations,
     coordinates,
-    newCenter,
     setNewCenter,
     userLocation,
     allowLocation,
@@ -44,7 +42,6 @@ export default function Map() {
 
   return (
     <div className="map">
-      <LoadingMessage />
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
         center={coordinates}
@@ -54,6 +51,7 @@ export default function Map() {
         onDragEnd={(e) => handleNewCenter(e)}
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
+        {/* TODO: Check that this re-renders when user location is updated */}
         {userLocation && allowLocation ? (
           <Icon
             icon={myLocation24Filled}

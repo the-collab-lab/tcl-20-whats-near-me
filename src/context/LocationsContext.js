@@ -10,6 +10,7 @@ const LocationsContextProvider = (props) => {
   //state is updated in the Map component
   const [newCenter, setNewCenter] = useState();
   const [loading, setLoading] = useState({ loading: false, message: '' });
+  const [watchId, setWatchId] = useState();
 
   //New Orleans
   const defaultCoordinates = {
@@ -29,23 +30,28 @@ const LocationsContextProvider = (props) => {
 
     if (navigator.geolocation && allowLocation) {
       setLoading({ loading: true, message: 'loading' });
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation(position.coords);
-          setLoading({ loading: false, message: '' });
-        },
-        (error) => {
-          console.error(error);
-          setLoading({
-            loading: false,
-            message: 'location services turned off',
-          });
-        },
+      setWatchId(
+        navigator.geolocation.watchPosition(
+          (position) => {
+            setUserLocation(position.coords);
+            setLoading({ loading: false, message: '' });
+          },
+          (error) => {
+            console.error(error);
+            setLoading({
+              loading: false,
+              message: 'location services turned off',
+            });
+          },
+        ),
       );
+    }
+    if (navigator.geolocation && !allowLocation) {
+      navigator.geolocation.clearWatch(watchId);
     }
   }, [allowLocation]);
 
-  /*when the newCenter changes in the map componentt the useEffect
+  /*when the newCenter changes in the map component the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
     if (newCenter) {
@@ -57,7 +63,6 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
-      coordinates = userCoordinates;
     }
   }, [userLocation]);
 
