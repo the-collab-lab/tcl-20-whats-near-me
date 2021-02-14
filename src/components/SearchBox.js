@@ -29,10 +29,10 @@ export default function SearchBox() {
 
   // const error = false;
 
-  const input = useRef(null);
-  const searchBox = useRef(null);
+  const inputRef = useRef(null);
+  const searchBoxRef = useRef(null);
 
-  var request = {
+  const request = {
     query: 'Museum of Contemporary Art Australia',
     fields: ['name'],
   };
@@ -54,22 +54,22 @@ export default function SearchBox() {
     // console.log({ service });
     // }
     if (searchTerm) {
-      setSearchTerm(searchBox.current.getPlaces());
+      setSearchTerm(searchBoxRef.current.getPlaces());
     }
-  }, [searchTerm, searchBox]);
+  }, [searchTerm, searchBoxRef]);
 
   useEffect(() => {
-    if (!searchBox.current) {
-      // searchBox.current = new maps.places.SearchBox(input.current);
-      // searchBox.current.addListener('places_changed', handleOnPlacesChanged);
-      console.log({ searchBox });
+    if (!searchBoxRef.current) {
+      // searchBoxRef.current = new maps.places.SearchBox(input.current);
+      // searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
+      console.log({ searchBoxRef });
     }
 
     return () => {
-      searchBox.current = null;
-      // maps.event.clearInstanceListeners(searchBox);
+      searchBoxRef.current = null;
+      // maps.event.clearInstanceListeners(searchBoxRef);
     };
   }, [handleOnPlacesChanged]);
   // add a button with an onclick handler, put it in a form
-  return <input ref={input} placeholder="search" type="text" />;
+  return <input ref={inputRef} placeholder="search" type="text" />;
 }
