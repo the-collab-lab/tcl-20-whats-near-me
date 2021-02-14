@@ -48,7 +48,6 @@ const LocationsContextProvider = (props) => {
     }
     if (navigator.geolocation && !allowLocation) {
       navigator.geolocation.clearWatch(watchId);
-      setUserLocation(undefined);
     }
   }, [allowLocation]);
 
