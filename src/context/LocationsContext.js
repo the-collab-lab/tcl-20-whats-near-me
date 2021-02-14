@@ -6,6 +6,8 @@ export const LocationsContext = createContext();
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState();
+  const [loading, setLoading] = useState({ loading: false, message: '' });
+  const [watchId, setWatchId] = useState();
 
   //state is updated in the Search component
   const [searchTerm, setSearchTerm] = useState(null);
@@ -18,7 +20,6 @@ const LocationsContextProvider = (props) => {
   const [mapApiLoaded, setMapApiLoaded] = useState(false);
   const [mapInstance, setMapInstance] = useState(null);
   const [mapApi, setMapApi] = useState(null);
-  const [loading, setLoading] = useState({ loading: false, message: '' });
 
   //New Orleans
   const defaultCoordinates = {
@@ -34,58 +35,32 @@ const LocationsContextProvider = (props) => {
   const coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
-    // if('geolocation' in navigator) {
-    //   navigator.geolocation.getCurrentPosition((position) => {
-    //     console.log(position, 'position')
-    //     setUserLocation(position.coords);
     getLocations(coordinates.lat, coordinates.lng, setLocations);
 
     if (navigator.geolocation && allowLocation) {
       setLoading({ loading: true, message: 'loading' });
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation(position.coords);
-          setLoading({ loading: false, message: '' });
-        },
-        (error) => {
-          console.error(error);
-          setLoading({
-            loading: false,
-            message: 'location services turned off',
-          });
-        },
+      setWatchId(
+        navigator.geolocation.watchPosition(
+          (position) => {
+            setUserLocation(position.coords);
+            setLoading({ loading: false, message: '' });
+          },
+          (error) => {
+            console.error(error);
+            setLoading({
+              loading: false,
+              message: 'location services turned off',
+            });
+          },
+        ),
       );
     }
-  }, [allowLocation]);
-
-  useEffect(() => {
-    if (allowLocation && navigator.geolocation) {
-      var options = {
-        enableHighAccuracy: true,
-        timeout: 30000,
-        maximumAge: 27000,
-      };
-
-      function success(pos) {
-        var crd = pos.coords;
-
-        setUserLocation(crd);
-
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-      }
-
-      function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-      }
-
-      navigator.geolocation.watchPosition(success, error, options);
+    if (navigator.geolocation && !allowLocation) {
+      navigator.geolocation.clearWatch(watchId);
     }
   }, [allowLocation]);
 
-  /*when the newCenter changes in the map componentt the useEffect
+  /*when the newCenter changes in the map component the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
     if (newCenter) {
@@ -97,23 +72,8 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
-      coordinates = userCoordinates;
     }
   }, [userLocation]);
-
-  /*sets the locations to a filtered locations based on search term*/
-
-  // useEffect(() => {
-  //   if (searchTerm) {
-  //     let filtered = locations.filter((location) => {
-  //       return location.title.toLowerCase().includes(searchTerm.toLowerCase());
-  //     });
-  //     setSearchTerm(searchTerm);
-  //     setLocations(filtered);
-  //   } else if (searchTerm === null) {
-  //     getLocations(coordinates.lat, coordinates.lng, setLocations);
-  //   }
-  // }, [searchTerm]);
 
   return (
     <LocationsContext.Provider

@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LocationsContext } from '../context/LocationsContext';
+import LoadingMessage from '../components/LoadingMessage';
 import './Nav.css';
 
 export default function Nav() {
-  const { allowLocation, setAllowLocation, loading } = useContext(
-    LocationsContext,
-  );
+  const { allowLocation, setAllowLocation } = useContext(LocationsContext);
 
   const handleLocation = () => {
     setAllowLocation(!allowLocation);
@@ -30,6 +29,7 @@ export default function Nav() {
         <button onClick={handleLocation}>
           {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
         </button>
+        <LoadingMessage />
       </ul>
     </nav>
   );

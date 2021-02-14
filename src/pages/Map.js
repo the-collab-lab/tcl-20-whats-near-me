@@ -9,7 +9,6 @@ import { LocationsContext } from '../context/LocationsContext';
 
 import { Icon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
-import LoadingMessage from '../components/LoadingMessage.js';
 
 export default function Map() {
   //refactored context
@@ -53,7 +52,6 @@ export default function Map() {
 
   return (
     <div className="map">
-      <LoadingMessage />
       <GoogleMapReact
         bootstrapURLKeys={{
           key: API_KEY,
