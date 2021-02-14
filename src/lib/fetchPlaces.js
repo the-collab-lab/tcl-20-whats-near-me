@@ -8,7 +8,6 @@ export const getLocations = (lat, lng, setLocations) => {
     })
     .then((response) => {
       let pages = response.query ? response.query.pages : [];
-      console.log('response', response.query);
       setLocations(pages);
     })
     .catch(console.log);

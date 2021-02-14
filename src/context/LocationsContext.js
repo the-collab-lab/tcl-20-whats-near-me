@@ -19,7 +19,7 @@ const LocationsContextProvider = (props) => {
   const [newCenter, setNewCenter] = useState();
   const [mapApiLoaded, setMapApiLoaded] = useState(false);
   const [mapInstance, setMapInstance] = useState(null);
-  const [mapApi, setMapApi] = useState(null);
+  const [mapsApi, setMapsApi] = useState(null);
 
   //New Orleans
   const defaultCoordinates = {
@@ -87,8 +87,8 @@ const LocationsContextProvider = (props) => {
         setAllowLocation,
         searchTerm,
         setSearchTerm,
-        mapApi,
-        setMapApi,
+        mapsApi,
+        setMapsApi,
         mapInstance,
         setMapInstance,
         mapApiLoaded,

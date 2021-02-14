@@ -17,12 +17,9 @@ export default function Map() {
     coordinates,
     setNewCenter,
     userLocation,
-    setMapApi,
+    setMapsApi,
     setMapInstance,
     setMapApiLoaded,
-    mapApiLoaded,
-    mapInstance,
-    mapApi,
     allowLocation,
   } = useContext(LocationsContext);
 
@@ -41,7 +38,7 @@ export default function Map() {
     // use map and maps objects
     setMapApiLoaded(true);
     setMapInstance(map);
-    setMapApi(maps);
+    setMapsApi(maps);
   };
 
   /*When the map moves it resets the center to recenter

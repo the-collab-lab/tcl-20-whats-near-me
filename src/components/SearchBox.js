@@ -9,25 +9,26 @@ export default function SearchBox() {
     searchTerm,
     setSearchTerm,
     // rename this to mapsApi
-    mapApi,
-    setMapApi,
+    mapsApi,
+    setMapsApi,
     mapInstance,
     setMapInstance,
     mapApiLoaded,
     setMapApiLoaded,
   } = useContext(LocationsContext);
+
   // const searchBox = new googlemaps.places.SearchBox(input);
 
-  // const handleSearch = (e) => {
-  //   const searchTerm = e.target.value;
-  //   if (searchTerm.length > 0) {
-  //     setSearchTerm(searchTerm);
-  //   } else if (searchTerm.length === 0) {
-  //     setSearchTerm(null);
-  //   }
-  // };
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    if (searchTerm.length > 0) {
+      setSearchTerm(searchTerm);
+    } else if (searchTerm.length === 0) {
+      setSearchTerm(null);
+    }
+  };
 
-  // const error = false;
+  const error = false;
 
   const inputRef = useRef(null);
   const searchBoxRef = useRef(null);
@@ -38,10 +39,10 @@ export default function SearchBox() {
   };
   // const service = new mapApi.places.PlacesService(mapInstance);
   console.log('instance', typeof mapInstance);
-  mapApi &&
+  mapsApi &&
     console.log(
       'find from query: ',
-      new mapApi.places.PlacesService(mapInstance).findPlaceFromQuery(
+      new mapsApi.places.PlacesService(mapInstance).findPlaceFromQuery(
         request,
         function (results, status) {
           console.log({ results });
@@ -70,6 +71,16 @@ export default function SearchBox() {
       // maps.event.clearInstanceListeners(searchBoxRef);
     };
   }, [handleOnPlacesChanged]);
+
   // add a button with an onclick handler, put it in a form
-  return <input ref={inputRef} placeholder="search" type="text" />;
+  return (
+    <form>
+      <input ref={inputRef} placeholder="search" type="text" />
+      <input
+        type="submit"
+        value="search anywhere in the world!"
+        onSubmit={handleSearch}
+      />
+    </form>
+  );
 }
