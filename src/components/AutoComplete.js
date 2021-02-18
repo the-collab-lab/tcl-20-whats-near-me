@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
+import './SearchBox.css';
 
-export default function AutoComplete({ map, mapApi }) {
+export default function AutoComplete({ mapInstance, mapsApi }) {
   const autoCompleteRef = useRef(null);
   const [query, setQuery] = useState('');
 
@@ -13,13 +14,13 @@ export default function AutoComplete({ map, mapApi }) {
       types: ['address', 'cities'],
     };
 
-    autoComplete = new mapApi.places.Autocomplete(autoCompleteRef, options);
+    autoComplete = new mapsApi.places.Autocomplete(autoCompleteRef, options);
 
     autoComplete.setFields(['address_components', 'formatted_address']);
     autoComplete.addListener('place_changed', () => {
       handlePlaceSelect(updateQuery);
     });
-    autoComplete.bindTo('bounds', map);
+    autoComplete.bindTo('bounds', mapInstance);
   };
 
   async function handlePlaceSelect(updateQuery) {
@@ -30,7 +31,7 @@ export default function AutoComplete({ map, mapApi }) {
   }
 
   useEffect(() => {
-    if (mapApi) {
+    if (mapsApi) {
       handleScriptLoad();
     }
   }, [query]);
@@ -40,16 +41,14 @@ export default function AutoComplete({ map, mapApi }) {
   };
 
   return (
-    <>
+    <div className="searchBar">
       <input
-        id=" "
-        className="search-input"
         ref={autoCompleteRef}
         placeholder="enter a location"
         type="text"
         onChange={handleChange}
         value={query}
       />
-    </>
+    </div>
   );
 }

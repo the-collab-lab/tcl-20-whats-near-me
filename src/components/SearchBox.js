@@ -1,23 +1,24 @@
-import React, { useCallback, useRef, useEffect, useContext } from 'react';
+import React, {
+  useCallback,
+  useRef,
+  useEffect,
+  useContext,
+  useState,
+} from 'react';
 import './SearchBox.css';
 import { LocationsContext } from '../context/LocationsContext';
-import googleMapReact from 'google-map-react';
 
 export default function SearchBox() {
   const {
     newCenter,
     searchTerm,
     setSearchTerm,
-    // rename this to mapsApi
     mapsApi,
-    setMapsApi,
     mapInstance,
-    setMapInstance,
     mapApiLoaded,
-    setMapApiLoaded,
+    places,
+    setPlaces,
   } = useContext(LocationsContext);
-
-  // const searchBox = new googlemaps.places.SearchBox(input);
 
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
@@ -33,49 +34,53 @@ export default function SearchBox() {
   const inputRef = useRef(null);
   const searchBoxRef = useRef(null);
 
-  const request = {
-    query: 'Museum of Contemporary Art Australia',
-    fields: ['name'],
-  };
-  // const service = new mapApi.places.PlacesService(mapInstance);
-  console.log('instance', typeof mapInstance);
-  mapsApi &&
-    console.log(
-      'find from query: ',
-      new mapsApi.places.PlacesService(mapInstance).findPlaceFromQuery(
-        request,
-        function (results, status) {
-          console.log({ results });
-        },
-      ),
-    );
+  useEffect(() => {
+    if (mapsApi && searchTerm) {
+      const request = {
+        query: searchTerm,
+        fields: ['name', 'geometry', 'formatted_address'],
+      };
+      const service = new mapsApi.places.PlacesService(mapInstance);
+      service &&
+        service.findPlaceFromQuery(request, (results, status) => {
+          console.log(results);
+          if (results) {
+            setPlaces(results);
+          }
+          console.log(status);
+        });
+    }
+  }, [mapsApi, mapInstance, searchTerm]);
 
   const handleOnPlacesChanged = useCallback(() => {
-    // if (service) {
-    // console.log({ service });
-    // }
-    if (searchTerm) {
-      setSearchTerm(searchBoxRef.current.getPlaces());
+    if (mapsApi) {
+      const service = new mapsApi.places.PlacesService(mapInstance);
+      if (service) {
+        console.log({ service });
+      }
+      if (searchTerm) {
+        setSearchTerm(searchBoxRef.current.getPlaces());
+      }
     }
   }, [searchTerm, searchBoxRef]);
 
   useEffect(() => {
-    if (!searchBoxRef.current) {
-      // searchBoxRef.current = new maps.places.SearchBox(input.current);
-      // searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
+    if (!searchBoxRef.current && mapsApi) {
+      searchBoxRef.current = new mapsApi.places.SearchBox(searchBoxRef.current);
+      searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
       console.log({ searchBoxRef });
     }
 
     return () => {
       searchBoxRef.current = null;
-      // maps.event.clearInstanceListeners(searchBoxRef);
+      mapsApi.event.clearInstanceListeners(searchBoxRef);
     };
   }, [handleOnPlacesChanged]);
 
   // add a button with an onclick handler, put it in a form
   return (
-    <form>
-      <input ref={inputRef} placeholder="search" type="text" />
+    <form className="searchBar" type="submit">
+      <input ref={inputRef} type="search" />
       <input
         type="submit"
         value="search anywhere in the world!"
