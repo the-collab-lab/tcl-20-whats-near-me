@@ -11,8 +11,6 @@ import { LocationsContext } from '../context/LocationsContext';
 export default function SearchBox() {
   const {
     newCenter,
-    searchTerm,
-    setSearchTerm,
     mapsApi,
     mapInstance,
     mapApiLoaded,
@@ -20,13 +18,11 @@ export default function SearchBox() {
     setPlaces,
   } = useContext(LocationsContext);
 
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value;
-    if (searchTerm.length > 0) {
-      setSearchTerm(searchTerm);
-    } else if (searchTerm.length === 0) {
-      setSearchTerm(null);
-    }
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(inputRef.current.value);
   };
 
   const error = false;
@@ -35,7 +31,7 @@ export default function SearchBox() {
   const searchBoxRef = useRef(null);
 
   useEffect(() => {
-    if (mapsApi && searchTerm) {
+    if (searchTerm && mapsApi) {
       const request = {
         query: searchTerm,
         fields: ['name', 'geometry', 'formatted_address'],
@@ -43,49 +39,41 @@ export default function SearchBox() {
       const service = new mapsApi.places.PlacesService(mapInstance);
       service &&
         service.findPlaceFromQuery(request, (results, status) => {
-          console.log(results);
-          if (results) {
-            setPlaces(results);
-          }
-          console.log(status);
+          console.log({ results });
+          console.log({ status });
         });
     }
   }, [mapsApi, mapInstance, searchTerm]);
 
-  const handleOnPlacesChanged = useCallback(() => {
-    if (mapsApi) {
-      const service = new mapsApi.places.PlacesService(mapInstance);
-      if (service) {
-        console.log({ service });
-      }
-      if (searchTerm) {
-        setSearchTerm(searchBoxRef.current.getPlaces());
-      }
-    }
-  }, [searchTerm, searchBoxRef]);
+  // const handleOnPlacesChanged = useCallback(() => {
+  //   if (mapsApi) {
+  //     const service = new mapsApi.places.PlacesService(mapInstance);
+  //     if (service) {
+  //       console.log({ service });
+  //     }
+  //     if (searchTerm) {
+  //       setSearchTerm(searchBoxRef.current.getPlaces());
+  //     }
+  //   }
+  // }, [searchTerm, searchBoxRef]);
 
-  useEffect(() => {
-    if (!searchBoxRef.current && mapsApi) {
-      searchBoxRef.current = new mapsApi.places.SearchBox(searchBoxRef.current);
-      searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
-      console.log({ searchBoxRef });
-    }
+  // useEffect(() => {
+  //   if (!searchBoxRef.current && mapsApi) {
+  //     searchBoxRef.current = new mapsApi.places.SearchBox(searchBoxRef.current);
+  //     searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
+  //     console.log({ searchBoxRef });
+  //   }
 
-    return () => {
-      searchBoxRef.current = null;
-      mapsApi.event.clearInstanceListeners(searchBoxRef);
-    };
-  }, [handleOnPlacesChanged]);
+  //   return () => {
+  //     searchBoxRef.current = null;
+  //     mapsApi.event.clearInstanceListeners(searchBoxRef);
+  //   };
+  // }, [handleOnPlacesChanged]);
 
-  // add a button with an onclick handler, put it in a form
   return (
-    <form className="searchBar" type="submit">
-      <input ref={inputRef} type="search" />
-      <input
-        type="submit"
-        value="search anywhere in the world!"
-        onSubmit={handleSearch}
-      />
+    <form className="searchBar" onSubmit={(e) => handleSubmit(e)}>
+      <input type="search" name="search-bar" ref={inputRef} />
+      <input type="submit" value="search anywhere!" />
     </form>
   );
 }
