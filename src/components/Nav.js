@@ -1,5 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import mapIcon from '@iconify-icons/fa-regular/map';
+import unorderedListOutlined from '@iconify-icons/ant-design/unordered-list-outlined';
+import bxCurrentLocation from '@iconify-icons/bx/bx-current-location';
+import settingsLine from '@iconify-icons/clarity/settings-line';
+import helpIcon from '@iconify-icons/carbon/help';
+
 import { LocationsContext } from '../context/LocationsContext';
 import LoadingMessage from '../components/LoadingMessage';
 import './Nav.css';
@@ -16,20 +23,32 @@ export default function Nav() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Map</Link>
+          <Link to="/">
+            <Icon icon={mapIcon} />
+          </Link>
         </li>
         <li>
-          <Link to="/list">List</Link>
+          <Link to="/list">
+            <Icon icon={unorderedListOutlined} />
+          </Link>
         </li>
-        <li>
-          <Link to="/settings">Settings</Link>
-        </li>
-        <li>
-          <Link to="/help">Help</Link>
-        </li>
-        <button onClick={handleLocation}>
-          {allowLocation ? 'Turn Off Location' : 'Turn On Location'}
+        <button onClick={handleLocation} className="locationButton">
+          {allowLocation ? (
+            <Icon icon={bxCurrentLocation} id="locationOn" />
+          ) : (
+            <Icon icon={bxCurrentLocation} id="locationOff" />
+          )}
         </button>
+        <li>
+          <Link to="/settings">
+            <Icon icon={settingsLine} />
+          </Link>
+        </li>
+        <li>
+          <Link to="/help">
+            <Icon icon={helpIcon} />
+          </Link>
+        </li>
         <LoadingMessage />
       </ul>
     </nav>

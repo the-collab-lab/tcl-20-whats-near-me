@@ -18,6 +18,13 @@ li {
   padding: 10px;
 }
 
-button {
-  margin-right: 10px;
+svg {
+  width: 30px;
+  height: 30px;
+  color: var(--tangerine);
+}
+
+.locationButton {
+  border: none;
+  background-color: white;
 }
