@@ -20,19 +20,16 @@ const LocationsContextProvider = (props) => {
   const [mapApiLoaded, setMapApiLoaded] = useState(false);
   const [mapInstance, setMapInstance] = useState(null);
   const [mapsApi, setMapsApi] = useState(null);
-
-  //New Orleans
-  const defaultCoordinates = {
+  const [coordinates, setCoordinates] = useState({
+    //New Orleans
     lat: 29.9511,
     lng: -90.0715,
-  };
+  });
 
   const userCoordinates = userLocation && {
     lat: userLocation.latitude,
     lng: userLocation.longitude,
   };
-
-  const coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
@@ -65,6 +62,7 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (newCenter) {
       getLocations(newCenter.lat, newCenter.lng, setLocations);
+      setCoordinates({ lat: newCenter.lat, lng: newCenter.lng });
     }
   }, [newCenter]);
 
@@ -72,6 +70,7 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
+      setCoordinates(userCoordinates);
     }
   }, [userLocation]);
 
