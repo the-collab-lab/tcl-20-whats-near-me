@@ -1,6 +1,6 @@
 .listPage {
-  height: 100vh;
-  overflow: scroll;
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
 }
 
 .listTitle {

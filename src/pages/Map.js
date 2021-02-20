@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
-import './Map.css';
+import './Map.scss';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 

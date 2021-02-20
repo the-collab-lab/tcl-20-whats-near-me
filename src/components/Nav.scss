@@ -1,0 +1,56 @@
+nav {
+  height: 50px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: inline;
+  padding: 10px;
+}
+
+svg {
+  width: 30px;
+  height: 30px;
+  color: var(--tangerine);
+}
+
+.locationButton {
+  width: 65px;
+  height: 65px;
+  border: 7px solid var(--lightGray);
+  border-radius: 100px;
+  background-color: var(--tangerine);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.nav-icon {
+  margin: 0px 15px;
+}

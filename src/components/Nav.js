@@ -9,7 +9,7 @@ import helpIcon from '@iconify-icons/carbon/help';
 
 import { LocationsContext } from '../context/LocationsContext';
 import LoadingMessage from '../components/LoadingMessage';
-import './Nav.css';
+import './Nav.scss';
 
 export default function Nav() {
   const { allowLocation, setAllowLocation } = useContext(LocationsContext);
@@ -20,37 +20,45 @@ export default function Nav() {
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
+    <>
+      <nav>
+        <div className="nav-left">
           <Link to="/">
-            <Icon icon={mapIcon} />
+            <Icon icon={mapIcon} className="nav-icon" />
           </Link>
-        </li>
-        <li>
           <Link to="/list">
-            <Icon icon={unorderedListOutlined} />
+            <Icon icon={unorderedListOutlined} className="nav-icon" />
           </Link>
-        </li>
+        </div>
         <button onClick={handleLocation} className="locationButton">
           {allowLocation ? (
-            <Icon icon={bxCurrentLocation} id="locationOn" />
+            <Icon
+              icon={bxCurrentLocation}
+              color="#FFFFFF"
+              id="locationOn"
+              height="80px"
+              width="33px"
+            />
           ) : (
-            <Icon icon={bxCurrentLocation} id="locationOff" />
+            <Icon
+              icon={bxCurrentLocation}
+              color="#FFFFFF"
+              id="locationOff"
+              height="80px"
+              width="33px"
+            />
           )}
         </button>
-        <li>
+        <div className="nav-right">
           <Link to="/settings">
-            <Icon icon={settingsLine} />
+            <Icon icon={settingsLine} className="nav-icon" />
           </Link>
-        </li>
-        <li>
           <Link to="/help">
-            <Icon icon={helpIcon} />
+            <Icon icon={helpIcon} className="nav-icon" />
           </Link>
-        </li>
-        <LoadingMessage />
-      </ul>
-    </nav>
+        </div>
+      </nav>
+      <LoadingMessage />
+    </>
   );
 }

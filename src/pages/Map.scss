@@ -1,0 +1,34 @@
+.mapWrapper {
+  padding: 40px 20px;
+  background-color: var(--tangerine);
+  height: calc(100vh - 100px);
+}
+
+.google-map{
+  height: calc(100vh - 100px);
+  width: 90%;
+}
+
+.map {
+  text-align: center;
+  margin: 0 auto;
+  height: 90%;
+  // height: calc(100vh - 120px);
+  width: 90%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+
+  div {
+    border-radius: 10px;
+  }
+}
+
+.location-pin {
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.location-pin:hover {
+  z-index: 1;
+}
