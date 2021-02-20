@@ -11,8 +11,7 @@ export default function List() {
 
   return (
     <main className="listPage">
-      <h2 className="listTitle">Explore Your World</h2>
-      <Table data={locations} />
+      <Table data={locations} className="table" />
     </main>
   );
 }
