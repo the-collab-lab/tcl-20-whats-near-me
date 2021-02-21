@@ -23,7 +23,7 @@ export default function Map() {
     mapsApiLoaded,
     mapsApi,
     allowLocation,
-    places,
+    goToPlace,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
@@ -75,17 +75,17 @@ export default function Map() {
             zIndex={1}
           />
         ) : null}
-        {/* {places ? (
+        {goToPlace ? (
           <Icon
             icon={locationStarFilled}
-            lat={places[0].geometry.location.lat()}
-            lng={places[0].geometry.location.lng()}
+            lat={goToPlace.geometry.location.lat()}
+            lng={goToPlace.geometry.location.lng()}
             width={40}
             height={40}
             aria-label="your search results location"
             zindex={1}
           />
-        ) : null} */}
+        ) : null}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (

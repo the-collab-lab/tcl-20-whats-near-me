@@ -10,7 +10,9 @@ const LocationsContextProvider = (props) => {
   const [watchId, setWatchId] = useState();
 
   //state is updated in the Search component
+  //TODO: rename to nearby places
   const [places, setPlaces] = useState([]);
+  const [goToPlace, setGoToPlace] = useState();
 
   //state is updated in the Nav component
   const [allowLocation, setAllowLocation] = useState(false);
@@ -94,6 +96,8 @@ const LocationsContextProvider = (props) => {
         setLoading,
         places,
         setPlaces,
+        goToPlace,
+        setGoToPlace,
       }}
     >
       {props.children}

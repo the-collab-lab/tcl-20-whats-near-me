@@ -10,6 +10,8 @@ export default function SearchBox() {
     mapInstance,
     setPlaces,
     places,
+    goToPlace,
+    setGoToPlace,
   } = useContext(LocationsContext);
 
   //TODO: clear list & search results buttons // clear event listener
@@ -24,11 +26,20 @@ export default function SearchBox() {
     setSearchTerm(inputRef.current.value);
   };
 
-  const handleSearchResults = () => {
-    setNewCenter({
-      lat: places[0].geometry.location.lat(),
-      lng: places[0].geometry.location.lng(),
-    });
+  const handleSearchResults = (e) => {
+    console.log(e.target.value);
+    for (var i = 0; i < places.length; i++) {
+      if (places[i].name === e.target.value) {
+        setGoToPlace(places[i]);
+        console.log(goToPlace);
+      }
+    }
+    if (goToPlace) {
+      setNewCenter({
+        lat: goToPlace.geometry.location.lat(),
+        lng: goToPlace.geometry.location.lng(),
+      });
+    }
   };
 
   useEffect(() => {
@@ -65,7 +76,11 @@ export default function SearchBox() {
       </form>
       {places
         ? places.map((element) => (
-            <button onClick={handleSearchResults} key={element.place_id}>
+            <button
+              onClick={handleSearchResults}
+              value={element.name}
+              key={element.place_id}
+            >
               {element.name}
             </button>
           ))
