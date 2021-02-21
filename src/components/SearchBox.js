@@ -12,6 +12,10 @@ export default function SearchBox() {
     places,
   } = useContext(LocationsContext);
 
+  //TODO: clear list & search results buttons // clear event listener
+  // marker to show the recenter based on the search results.
+
+  const inputRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(false);
 
@@ -20,7 +24,13 @@ export default function SearchBox() {
     setSearchTerm(inputRef.current.value);
   };
 
-  const inputRef = useRef(null);
+  const handleSearchResults = () => {
+    setNewCenter({
+      lat: places[0].geometry.location.lat(),
+      lng: places[0].geometry.location.lng(),
+    });
+  };
+
   useEffect(() => {
     if (searchTerm && mapsApi) {
       const callback = (results, status) => {
@@ -54,14 +64,13 @@ export default function SearchBox() {
         <input type="submit" value="search anywhere!" />
       </form>
       {places
-        ? places.map((element) => <p key={element.place_id}>{element.name}</p>)
+        ? places.map((element) => (
+            <button onClick={handleSearchResults} key={element.place_id}>
+              {element.name}
+            </button>
+          ))
         : null}
       {error ? <p className="errorMessage"> No results in this area!</p> : null}
     </div>
   );
 }
-
-// setNewCenter({
-//   lat: results[0].geometry.location.lat(),
-//   lng: results[0].geometry.location.lng(),
-// });

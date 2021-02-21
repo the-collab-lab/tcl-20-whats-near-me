@@ -84,8 +84,8 @@ export default function Map() {
             height={40}
             aria-label="your search results location"
             zindex={1}
-          /> */}
-        {/* ) : null} */}
+          />
+        ) : null} */}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (
