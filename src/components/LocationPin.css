@@ -6,6 +6,7 @@
   transform: rotate(-45deg);
   object-fit: cover;
   overflow: hidden;
+  z-index: -1;
 }
 
 .pin-fill {
@@ -17,4 +18,5 @@
   background-size: cover;
   background-position: center;
   transform: rotate(45deg);
+  z-index: -1;
 }

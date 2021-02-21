@@ -8,8 +8,8 @@ export default function SearchBox() {
     coordinates,
     mapsApi,
     mapInstance,
-    setPlaces,
-    places,
+    setNearByPlaces,
+    nearByPlaces,
     goToPlace,
     setGoToPlace,
   } = useContext(LocationsContext);
@@ -28,9 +28,9 @@ export default function SearchBox() {
 
   const handleSearchResults = (e) => {
     console.log(e.target.value);
-    for (var i = 0; i < places.length; i++) {
-      if (places[i].name === e.target.value) {
-        setGoToPlace(places[i]);
+    for (var i = 0; i < nearByPlaces.length; i++) {
+      if (nearByPlaces[i].name === e.target.value) {
+        setGoToPlace(nearByPlaces[i]);
         console.log(goToPlace);
       }
     }
@@ -50,10 +50,7 @@ export default function SearchBox() {
           setError(true);
         }
         if (status == mapsApi.places.PlacesServiceStatus.OK) {
-          setPlaces(results);
-          for (var i = 0; i < places.length; i++) {
-            console.log(places[i]);
-          }
+          setNearByPlaces(results);
         }
       };
       const request = {
@@ -74,8 +71,8 @@ export default function SearchBox() {
         <input type="search" name="search-bar" ref={inputRef} />
         <input type="submit" value="search anywhere!" />
       </form>
-      {places
-        ? places.map((element) => (
+      {nearByPlaces
+        ? nearByPlaces.map((element) => (
             <button
               onClick={handleSearchResults}
               value={element.name}

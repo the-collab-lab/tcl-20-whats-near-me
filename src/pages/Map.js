@@ -77,13 +77,13 @@ export default function Map() {
         ) : null}
         {goToPlace ? (
           <Icon
+            className="go-to-place-icon"
             icon={locationStarFilled}
             lat={goToPlace.geometry.location.lat()}
             lng={goToPlace.geometry.location.lng()}
-            width={40}
-            height={40}
+            width={50}
+            height={50}
             aria-label="your search results location"
-            zindex={1}
           />
         ) : null}
         {locations &&
@@ -97,7 +97,6 @@ export default function Map() {
                 locationData={locationData}
                 showWindow={showWindow}
                 closeWindow={setShowWindow}
-                zIndex={2}
               />
             ) : (
               <LocationPin
