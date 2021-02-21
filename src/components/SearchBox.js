@@ -35,7 +35,7 @@ export default function SearchBox() {
         }
       };
       const request = {
-        type: searchTerm,
+        keyword: searchTerm,
         //TODO: set location to wherever the user wants it to be
         location: coordinates,
         radius: '500',
@@ -43,7 +43,7 @@ export default function SearchBox() {
       const service = new mapsApi.places.PlacesService(mapInstance);
       service && service.nearbySearch(request, callback);
     }
-  }, [mapsApi, mapInstance, searchTerm]);
+  }, [mapsApi, mapInstance, searchTerm, coordinates]);
 
   return (
     <div>
@@ -51,7 +51,8 @@ export default function SearchBox() {
         <input type="search" name="search-bar" ref={inputRef} />
         <input type="submit" value="search anywhere!" />
       </form>
-      <p>{searchTerm}</p>
+      {places &&
+        places.map((element) => <p key={element.place_id}>{element.name}</p>)}
     </div>
   );
 }
