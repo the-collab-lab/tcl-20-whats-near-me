@@ -75,7 +75,7 @@ export default function Map() {
             zIndex={1}
           />
         ) : null}
-        {places && mapsApi ? (
+        {/* {places ? (
           <Icon
             icon={locationStarFilled}
             lat={places[0].geometry.location.lat()}
@@ -84,8 +84,8 @@ export default function Map() {
             height={40}
             aria-label="your search results location"
             zindex={1}
-          />
-        ) : null}
+          /> */}
+        {/* ) : null} */}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (

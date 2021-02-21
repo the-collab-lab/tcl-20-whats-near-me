@@ -13,20 +13,21 @@ export default function SearchBox() {
   } = useContext(LocationsContext);
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm(inputRef.current.value);
   };
 
-  const error = false;
-
   const inputRef = useRef(null);
-  // const searchBoxRef = useRef(null);
-
   useEffect(() => {
     if (searchTerm && mapsApi) {
       const callback = (results, status) => {
+        if (status === 'ZERO_RESULTS') {
+          console.log('error');
+          setError(true);
+        }
         if (status == mapsApi.places.PlacesServiceStatus.OK) {
           setPlaces(results);
           for (var i = 0; i < places.length; i++) {
@@ -38,6 +39,7 @@ export default function SearchBox() {
         keyword: searchTerm,
         //TODO: set location to wherever the user wants it to be
         location: coordinates,
+        //TODO: discuss the radius with the team
         radius: '500',
       };
       const service = new mapsApi.places.PlacesService(mapInstance);
@@ -51,8 +53,10 @@ export default function SearchBox() {
         <input type="search" name="search-bar" ref={inputRef} />
         <input type="submit" value="search anywhere!" />
       </form>
-      {places &&
-        places.map((element) => <p key={element.place_id}>{element.name}</p>)}
+      {places
+        ? places.map((element) => <p key={element.place_id}>{element.name}</p>)
+        : null}
+      {error ? <p className="errorMessage"> No results in this area!</p> : null}
     </div>
   );
 }
