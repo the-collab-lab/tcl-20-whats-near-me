@@ -1,22 +1,15 @@
-import React, {
-  useCallback,
-  useRef,
-  useEffect,
-  useContext,
-  useState,
-} from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import './SearchBox.css';
 import { LocationsContext } from '../context/LocationsContext';
 
 export default function SearchBox() {
   const {
     setNewCenter,
-    newCenter,
+    coordinates,
     mapsApi,
     mapInstance,
-    mapApiLoaded,
-    places,
     setPlaces,
+    places,
   } = useContext(LocationsContext);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,53 +26,37 @@ export default function SearchBox() {
 
   useEffect(() => {
     if (searchTerm && mapsApi) {
+      const callback = (results, status) => {
+        if (status == mapsApi.places.PlacesServiceStatus.OK) {
+          setPlaces(results);
+          for (var i = 0; i < places.length; i++) {
+            console.log(places[i]);
+          }
+        }
+      };
       const request = {
-        query: searchTerm,
-        fields: ['name', 'geometry', 'formatted_address'],
+        type: searchTerm,
+        //TODO: set location to wherever the user wants it to be
+        location: coordinates,
+        radius: '500',
       };
       const service = new mapsApi.places.PlacesService(mapInstance);
-      service &&
-        service.findPlaceFromQuery(request, (results, status) => {
-          console.log({ results });
-          setNewCenter({
-            lat: results[0].geometry.location.lat(),
-            lng: results[0].geometry.location.lng(),
-          });
-          console.log(newCenter);
-          console.log({ status });
-        });
+      service && service.nearbySearch(request, callback);
     }
   }, [mapsApi, mapInstance, searchTerm]);
 
   return (
-    <form className="searchBar" onSubmit={(e) => handleSubmit(e)}>
-      <input type="search" name="search-bar" ref={inputRef} />
-      <input type="submit" value="search anywhere!" />
-    </form>
+    <div>
+      <form className="searchBar" onSubmit={(e) => handleSubmit(e)}>
+        <input type="search" name="search-bar" ref={inputRef} />
+        <input type="submit" value="search anywhere!" />
+      </form>
+      <p>{searchTerm}</p>
+    </div>
   );
 }
 
-// const handleOnPlacesChanged = useCallback(() => {
-//   if (mapsApi) {
-//     const service = new mapsApi.places.PlacesService(mapInstance);
-//     if (service) {
-//       console.log({ service });
-//     }
-//     if (searchTerm) {
-//       setSearchTerm(searchBoxRef.current.getPlaces());
-//     }
-//   }
-// }, [searchTerm, searchBoxRef]);
-
-// useEffect(() => {
-//   if (!searchBoxRef.current && mapsApi) {
-//     searchBoxRef.current = new mapsApi.places.SearchBox(searchBoxRef.current);
-//     searchBoxRef.current.addListener('places_changed', handleOnPlacesChanged);
-//     console.log({ searchBoxRef });
-//   }
-
-//   return () => {
-//     searchBoxRef.current = null;
-//     mapsApi.event.clearInstanceListeners(searchBoxRef);
-//   };
-// }, [handleOnPlacesChanged]);
+// setNewCenter({
+//   lat: results[0].geometry.location.lat(),
+//   lng: results[0].geometry.location.lng(),
+// });

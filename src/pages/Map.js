@@ -6,8 +6,9 @@ import AutoComplete from '../components/AutoComplete';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
-import { Icon } from '@iconify/react';
+import { Icon, InlineIcon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
+import locationStarFilled from '@iconify-icons/carbon/location-star-filled';
 
 export default function Map() {
   //refactored context
@@ -19,7 +20,10 @@ export default function Map() {
     setMapsApi,
     setMapInstance,
     setMapApiLoaded,
+    mapsApiLoaded,
+    mapsApi,
     allowLocation,
+    places,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
@@ -71,6 +75,17 @@ export default function Map() {
             zIndex={1}
           />
         ) : null}
+        {/* {places && mapsApi ? (
+          <Icon
+            icon={locationStarFilled}
+            lat={places[0].geometry.location.lat()}
+            lng={places[0].geometry.location.lng()}
+            width={80}
+            height={80}
+            aria-label="your search results location"
+            zindex={1}
+          />
+        ) : null} */}
         {locations &&
           locations.map((locationData) => {
             return locationData.thumbnail === undefined ? (

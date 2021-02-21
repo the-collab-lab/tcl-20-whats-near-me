@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify-icons/carbon": "^1.1.1",
     "@iconify-icons/fluent": "^1.1.2",
     "google-map-react": "^2.1.9",
     "react": "^17.0.1",
