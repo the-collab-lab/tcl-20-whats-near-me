@@ -1,8 +1,12 @@
 .listPage {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 120px);
   overflow-y: scroll;
   padding: 40px 20px;
   background-color: var(--tangerine);
+}
+
+.listPage::-webkit-scrollbar {
+  display: none;
 }
 
 .listTitle {
@@ -11,9 +15,9 @@
 
 .list-border {
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 20px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 190px);
   overflow: scroll;
 }
 

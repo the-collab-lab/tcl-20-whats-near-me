@@ -11,8 +11,7 @@ export default function Help() {
         enim facilisis in. Orci varius natoque penatibus et magnis dis
         parturient montes, nascetur ridiculus mus. Integer mattis nibh vel
         congue pretium. Etiam sit amet lorem lacus. In sodales enim nunc, eget
-        sodales massa suscipit vel. Nunc sed enim lacus. Integer quis suscipit
-        nibh, ut pharetra nisl.
+        sodales massa suscipit vel.
       </div>
       <div className="explore-png"></div>
     </main>

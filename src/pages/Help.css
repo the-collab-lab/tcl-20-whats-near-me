@@ -2,7 +2,7 @@ main {
   display: flex;
   flex-direction: column;
   /* justify-content: flex-end; */
-  height: 90vh;
+  height: 100vh;
   background-color: var(--tangerine);
 }
 
@@ -15,8 +15,9 @@ main {
 }
 
 .about-text {
-  padding: 0px 30px 10px 30px;
-  line-height: 20px;
+  padding: 0px 30px 40px 30px;
+  line-height: 25px;
+  text-align: center;
 }
 
 .explore-png {

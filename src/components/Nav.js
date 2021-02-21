@@ -32,7 +32,10 @@ export default function Nav() {
             <Icon icon={unorderedListOutlined} className="nav-icon" />
           </Link>
         </div>
-        <button onClick={handleLocation} className="locationButton">
+        <button
+          onClick={handleLocation}
+          className={(loading.loading ? 'loading-icon' : '', 'locationButton')}
+        >
           {allowLocation ? (
             <Icon
               icon={bxCurrentLocation}

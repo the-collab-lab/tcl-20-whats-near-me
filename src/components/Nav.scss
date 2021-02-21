@@ -45,6 +45,7 @@ svg {
   justify-content: center;
   align-items: center;
   outline: none;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
@@ -54,3 +55,26 @@ svg {
 .nav-icon {
   margin: 0px 15px;
 }
+
+.loading-icon {
+  z-index: 2;
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 17px;
+  border: 3px solid var(--tangerine);
+  border-radius: 50%;
+  border-top-color: var(--darkBurgandy);
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
