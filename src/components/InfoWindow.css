@@ -12,7 +12,7 @@
 .info-window-details {
   list-style: none;
   margin: 0 auto;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 0;
 }
 
 .detail {
@@ -23,13 +23,16 @@
 }
 
 .close-info-window {
-  margin: 10px auto 10px auto;
+  margin: 10px auto;
   display: block;
+  background-color: var(--rust);
+  color: var(--white);
+  border: none;
 }
 
 .info-window-image {
   max-width: 200px;
   max-height: 100px;
   object-fit: contain;
-  border: 1px solid black;
+  border: 1px solid var(--darkBurgandy);
 }

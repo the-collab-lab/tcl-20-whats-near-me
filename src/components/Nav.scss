@@ -3,14 +3,14 @@ nav {
   margin: 0 auto;
   width: 100%;
   text-align: center;
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  left: 0px;
-  bottom: 0px;
+  left: 0;
+  bottom: 0;
 }
 
 ul {
