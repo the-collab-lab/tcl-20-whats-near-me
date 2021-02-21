@@ -3,13 +3,20 @@
   overflow-y: scroll;
   padding: 40px 20px;
   background-color: var(--tangerine);
-  /* height: calc(100vh - 100px); */
 }
 
 .listTitle {
   text-align: center;
 }
 
-tbody {
-  border-radius: 10px;
+.list-border {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  height: calc(100vh - 150px);
+  overflow: scroll;
+}
+
+.list-border::-webkit-scrollbar {
+  display: none;
 }

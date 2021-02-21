@@ -11,7 +11,9 @@ export default function List() {
 
   return (
     <main className="listPage">
-      <Table data={locations} className="table" />
+      <div className="list-border">
+        <Table data={locations} className="table" />
+      </div>
     </main>
   );
 }

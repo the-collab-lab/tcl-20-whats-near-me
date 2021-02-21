@@ -16,6 +16,7 @@ td > img {
 
 tr {
   border-radius: 10px;
+  /* box-shadow: -3px 2px 7px #c29502; */
 }
 
 td:first-child {
@@ -42,7 +43,6 @@ td:last-child {
 
 .tableListing {
   border-radius: 10px;
-  color: var(--darkBurgandy);
 }
 
 .externalLink {
@@ -58,14 +58,17 @@ td:last-child {
 .tableThumbnail img {
   width: 50px;
   height: 50px;
+  text-align: center;
 }
 
 .tableListing:nth-child(odd) {
-  background-color: white;
+  background-color: var(--tangerine);
+  color: var(--rust);
 }
 
 .tableListing:nth-child(even) {
-  background-color: white;
+  background-color: var(--burntOrange);
+  color: white;
 }
 
 details {
@@ -84,4 +87,23 @@ details[open] {
 
 details[open] summary {
   margin-bottom: 0.5em;
+}
+
+.place-icon {
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.externalLink {
+  color: white;
+  display: flex;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-left: 5px;
 }

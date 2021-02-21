@@ -3,6 +3,20 @@ main {
   flex-direction: column;
   /* justify-content: flex-end; */
   height: 90vh;
+  background-color: var(--tangerine);
+}
+
+.help-title {
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: 1px;
+  font-size: 50px;
+  margin: 0px;
+  padding: 40px 0px;
+}
+
+.about-text {
+  padding: 0px 30px 10px 30px;
+  line-height: 20px;
 }
 
 .explore-png {
@@ -14,4 +28,5 @@ main {
   height: 100%;
   align-self: flex-end;
   margin-top: auto;
+  /* border-radius: 20px 20px 0px; */
 }

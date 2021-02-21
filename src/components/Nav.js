@@ -12,7 +12,9 @@ import LoadingMessage from '../components/LoadingMessage';
 import './Nav.scss';
 
 export default function Nav() {
-  const { allowLocation, setAllowLocation } = useContext(LocationsContext);
+  const { loading, allowLocation, setAllowLocation } = useContext(
+    LocationsContext,
+  );
 
   // TODO: Make this async and only toggle after response from api call is returned
   const handleLocation = async () => {
