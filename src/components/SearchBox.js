@@ -15,9 +15,9 @@ export default function SearchBox() {
   } = useContext(LocationsContext);
 
   //TODO: clear list & search results buttons // clear event listener
-  // marker to show the recenter based on the search results.
 
   const inputRef = useRef(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(false);
 
@@ -27,8 +27,7 @@ export default function SearchBox() {
   };
 
   const handleSearchResults = (e) => {
-    console.log(e.target.value);
-    for (var i = 0; i < nearByPlaces.length; i++) {
+    for (let i = 0; i < nearByPlaces.length; i++) {
       if (nearByPlaces[i].name === e.target.value) {
         setGoToPlace(nearByPlaces[i]);
         console.log(goToPlace);
@@ -51,6 +50,7 @@ export default function SearchBox() {
         }
         if (status == mapsApi.places.PlacesServiceStatus.OK) {
           setNearByPlaces(results);
+          setError(false);
         }
       };
       const request = {
@@ -73,6 +73,7 @@ export default function SearchBox() {
       </form>
       {nearByPlaces
         ? nearByPlaces.map((element) => (
+            //TODO: add accesibility
             <button
               onClick={handleSearchResults}
               value={element.name}
