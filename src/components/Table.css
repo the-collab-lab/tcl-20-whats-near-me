@@ -16,7 +16,6 @@ td > img {
 
 tr {
   border-radius: 10px;
-  /* box-shadow: -3px 2px 7px #c29502; */
 }
 
 td:first-child {
@@ -62,8 +61,8 @@ td:last-child {
 }
 
 .tableListing:nth-child(odd) {
-  background-color: var(--tangerine);
-  color: var(--rust);
+  background-color: var(--rust);
+  color: white;
 }
 
 .tableListing:nth-child(even) {

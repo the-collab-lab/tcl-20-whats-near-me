@@ -21,4 +21,5 @@ code {
   --lightGray: #f2f0f0;
   --burntOrange: #d9863f;
   --rust: #af5e3a;
+  --mapHeight: calc(100vh - 100px);
 }

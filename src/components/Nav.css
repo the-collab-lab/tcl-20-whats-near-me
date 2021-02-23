@@ -46,10 +46,10 @@ svg {
   align-items: center;
   outline: none;
   z-index: 1;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.locationButton:hover {
+  cursor: pointer;
 }
 
 .nav-icon {
@@ -77,4 +77,3 @@ svg {
     -webkit-transform: rotate(360deg);
   }
 }
-

@@ -9,7 +9,7 @@ import helpIcon from '@iconify-icons/carbon/help';
 
 import { LocationsContext } from '../context/LocationsContext';
 import LoadingMessage from '../components/LoadingMessage';
-import './Nav.scss';
+import './Nav.css';
 
 export default function Nav() {
   const { loading, allowLocation, setAllowLocation } = useContext(
