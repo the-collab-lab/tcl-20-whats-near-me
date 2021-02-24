@@ -1,11 +1,11 @@
-.loading-message {
+/* .loading-message {
   z-index: 1;
   display: inline;
 }
 
 .loading-icon {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   display: inline-flex;
   align-self: center;
   width: 15px;
@@ -21,4 +21,4 @@
   to {
     -webkit-transform: rotate(360deg);
   }
-}
+} */

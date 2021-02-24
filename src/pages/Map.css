@@ -1,7 +1,26 @@
+.mapWrapper {
+  padding: 40px 20px;
+  background-color: var(--tangerine);
+  height: var(--mapHeight);
+}
+
+.google-map {
+  height: var(--mapHeight);
+  width: 90%;
+}
+
 .map {
   text-align: center;
-  height: calc(100vh - 50px);
-  width: 100%;
+  margin: 0 auto;
+  height: 90%;
+  width: 90%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.map div {
+  border-radius: 10px;
 }
 
 .location-pin {
