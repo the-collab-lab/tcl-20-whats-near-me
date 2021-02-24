@@ -12,6 +12,8 @@ export default function SearchBox() {
     nearByPlaces,
     goToPlace,
     setGoToPlace,
+    setLocations,
+    locations,
   } = useContext(LocationsContext);
 
   //TODO: clear list & search results buttons // clear event listener
@@ -30,7 +32,6 @@ export default function SearchBox() {
     for (let i = 0; i < nearByPlaces.length; i++) {
       if (nearByPlaces[i].name === e.target.value) {
         setGoToPlace(nearByPlaces[i]);
-        console.log(goToPlace);
       }
     }
     if (goToPlace) {
