@@ -7,18 +7,14 @@ import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
 import SearchBox from './components/SearchBox';
-// import AutoComplete from './components/AutoComplete';
-import Header from './components/Header';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <LocationsContextProvider>
-        <Header />
         <Switch>
           <Route exact path="/">
-            {/* <AutoComplete/> */}
             <SearchBox />
             <Map />
           </Route>
