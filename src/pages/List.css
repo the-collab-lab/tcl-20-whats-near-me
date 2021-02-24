@@ -1,8 +1,26 @@
 .listPage {
-  height: 100vh;
-  overflow: scroll;
+  height: calc(100vh - 120px);
+  overflow-y: scroll;
+  padding: 40px 20px;
+  background-color: var(--tangerine);
+}
+
+.listPage::-webkit-scrollbar {
+  display: none;
 }
 
 .listTitle {
   text-align: center;
+}
+
+.list-border {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  height: calc(100vh - 190px);
+  overflow: scroll;
+}
+
+.list-border::-webkit-scrollbar {
+  display: none;
 }

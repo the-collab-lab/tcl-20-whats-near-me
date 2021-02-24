@@ -2,6 +2,7 @@ import React from 'react';
 import './Table.css';
 import { Icon } from '@iconify/react';
 import externalLinkOutline from '@iconify-icons/eva/external-link-outline';
+import officeBuilding from '@iconify-icons/heroicons-outline/office-building';
 
 const Row = ({ location }) => {
   return (
@@ -10,7 +11,7 @@ const Row = ({ location }) => {
         {location.thumbnail ? (
           <img src={location.thumbnail.source} alt="location thumbnail" />
         ) : (
-          ''
+          <Icon icon={officeBuilding} className="place-icon" />
         )}
       </td>
       <td>
@@ -33,7 +34,8 @@ const Row = ({ location }) => {
                   rel="noopener noreferrer"
                   className="externalLink"
                 >
-                  Learn More <Icon icon={externalLinkOutline} />
+                  Learn More{' '}
+                  <Icon icon={externalLinkOutline} className="link-icon" />
                 </a>
               ) : (
                 ''

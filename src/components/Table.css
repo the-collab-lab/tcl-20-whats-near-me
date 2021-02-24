@@ -1,10 +1,34 @@
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: seperate;
+  border-radius: 10px;
+  border-spacing: 0px 10px;
 }
 
 td {
   padding: 5px;
+  border-spacing: 10px 10px;
+}
+
+td > img {
+  border-radius: 10px;
+}
+
+tr {
+  border-radius: 10px;
+}
+
+td:first-child {
+  border-top-left-radius: 10px;
+}
+td:last-child {
+  border-top-right-radius: 10px;
+}
+td:first-child {
+  border-bottom-left-radius: 10px;
+}
+td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .tableDetails {
@@ -14,6 +38,10 @@ td {
 
 .tableDetails p {
   margin: 5px 0;
+}
+
+.tableListing {
+  border-radius: 10px;
 }
 
 .externalLink {
@@ -29,14 +57,17 @@ td {
 .tableThumbnail img {
   width: 50px;
   height: 50px;
+  text-align: center;
 }
 
 .tableListing:nth-child(odd) {
-  background-color: rgb(244, 243, 243);
+  background-color: var(--rust);
+  color: white;
 }
 
 .tableListing:nth-child(even) {
-  background-color: gainsboro;
+  background-color: var(--burntOrange);
+  color: white;
 }
 
 details {
@@ -55,4 +86,23 @@ details[open] {
 
 details[open] summary {
   margin-bottom: 0.5em;
+}
+
+.place-icon {
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  color: white;
+}
+
+.externalLink {
+  color: white;
+  display: flex;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-left: 5px;
 }

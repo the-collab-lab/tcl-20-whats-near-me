@@ -1,11 +1,16 @@
 nav {
   height: 50px;
+  margin: 0 auto;
   width: 100%;
   text-align: center;
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 ul {
@@ -18,6 +23,57 @@ li {
   padding: 10px;
 }
 
-button {
-  margin-right: 10px;
+svg {
+  width: 30px;
+  height: 30px;
+  color: var(--tangerine);
+}
+
+.locationButton {
+  width: 65px;
+  height: 65px;
+  border: 7px solid var(--lightGray);
+  border-radius: 100px;
+  background-color: var(--tangerine);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  z-index: 1;
+}
+
+.locationButton:hover {
+  cursor: pointer;
+}
+
+.nav-icon {
+  margin: 0px 15px;
+}
+
+.loading-icon {
+  z-index: 2;
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 17px;
+  border: 3px solid var(--tangerine);
+  border-radius: 50%;
+  border-top-color: var(--darkBurgandy);
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
