@@ -51,69 +51,71 @@ export default function Map() {
   };
 
   return (
-    <div className="map">
-      <GoogleMapReact
-        bootstrapURLKeys={{
-          key: API_KEY,
-          libraries: ['places'],
-        }}
-        center={coordinates}
-        defaultZoom={zoomLevel}
-        yesIWantToUseGoogleMapApiInternals
-        onChildClick={onChildClick}
-        onDragEnd={(e) => handleNewCenter(e)}
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      >
-        {userLocation && allowLocation ? (
-          <Icon
-            icon={myLocation24Filled}
-            lat={userLocation.latitude}
-            lng={userLocation.longitude}
-            width={24}
-            height={24}
-            aria-label="your current location"
-            zIndex={1}
-          />
-        ) : null}
-        {goToPlace ? (
-          <Icon
-            className="go-to-place-icon"
-            icon={locationStarFilled}
-            lat={goToPlace.geometry.location.lat()}
-            lng={goToPlace.geometry.location.lng()}
-            width={50}
-            height={50}
-            aria-label="your search results location"
-          />
-        ) : null}
-        {locations &&
-          locations.map((locationData) => {
-            return locationData.thumbnail === undefined ? (
-              <LocationPin
-                className="location-pin"
-                key={locationData.pageid}
-                lat={locationData.coordinates[0].lat}
-                lng={locationData.coordinates[0].lon}
-                locationData={locationData}
-                showWindow={showWindow}
-                closeWindow={setShowWindow}
-              />
-            ) : (
-              <LocationPin
-                className="location-pin"
-                key={locationData.pageid}
-                img={locationData.thumbnail.source}
-                text={locationData.title}
-                lat={locationData.coordinates[0].lat}
-                lng={locationData.coordinates[0].lon}
-                locationData={locationData}
-                showWindow={showWindow}
-                closeWindow={setShowWindow}
-                zIndex={2}
-              />
-            );
-          })}
-      </GoogleMapReact>
+    <div className="mapWrapper">
+      <div className="map">
+        <GoogleMapReact
+          bootstrapURLKeys={{
+            key: API_KEY,
+            libraries: ['places'],
+          }}
+          center={coordinates}
+          defaultZoom={zoomLevel}
+          yesIWantToUseGoogleMapApiInternals
+          onChildClick={onChildClick}
+          onDragEnd={(e) => handleNewCenter(e)}
+          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+        >
+          {userLocation && allowLocation ? (
+            <Icon
+              icon={myLocation24Filled}
+              lat={userLocation.latitude}
+              lng={userLocation.longitude}
+              width={24}
+              height={24}
+              aria-label="your current location"
+              zIndex={1}
+            />
+          ) : null}
+          {goToPlace ? (
+            <Icon
+              className="go-to-place-icon"
+              icon={locationStarFilled}
+              lat={goToPlace.geometry.location.lat()}
+              lng={goToPlace.geometry.location.lng()}
+              width={50}
+              height={50}
+              aria-label="your search results location"
+            />
+          ) : null}
+          {locations &&
+            locations.map((locationData) => {
+              return locationData.thumbnail === undefined ? (
+                <LocationPin
+                  className="location-pin"
+                  key={locationData.pageid}
+                  lat={locationData.coordinates[0].lat}
+                  lng={locationData.coordinates[0].lon}
+                  locationData={locationData}
+                  showWindow={showWindow}
+                  closeWindow={setShowWindow}
+                />
+              ) : (
+                <LocationPin
+                  className="location-pin"
+                  key={locationData.pageid}
+                  img={locationData.thumbnail.source}
+                  text={locationData.title}
+                  lat={locationData.coordinates[0].lat}
+                  lng={locationData.coordinates[0].lon}
+                  locationData={locationData}
+                  showWindow={showWindow}
+                  closeWindow={setShowWindow}
+                  zIndex={2}
+                />
+              );
+            })}
+        </GoogleMapReact>
+      </div>
     </div>
   );
 }
