@@ -20,10 +20,7 @@ export default function Map() {
     setMapsApi,
     setMapInstance,
     setMapApiLoaded,
-    mapsApiLoaded,
-    mapsApi,
     allowLocation,
-    goToPlace,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
@@ -74,17 +71,6 @@ export default function Map() {
               height={24}
               aria-label="your current location"
               zIndex={1}
-            />
-          ) : null}
-          {goToPlace ? (
-            <Icon
-              className="go-to-place-icon"
-              icon={locationStarFilled}
-              lat={goToPlace.geometry.location.lat()}
-              lng={goToPlace.geometry.location.lng()}
-              width={50}
-              height={50}
-              aria-label="your search results location"
             />
           ) : null}
           {locations &&

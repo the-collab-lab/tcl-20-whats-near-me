@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getLocations } from '../lib/fetchPlaces';
+import { combineGoogleWikiResults } from '../lib/transformGoogleData';
 
 export const LocationsContext = createContext();
 
@@ -58,20 +59,6 @@ const LocationsContextProvider = (props) => {
     }
   }, [allowLocation]);
 
-  // useEffect(() => {
-  //   for (let i = 0; i < nearByPlaces.length; i++){
-  //     const lat = nearByPlaces[i].geometry.location.lat();
-  //     const lng = nearByPlaces[i].gemetry.location.lng();
-  //     const pageid = nearByPlaces[i].place_id;
-  //     const title = nearByPlaces[i].name;
-  //     const thumbnail = nearByPlaces[i].photos[0].getUrl({
-  //       maxWidth: 100,
-  //       maxHeight: 100,
-  //     });
-  //     console.log(lat, lng, pageid, title, thumbnail);
-  //   }
-  // }, [nearByPlaces])
-
   /*when the newCenter changes in the map component the useEffect
   makes a new api call & the new locations are updated */
   useEffect(() => {
@@ -88,6 +75,13 @@ const LocationsContextProvider = (props) => {
       setCoordinates(userCoordinates);
     }
   }, [userLocation]);
+
+  useEffect(() => {
+    if (locations && nearByPlaces) {
+      combineGoogleWikiResults(nearByPlaces, locations);
+    }
+    getLocations(coordinates.lat, coordinates.lng, setLocations);
+  }, [nearByPlaces]);
 
   return (
     <LocationsContext.Provider

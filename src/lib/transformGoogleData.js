@@ -10,16 +10,30 @@ to mimic the format of wikipedia results */
  * @return {Object} returns an object matching wikipedia format results
  */
 
-// const transformGooglePlaceData = (googleSearchResult) => {
+const transformGooglePlaceData = (googleSearchResult) => {
+  let transformedData = {
+    title: '',
+    thumbnail: {
+      source: '',
+      height: 100,
+      width: 100,
+    },
+    coordinates: [{ lat: '', lon: '' }],
+    description: '',
+    pageid: null,
+  };
+  transformedData.title = googleSearchResult.name;
+  transformedData.thumbnail.source = googleSearchResult.photos[0].getUrl({
+    maxWidth: 100,
+    maxHeight: 100,
+  });
+  transformedData.coordinates[0].lat = googleSearchResult.geometry.location.lat();
+  transformedData.coordinates[0].lon = googleSearchResult.geometry.location.lng();
+  transformedData.description = googleSearchResult.vicinity;
 
-//     return {
-//         pageid: null,
-//         title,
-//         coordinates,
-//         thumbnail,
-//         description
-//     }
-// }
+  console.log(transformedData, 'transformed data');
+  return transformedData;
+};
 
 /**
  *
@@ -30,6 +44,6 @@ to mimic the format of wikipedia results */
  **/
 
 export const combineGoogleWikiResults = (googleSearchResults, wikiResults) => {
-  // const transformedResults = googleSearchResults.map(transformGooglePlaceData)
-  // return [...wikiResults, ...transformedResults]
+  const transformedResults = googleSearchResults.map(transformGooglePlaceData);
+  return [...wikiResults, ...transformedResults];
 };
