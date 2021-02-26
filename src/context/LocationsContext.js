@@ -78,9 +78,8 @@ const LocationsContextProvider = (props) => {
 
   useEffect(() => {
     if (locations && nearByPlaces) {
-      combineGoogleWikiResults(nearByPlaces, locations);
+      setLocations(combineGoogleWikiResults(nearByPlaces, locations));
     }
-    getLocations(coordinates.lat, coordinates.lng, setLocations);
   }, [nearByPlaces]);
 
   return (

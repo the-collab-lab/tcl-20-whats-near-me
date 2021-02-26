@@ -20,7 +20,7 @@ const transformGooglePlaceData = (googleSearchResult) => {
     },
     coordinates: [{ lat: '', lon: '' }],
     description: '',
-    pageid: null,
+    pageid: '',
   };
   transformedData.title = googleSearchResult.name;
   transformedData.thumbnail.source = googleSearchResult.photos[0].getUrl({
@@ -30,8 +30,8 @@ const transformGooglePlaceData = (googleSearchResult) => {
   transformedData.coordinates[0].lat = googleSearchResult.geometry.location.lat();
   transformedData.coordinates[0].lon = googleSearchResult.geometry.location.lng();
   transformedData.description = googleSearchResult.vicinity;
+  transformedData.pageid = googleSearchResult.place_id;
 
-  console.log(transformedData, 'transformed data');
   return transformedData;
 };
 
