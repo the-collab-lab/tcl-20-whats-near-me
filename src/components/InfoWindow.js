@@ -25,10 +25,12 @@ export default function InfoWindow({
           ? locationData.description
           : 'No Description Available'}
       </p>
+      {/* TODO: add haversine function for when there is no dist*/}
       <p className="detail">
         <strong>Distance from Center:</strong>{' '}
         {(locationData.coordinates[0].dist / 1000).toFixed(1)} kms
       </p>
+      {/* TODO: add the conditional logic for wiki v google */}
       <a
         href={`https://en.wikipedia.org/?curid=${locationData.pageid}`}
         target="_blank"
