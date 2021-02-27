@@ -2,13 +2,11 @@ import React, { useContext, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { API_KEY } from '../config.js';
 import './Map.css';
-import AutoComplete from '../components/AutoComplete';
 import LocationPin from '../components/LocationPin.js';
 import { LocationsContext } from '../context/LocationsContext';
 
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
-import locationStarFilled from '@iconify-icons/carbon/location-star-filled';
 
 export default function Map() {
   //refactored context
@@ -75,17 +73,7 @@ export default function Map() {
           ) : null}
           {locations &&
             locations.map((locationData) => {
-              return locationData.thumbnail === undefined ? (
-                <LocationPin
-                  className="location-pin"
-                  key={locationData.pageid}
-                  lat={locationData.coordinates[0].lat}
-                  lng={locationData.coordinates[0].lon}
-                  locationData={locationData}
-                  showWindow={showWindow}
-                  closeWindow={setShowWindow}
-                />
-              ) : (
+              return locationData.thumbnail ? (
                 <LocationPin
                   className="location-pin"
                   key={locationData.pageid}
@@ -96,7 +84,16 @@ export default function Map() {
                   locationData={locationData}
                   showWindow={showWindow}
                   closeWindow={setShowWindow}
-                  zIndex={2}
+                />
+              ) : (
+                <LocationPin
+                  className="location-pin"
+                  key={locationData.pageid}
+                  lat={locationData.coordinates[0].lat}
+                  lng={locationData.coordinates[0].lon}
+                  locationData={locationData}
+                  showWindow={showWindow}
+                  closeWindow={setShowWindow}
                 />
               );
             })}

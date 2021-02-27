@@ -12,7 +12,6 @@ const LocationsContextProvider = (props) => {
 
   //state is updated in the Search component
   const [nearByPlaces, setNearByPlaces] = useState([]);
-  const [goToPlace, setGoToPlace] = useState();
 
   //state is updated in the Nav component
   const [allowLocation, setAllowLocation] = useState(false);
@@ -102,8 +101,6 @@ const LocationsContextProvider = (props) => {
         setLoading,
         nearByPlaces,
         setNearByPlaces,
-        goToPlace,
-        setGoToPlace,
       }}
     >
       {props.children}
