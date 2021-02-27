@@ -1,4 +1,4 @@
-/* function that transforms google map places results 
+/* function that transforms google map places results
 to mimic the format of wikipedia results */
 
 /**
@@ -23,10 +23,12 @@ const transformGooglePlaceData = (googleSearchResult) => {
     pageid: '',
   };
   transformedData.title = googleSearchResult.name;
-  transformedData.thumbnail.source = googleSearchResult.photos[0].getUrl({
-    maxWidth: 100,
-    maxHeight: 100,
-  });
+  transformedData.thumbnail.source = googleSearchResult.photos
+    ? googleSearchResult.photos[0].getUrl({
+        maxWidth: 100,
+        maxHeight: 100,
+      })
+    : (transformedData.thumbnail = null);
   transformedData.coordinates[0].lat = googleSearchResult.geometry.location.lat();
   transformedData.coordinates[0].lon = googleSearchResult.geometry.location.lng();
   transformedData.description = googleSearchResult.vicinity;

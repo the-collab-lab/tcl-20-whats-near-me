@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LocationsContextProvider from './context/LocationsContext';
 import Help from './pages/Help';
+import Header from './components/Header';
 import Map from './pages/Map';
 import List from './pages/List';
 import Settings from './pages/Settings';
@@ -15,10 +16,12 @@ function App() {
       <LocationsContextProvider>
         <Switch>
           <Route exact path="/">
+            <Header />
             <SearchBox />
             <Map />
           </Route>
           <Route path="/list">
+            <Header />
             <SearchBox />
             <List />
           </Route>

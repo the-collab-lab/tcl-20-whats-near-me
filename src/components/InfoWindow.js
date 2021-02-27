@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LocationsContext } from '../context/LocationsContext';
 import './InfoWindow.css';
+import getDistanceFromLatLonInKm from '../lib/haversineFunction';
 
 export default function InfoWindow({
   $dimensionKey,
   locationData,
   closeWindow,
 }) {
+  const { coordinates } = useContext(LocationsContext);
+  const reg = new RegExp('^[0-9]*$');
+  let isValidPageid = reg.test(locationData.pageid);
+
   return (
     <div
       className={`info-window-${$dimensionKey} info-window`}
@@ -28,16 +34,26 @@ export default function InfoWindow({
       {/* TODO: add haversine function for when there is no dist*/}
       <p className="detail">
         <strong>Distance from Center:</strong>{' '}
-        {(locationData.coordinates[0].dist / 1000).toFixed(1)} kms
+        {locationData.coordinates[0].dist
+          ? (locationData.coordinates[0].dist / 1000).toFixed(1)
+          : getDistanceFromLatLonInKm(
+              coordinates.lat,
+              coordinates.lng,
+              locationData.coordinates[0].lat,
+              locationData.coordinates[0].lon,
+            ).toFixed(1)}{' '}
+        kms
       </p>
       {/* TODO: add the conditional logic for wiki v google */}
-      <a
-        href={`https://en.wikipedia.org/?curid=${locationData.pageid}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Wikipedia Page{' '}
-      </a>{' '}
+      {isValidPageid ? (
+        <a
+          href={`https://en.wikipedia.org/?curid=${locationData.pageid}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wikipedia Page{' '}
+        </a>
+      ) : null}{' '}
       <button
         className="close-info-window"
         aria-label="close info window"

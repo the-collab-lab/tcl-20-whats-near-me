@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  height: 50px;
+  padding: 5% 5% 3% 10%;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--tangerine);
+  color: white;
+}
+
+.headerTitle {
+  margin: 0 0 0 5px;
+  z-index: 2;
+}
+
+.exploreIcon {
+  color: white;
+  padding: 3px;
+}
