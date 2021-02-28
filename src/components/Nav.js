@@ -8,7 +8,6 @@ import settingsLine from '@iconify-icons/clarity/settings-line';
 import helpIcon from '@iconify-icons/carbon/help';
 
 import { LocationsContext } from '../context/LocationsContext';
-import LoadingMessage from '../components/LoadingMessage';
 import './Nav.css';
 import LoadingIcon from './LoadingIcon';
 
@@ -25,7 +24,7 @@ export default function Nav() {
   return (
     <>
       <nav>
-        <LoadingMessage />
+        <LoadingIcon />
         <div className="nav-left">
           <Link to="/">
             <Icon icon={mapIcon} className="nav-icon" />
@@ -68,7 +67,6 @@ export default function Nav() {
           </Link> */}
         </div>
       </nav>
-      <LoadingIcon />
     </>
   );
 }

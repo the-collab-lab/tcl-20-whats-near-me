@@ -1,15 +1,22 @@
 import React, { useContext } from 'react';
 import { LocationsContext } from '../context/LocationsContext';
-
 import './LoadingMessage.css';
 
 export default function LoadingMessage() {
-  const { loading, allowLocation } = useContext(LocationsContext);
+  const { loading, setLoading } = useContext(LocationsContext);
 
   return (
     <>
-      {loading.loading && allowLocation ? (
-        <div className="loading-icon"></div>
+      {!loading.loading && loading.message !== '' ? (
+        <div className="loading-message">
+          <p className="message">{loading.message}</p>
+          <button
+            className="close-message"
+            onClick={() => setLoading({ loading: false, message: '' })}
+          >
+            x
+          </button>
+        </div>
       ) : (
         ''
       )}

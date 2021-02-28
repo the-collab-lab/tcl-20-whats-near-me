@@ -45,7 +45,7 @@ svg {
   justify-content: center;
   align-items: center;
   outline: none;
-  z-index: 1;
+  /* z-index: 2; */
 }
 
 .locationButton:hover {
@@ -57,7 +57,7 @@ svg {
 }
 
 .loading-icon {
-  z-index: 2;
+  /* z-index: 1; */
   width: 65px;
   height: 65px;
   position: absolute;
