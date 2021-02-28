@@ -33,7 +33,7 @@
 }
 
 .errorMessage {
-  margin: 0 0 5px;
+  margin: 0 0;
   color: red;
   text-align: center;
 }
