@@ -11,7 +11,7 @@ export default function LoadingMessage() {
       {loading.loading && allowLocation ? (
         <div className="loading-icon"></div>
       ) : (
-        <p>{loading.message}</p>
+        ''
       )}
     </>
   );
