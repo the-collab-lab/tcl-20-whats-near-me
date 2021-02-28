@@ -25,15 +25,20 @@ export default function Nav() {
       <nav>
         <div className="nav-left">
           <Link to="/">
-            <Icon icon={mapIcon} className="nav-icon" />
+            <Icon icon={mapIcon} className="nav-icon" aria-label="map-icon" />
           </Link>
           <Link to="/list">
-            <Icon icon={unorderedListOutlined} className="nav-icon" />
+            <Icon
+              icon={unorderedListOutlined}
+              className="nav-icon"
+              aria-label="list-icon"
+            />
           </Link>
         </div>
         <button
           onClick={handleLocation}
           className={(loading.loading ? 'loading-icon' : '', 'locationButton')}
+          aria-label="your-location-icon"
         >
           {allowLocation ? (
             <Icon
@@ -55,10 +60,14 @@ export default function Nav() {
         </button>
         <div className="nav-right">
           <Link to="/settings">
-            <Icon icon={settingsLine} className="nav-icon" />
+            <Icon
+              icon={settingsLine}
+              className="nav-icon"
+              aria-label="settings-icon"
+            />
           </Link>
           <Link to="/help">
-            <Icon icon={helpIcon} className="nav-icon" />
+            <Icon icon={helpIcon} className="nav-icon" aria-label="help-icon" />
           </Link>
         </div>
       </nav>

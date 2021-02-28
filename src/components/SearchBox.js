@@ -44,8 +44,13 @@ export default function SearchBox() {
   return (
     <div className="searchSection">
       <form className="searchBar" onSubmit={(e) => handleSubmit(e)}>
-        <input type="search" name="search-bar" ref={inputRef} />
-        <button type="submit" className="searchButton">
+        <input
+          type="search"
+          name="search-bar"
+          ref={inputRef}
+          aria-label="search-input"
+        />
+        <button type="submit" className="searchButton" aria-label="search-icon">
           <Icon icon={searchIcon} className="searchIcon" />
         </button>
       </form>
