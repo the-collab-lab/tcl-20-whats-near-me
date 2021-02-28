@@ -3,12 +3,20 @@ import { LocationsContext } from '../context/LocationsContext';
 import './LoadingIcon.css';
 
 export default function LoadingIcon() {
-  const { loading } = useContext(LocationsContext);
+  const { loading, setLoading } = useContext(LocationsContext);
 
   return (
     <>
       {!loading.loading && loading.message !== '' ? (
-        <p className="loading-message">{loading.message}</p>
+        <div className="loading-message">
+          <p className="message">{loading.message}</p>
+          <button
+            className="close-message"
+            onClick={() => setLoading({ loading: false, message: '' })}
+          >
+            x
+          </button>
+        </div>
       ) : (
         ''
       )}
