@@ -46,7 +46,6 @@ const LocationsContextProvider = (props) => {
                 });
                 break;
               case 3:
-                console.log('timeout', error);
                 setLoading({
                   loading: false,
                   message:
