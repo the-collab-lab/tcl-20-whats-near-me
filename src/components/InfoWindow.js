@@ -9,7 +9,7 @@ export default function InfoWindow({
   closeWindow,
 }) {
   const { coordinates } = useContext(LocationsContext);
-  const reg = new RegExp('^[0-9]*$');
+  const reg = new RegExp('/^[0-9]+$/');
   let isValidPageid = reg.test(locationData.pageid);
 
   return (

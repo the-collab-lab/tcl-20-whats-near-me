@@ -17,7 +17,7 @@ export default function LocationPin({
       <button
         className="pin"
         tabIndex="0"
-        aria-label="location-pin-icon-with-image"
+        aria-label="location pin icon with image"
       >
         <div
           className="pin-fill"
@@ -39,7 +39,7 @@ export default function LocationPin({
         width={24}
         height={24}
         tabIndex="0"
-        aria-label="location-pin-icon"
+        aria-label="location pin icon"
       ></Icon>
       {showWindow.id === $dimensionKey ? (
         <InfoWindow

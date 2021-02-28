@@ -23,7 +23,6 @@ export default function SearchBox() {
     if (searchTerm && mapsApi) {
       const callback = (results, status) => {
         if (status === 'ZERO_RESULTS') {
-          console.log('error');
           setError(true);
         }
         if (status === mapsApi.places.PlacesServiceStatus.OK) {
@@ -43,14 +42,14 @@ export default function SearchBox() {
 
   return (
     <div className="searchSection">
-      <form className="searchBar" onSubmit={(e) => handleSubmit(e)}>
+      <form className="searchBar" onSubmit={handleSubmit}>
         <input
           type="search"
           name="search-bar"
           ref={inputRef}
-          aria-label="search-input"
+          aria-label="search input"
         />
-        <button type="submit" className="searchButton" aria-label="search-icon">
+        <button type="submit" className="searchButton" aria-label="search icon">
           <Icon icon={searchIcon} className="searchIcon" />
         </button>
       </form>
