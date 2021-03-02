@@ -29,7 +29,7 @@ const LocationsContextProvider = (props) => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
 
     if (navigator.geolocation && allowLocation) {
-      setLoading({ loading: true, message: 'loading' });
+      setLoading({ loading: true, message: '' });
       setWatchId(
         navigator.geolocation.watchPosition(
           (position) => {
@@ -38,11 +38,23 @@ const LocationsContextProvider = (props) => {
           },
           (error) => {
             console.error(error);
-            setLoading({
-              loading: false,
-              message: 'location services turned off',
-            });
+            switch (error.code) {
+              case 1:
+                setLoading({
+                  loading: false,
+                  message: 'Please turn on location services',
+                });
+                break;
+              case 3:
+                setLoading({
+                  loading: false,
+                  message:
+                    'Request timed out please check your connection and ensure location services are tured on',
+                });
+                break;
+            }
           },
+          { timeout: 10000 },
         ),
       );
     }

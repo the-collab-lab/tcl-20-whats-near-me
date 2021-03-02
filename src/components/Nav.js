@@ -8,8 +8,8 @@ import settingsLine from '@iconify-icons/clarity/settings-line';
 import helpIcon from '@iconify-icons/carbon/help';
 
 import { LocationsContext } from '../context/LocationsContext';
-import LoadingMessage from '../components/LoadingMessage';
 import './Nav.css';
+import LoadingIcon from './LoadingIcon';
 
 export default function Nav() {
   const { loading, allowLocation, setAllowLocation } = useContext(
@@ -24,13 +24,14 @@ export default function Nav() {
   return (
     <>
       <nav>
+        <LoadingIcon />
         <div className="nav-left">
           <Link to="/">
             <Icon icon={mapIcon} className="nav-icon" />
           </Link>
-          <Link to="/list">
+          {/* <Link to="/list">
             <Icon icon={unorderedListOutlined} className="nav-icon" />
-          </Link>
+          </Link> */}
         </div>
         <button
           onClick={handleLocation}
@@ -39,7 +40,7 @@ export default function Nav() {
           {allowLocation ? (
             <Icon
               icon={bxCurrentLocation}
-              color="#FFFFFF"
+              color="#59221d"
               id="locationOn"
               height="80px"
               width="33px"
@@ -55,15 +56,17 @@ export default function Nav() {
           )}
         </button>
         <div className="nav-right">
-          <Link to="/settings">
+          <Link to="/list">
+            <Icon icon={unorderedListOutlined} className="nav-icon" />
+          </Link>
+          {/* <Link to="/settings">
             <Icon icon={settingsLine} className="nav-icon" />
           </Link>
           <Link to="/help">
             <Icon icon={helpIcon} className="nav-icon" />
-          </Link>
+          </Link> */}
         </div>
       </nav>
-      <LoadingMessage />
     </>
   );
 }

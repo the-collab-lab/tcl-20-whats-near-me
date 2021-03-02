@@ -7,6 +7,7 @@ import List from './pages/List';
 import Settings from './pages/Settings';
 import Nav from './components/Nav';
 import './App.css';
+import LoadingIcon from './components/LoadingMessage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <LocationsContextProvider>
         <Switch>
           <Route exact path="/">
+            <LoadingIcon />
             <Map />
           </Route>
           <Route path="/list">

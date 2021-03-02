@@ -61,12 +61,12 @@ td:last-child {
 }
 
 .tableListing:nth-child(odd) {
-  background-color: var(--rust);
+  background-color: var(--darkBurgandy);
   color: white;
 }
 
 .tableListing:nth-child(even) {
-  background-color: var(--burntOrange);
+  background-color: var(--rust);
   color: white;
 }
 
