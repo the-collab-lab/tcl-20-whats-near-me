@@ -7,7 +7,7 @@ export default function LoadingIcon() {
   return (
     <>
       {loading.loading && allowLocation ? (
-        <div className="loading-icon"></div>
+        <div className="loading-icon" aria-label="loading icon"></div>
       ) : (
         ''
       )}

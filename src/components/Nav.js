@@ -40,7 +40,7 @@ export default function Nav() {
           {allowLocation ? (
             <Icon
               icon={bxCurrentLocation}
-              color="#FFFFFF"
+              color="#59221d"
               id="locationOn"
               height="80px"
               width="33px"
