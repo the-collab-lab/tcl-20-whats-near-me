@@ -9,6 +9,7 @@ import Settings from './pages/Settings';
 import Nav from './components/Nav';
 import SearchBox from './components/SearchBox';
 import './App.css';
+import LoadingIcon from './components/LoadingMessage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/">
             <Header />
             <SearchBox />
+            <LoadingIcon />
             <Map />
           </Route>
           <Route path="/list">
