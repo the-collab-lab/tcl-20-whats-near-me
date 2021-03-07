@@ -10,6 +10,7 @@
   justify-content: center;
   line-height: 1.5em;
   padding: 2% 7% 0 7%;
+  border: none;
 }
 
 .searchBar input {
@@ -20,6 +21,7 @@
   font-size: 1em;
   border: none;
   border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .searchButton {
@@ -30,6 +32,10 @@
 .searchIcon {
   color: white;
   padding: 6px 0 0;
+}
+
+.searchIcon:hover {
+  cursor: pointer;
 }
 
 .errorMessage {

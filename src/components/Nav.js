@@ -63,12 +63,6 @@ export default function Nav() {
               aria-label="list icon"
             />
           </Link>
-          {/* <Link to="/settings">
-            <Icon icon={settingsLine} className="nav-icon" aria-label="settings icon"/>
-          </Link>
-          <Link to="/help">
-            <Icon icon={helpIcon} className="nav-icon" aria-label="help icon" />
-          </Link> */}
         </div>
       </nav>
     </>
