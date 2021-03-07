@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify-icons/carbon": "^1.1.1",
     "@iconify-icons/fluent": "^1.1.2",
     "google-map-react": "^2.1.9",
     "react": "^17.0.1",
@@ -15,9 +16,11 @@
   "devDependencies": {
     "@iconify-icons/akar-icons": "^1.1.1",
     "@iconify-icons/ant-design": "^1.1.0",
+    "@iconify-icons/bi": "^1.1.2",
     "@iconify-icons/bx": "^1.1.0",
     "@iconify-icons/carbon": "^1.1.1",
     "@iconify-icons/clarity": "^1.1.0",
+    "@iconify-icons/et": "^1.1.0",
     "@iconify-icons/eva": "^1.1.0",
     "@iconify-icons/fa-regular": "^1.1.0",
     "@iconify-icons/heroicons-outline": "^1.1.0",

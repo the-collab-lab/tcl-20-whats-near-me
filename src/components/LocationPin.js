@@ -14,7 +14,11 @@ export default function LocationPin({
 }) {
   return img ? (
     <>
-      <button className="pin" tabIndex="0">
+      <button
+        className="pin"
+        tabIndex="0"
+        aria-label="location pin icon with image"
+      >
         <div
           className="pin-fill"
           style={{ backgroundImage: `url(${img})` }}
@@ -30,7 +34,13 @@ export default function LocationPin({
     </>
   ) : (
     <>
-      <Icon icon={location12Filled} width={24} height={24} tabIndex="0"></Icon>
+      <Icon
+        icon={location12Filled}
+        width={24}
+        height={24}
+        tabIndex="0"
+        aria-label="location pin icon"
+      ></Icon>
       {showWindow.id === $dimensionKey ? (
         <InfoWindow
           $dimensionKey={$dimensionKey}

@@ -9,18 +9,20 @@ import myLocation24Filled from '@iconify-icons/fluent/my-location-24-filled';
 import LoadingMessage from '../components/LoadingMessage.js';
 
 export default function Map() {
-  //refactored context
   const {
     locations,
     coordinates,
     setNewCenter,
     userLocation,
+    setMapsApi,
+    setMapInstance,
+    setMapApiLoaded,
     allowLocation,
   } = useContext(LocationsContext);
 
   const [showWindow, setShowWindow] = useState({ show: false, id: undefined });
 
-  const zoomLevel = 14;
+  const zoomLevel = 15;
 
   const onChildClick = (key) => {
     setShowWindow({
@@ -29,9 +31,11 @@ export default function Map() {
     });
   };
 
-  //TODO: added just in case we want to access the googleMapApiInternals
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
+    setMapApiLoaded(true);
+    setMapInstance(map);
+    setMapsApi(maps);
   };
 
   /*When the map moves it resets the center to recenter
@@ -46,7 +50,7 @@ export default function Map() {
       <div className="mapWrapper">
         <div className="map">
           <GoogleMapReact
-            bootstrapURLKeys={{ key: API_KEY }}
+            bootstrapURLKeys={{ key: API_KEY, libraries: ['places'] }}
             center={coordinates}
             defaultZoom={zoomLevel}
             yesIWantToUseGoogleMapApiInternals
@@ -54,7 +58,6 @@ export default function Map() {
             onDragEnd={(e) => handleNewCenter(e)}
             onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
           >
-            {/* TODO: Check that this re-renders when user location is updated */}
             {userLocation && allowLocation ? (
               <Icon
                 icon={myLocation24Filled}
@@ -68,7 +71,8 @@ export default function Map() {
             ) : null}
             {locations &&
               locations.map((locationData) => {
-                return locationData.thumbnail === undefined ? (
+                return locationData.thumbnail === undefined ||
+                  locationData.thumbnail === null ? (
                   <LocationPin
                     className="location-pin"
                     key={locationData.pageid}

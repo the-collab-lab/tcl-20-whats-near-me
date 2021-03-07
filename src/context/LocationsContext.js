@@ -1,29 +1,36 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getLocations } from '../lib/fetchPlaces';
+import { combineGoogleWikiResults } from '../lib/transformGoogleData';
 
 export const LocationsContext = createContext();
 
 const LocationsContextProvider = (props) => {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState();
-  const [allowLocation, setAllowLocation] = useState(false);
-  //state is updated in the Map component
-  const [newCenter, setNewCenter] = useState();
   const [loading, setLoading] = useState({ loading: false, message: '' });
   const [watchId, setWatchId] = useState();
 
-  //New Orleans
-  const defaultCoordinates = {
+  //state is updated in the Search component
+  const [nearByPlaces, setNearByPlaces] = useState([]);
+
+  //state is updated in the Nav component
+  const [allowLocation, setAllowLocation] = useState(false);
+
+  //state is updated in the Map component
+  const [newCenter, setNewCenter] = useState();
+  const [mapApiLoaded, setMapApiLoaded] = useState(false);
+  const [mapInstance, setMapInstance] = useState(null);
+  const [mapsApi, setMapsApi] = useState(null);
+  const [coordinates, setCoordinates] = useState({
+    //New Orleans
     lat: 29.9511,
     lng: -90.0715,
-  };
+  });
 
   const userCoordinates = userLocation && {
     lat: userLocation.latitude,
     lng: userLocation.longitude,
   };
-
-  let coordinates = userLocation ? userCoordinates : defaultCoordinates;
 
   useEffect(() => {
     getLocations(coordinates.lat, coordinates.lng, setLocations);
@@ -68,6 +75,7 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (newCenter) {
       getLocations(newCenter.lat, newCenter.lng, setLocations);
+      setCoordinates({ lat: newCenter.lat, lng: newCenter.lng });
     }
   }, [newCenter]);
 
@@ -75,8 +83,15 @@ const LocationsContextProvider = (props) => {
   useEffect(() => {
     if (userLocation) {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
+      setCoordinates(userCoordinates);
     }
   }, [userLocation]);
+
+  useEffect(() => {
+    if (locations && nearByPlaces) {
+      setLocations(combineGoogleWikiResults(nearByPlaces, locations));
+    }
+  }, [nearByPlaces]);
 
   return (
     <LocationsContext.Provider
@@ -88,8 +103,16 @@ const LocationsContextProvider = (props) => {
         setNewCenter,
         allowLocation,
         setAllowLocation,
+        mapsApi,
+        setMapsApi,
+        mapInstance,
+        setMapInstance,
+        mapApiLoaded,
+        setMapApiLoaded,
         loading,
         setLoading,
+        nearByPlaces,
+        setNearByPlaces,
       }}
     >
       {props.children}
