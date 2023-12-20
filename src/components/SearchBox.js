@@ -5,9 +5,8 @@ import { Icon } from '@iconify/react';
 import searchIcon from '@iconify-icons/bi/search';
 
 export default function SearchBox() {
-  const { coordinates, mapsApi, mapInstance, setNearByPlaces } = useContext(
-    LocationsContext,
-  );
+  const { coordinates, mapsApi, mapInstance, setNearByPlaces } =
+    useContext(LocationsContext);
 
   const inputRef = useRef(null);
 
@@ -38,7 +37,7 @@ export default function SearchBox() {
       const service = new mapsApi.places.PlacesService(mapInstance);
       service && service.nearbySearch(request, callback);
     }
-  }, [mapsApi, mapInstance, searchTerm, coordinates]);
+  }, [mapsApi, mapInstance, searchTerm, coordinates, setNearByPlaces]);
 
   return (
     <div className="searchSection">

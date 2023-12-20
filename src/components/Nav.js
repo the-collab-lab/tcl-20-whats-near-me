@@ -4,17 +4,14 @@ import { Icon } from '@iconify/react';
 import mapIcon from '@iconify-icons/fa-regular/map';
 import unorderedListOutlined from '@iconify-icons/ant-design/unordered-list-outlined';
 import bxCurrentLocation from '@iconify-icons/bx/bx-current-location';
-import settingsLine from '@iconify-icons/clarity/settings-line';
-import helpIcon from '@iconify-icons/carbon/help';
 
 import { LocationsContext } from '../context/LocationsContext';
 import './Nav.css';
 import LoadingIcon from './LoadingIcon';
 
 export default function Nav() {
-  const { loading, allowLocation, setAllowLocation } = useContext(
-    LocationsContext,
-  );
+  const { loading, allowLocation, setAllowLocation } =
+    useContext(LocationsContext);
 
   const handleLocation = () => {
     setAllowLocation(!allowLocation);

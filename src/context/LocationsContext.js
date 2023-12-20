@@ -59,6 +59,8 @@ const LocationsContextProvider = (props) => {
                     'Request timed out please check your connection and ensure location services are tured on',
                 });
                 break;
+              default:
+                return;
             }
           },
           { timeout: 10000 },
@@ -68,6 +70,7 @@ const LocationsContextProvider = (props) => {
     if (navigator.geolocation && !allowLocation) {
       navigator.geolocation.clearWatch(watchId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allowLocation]);
 
   /*when the newCenter changes in the map component the useEffect
@@ -77,6 +80,7 @@ const LocationsContextProvider = (props) => {
       getLocations(newCenter.lat, newCenter.lng, setLocations);
       setCoordinates({ lat: newCenter.lat, lng: newCenter.lng });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newCenter]);
 
   // When allowLocation is false clear state of user location and reset center to map center
@@ -85,12 +89,14 @@ const LocationsContextProvider = (props) => {
       getLocations(coordinates.lat, coordinates.lng, setLocations);
       setCoordinates(userCoordinates);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLocation]);
 
   useEffect(() => {
     if (locations && nearByPlaces) {
       setLocations(combineGoogleWikiResults(nearByPlaces, locations));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nearByPlaces]);
 
   return (
